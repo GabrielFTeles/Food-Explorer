@@ -1,6 +1,5 @@
 const UsersRepository = require('../repositories/UsersRepository');
 const UsersCreateService = require('../services/UsersCreateService');
-
 class UsersController {
   async create(request, response) {
     const { name, email, password } = request.body;

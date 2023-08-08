@@ -1,5 +1,5 @@
 {
-  "name": "food-explorer",
+  "name": "Food-explorer",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -17,6 +17,7 @@
     "express-async-errors": "^3.1.1",
     "jsonwebtoken": "^9.0.1",
     "knex": "^2.5.1",
+    "multer": "^1.4.5-lts.1",
     "sqlite3": "^5.1.6"
   },
   "devDependencies": {

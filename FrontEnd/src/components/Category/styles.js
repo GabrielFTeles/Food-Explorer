@@ -14,6 +14,11 @@ export const Container = styled.div`
     height: 100%;
   }
 
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+  }
+
   > h2 {
     font-size: 1.8rem;
     font-weight: 500;

@@ -7,7 +7,6 @@ import { List, X, MagnifyingGlass } from '@phosphor-icons/react';
 import { Logo } from '../Logo';
 import { Cart } from '../Cart';
 import { Input } from '../Input';
-import { Footer } from '../Footer';
 
 export function Header() {
   const [isMenuMobileOpen, setIsMenuMobileOpen] = useState(false);
@@ -64,11 +63,6 @@ export function Header() {
           {
             isMenuMobileOpen &&
               <ul>
-                <li>
-                  <a href="#">
-                    Novo prato
-                  </a>
-                </li>
                 <li>
                   <a href="#">
                     Sair

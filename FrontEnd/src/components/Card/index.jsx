@@ -1,12 +1,19 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { Container } from "./styles";
 
 import { Plus, Minus } from "@phosphor-icons/react";
 
 export function Card({ title, price, image }) {
+  const navigate = useNavigate();
+
   const [quantity, setQuantity] = useState(1);
   const [newPrice, setNewPrice] = useState(price);
+
+  function handleCardClick(event) {
+    
+  }
 
   function handleMinus() {
     if (quantity <= 1) return;

@@ -7,10 +7,18 @@ export const Container = styled.header`
   background: ${({ theme }) => theme.COLORS.DARK_700};
   padding: 5.6rem 2.8rem 2.4rem;
 
+  a {
+    text-decoration: none;
+  }
+
   > .header-content {
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    > a {
+      color: ${({ theme }) => theme.COLORS.WHITE};
+    }
 
     &.menuOpen {
       visibility: hidden;
@@ -68,7 +76,6 @@ export const MenuMobile = styled.div`
           font-family: Poppins;
           font-size: 2.2rem;
           line-height: 140%;
-          text-decoration: none;
         }
       }
     }

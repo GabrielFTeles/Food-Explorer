@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { Container, MenuMobile } from './styles';
 
@@ -28,9 +29,11 @@ export function Header() {
           onClick={toggleMobileMenu}
         />
 
-        <Logo 
-          size={2.1}
-        />
+        <Link to="/">
+          <Logo 
+            size={2.1}
+          />
+        </Link>
 
         <Cart 
           size={30}

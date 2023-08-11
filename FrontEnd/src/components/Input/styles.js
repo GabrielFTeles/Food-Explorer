@@ -11,6 +11,10 @@ export const Container = styled.div`
   height: 4.8rem;
   width: 100%;
 
+  transition: 0.2s;
+
+  border: 1px solid transparent;
+
   > label {
     color: ${({ theme }) => theme.COLORS.LIGHT_400};
   }
@@ -23,6 +27,7 @@ export const Container = styled.div`
 
     > svg {
       path {
+        transition: 0.2s;
         fill: ${({ theme }) => theme.COLORS.LIGHT_500};
       }
     }
@@ -32,11 +37,22 @@ export const Container = styled.div`
       background: transparent;
       width: 100%;
       height: 100%;
+
+      outline: none;
   
       &::placeholder {
         color: ${({ theme }) => theme.COLORS.LIGHT_500};
+      }
     }
   }
 
+  &:has(input:focus) {
+    border: 1px solid ${({ theme }) => theme.COLORS.CAKE_200};
+
+    svg {
+      path {
+        fill: ${({ theme }) => theme.COLORS.CAKE_200};
+      }
+    }
   }
 `;

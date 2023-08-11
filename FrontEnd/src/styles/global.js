@@ -26,16 +26,16 @@ export default createGlobalStyle`
     cursor: pointer;
   }
 
-  input,
-  button {
-    border: none;
-    color: ${({ theme }) => theme.COLORS.WHITE};
-  }
-
+  
   button {
     cursor: pointer;
   }
 
+  button,
+  input {
+    border: none;
+    color: ${({ theme }) => theme.COLORS.WHITE};
+  }
   ul {
     list-style: none;
   }

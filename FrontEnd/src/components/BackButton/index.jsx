@@ -16,7 +16,7 @@ export function BackButton() {
       onClick={handleBack}
     >
       <CaretLeft 
-        size={28}
+        size={20}
       />
       voltar
     </Container>

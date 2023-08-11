@@ -16,7 +16,7 @@ export const Container = styled.div`
     flex: 1;
     
     width: min(100%, 31.6rem);
-    padding-block: 1.6rem 3.2rem;
+    padding-block: 3.6rem 5.4rem;
     margin-inline: auto;
 
     .dish-info,
@@ -49,6 +49,51 @@ export const Container = styled.div`
         justify-content: center;
         flex-wrap: wrap;
         gap: 2.4rem;
+      }
+    }
+
+    
+    .buttons-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 1.6rem;
+
+      width: 100%;
+
+      > .counter {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.6rem;
+
+        span {
+          font-family: Roboto;
+          font-size: 2.2rem;
+          font-weight: 700;
+          line-height: 160%;
+        }
+
+        button {
+          background: transparent;
+        }
+      }
+      
+      > button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.6rem;
+        flex: 1;
+
+        height: 3.8rem;
+
+        font-size: 1.2rem;
+        font-weight: 500;
+        line-height: 1rem;
+
+        border-radius: 3px;
+
+        background: ${({ theme }) => theme.COLORS.TOMATO_100};
       }
     }
   }

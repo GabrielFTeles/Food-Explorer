@@ -9,32 +9,25 @@ export function Card({ title, price, image }) {
   const navigate = useNavigate();
 
   const [quantity, setQuantity] = useState(1);
-  const [newPrice, setNewPrice] = useState(price);
 
-  function handleDetailsClick(event) {
-    
+  function handleDetailsClick() {
+    navigate("/details");
   }
 
   function handleMinus() {
     if (quantity <= 1) return;
 
     setQuantity((prevState) => prevState - 1);
-    setNewPrice((prevState) => prevState - price);
   }
 
   function handlePlus() {
     setQuantity((prevState) => prevState + 1);
-    setNewPrice((prevState) => prevState + price);
   }
 
   return (
     <Container>
       <div className="heart-container" title="Like">
-        <input 
-        type="checkbox" 
-        className="checkbox" 
-        id="Give-It-An-Id"
-        />
+        <input type="checkbox" className="checkbox" id="Give-It-An-Id" />
         <div className="svg-container">
           <svg
             viewBox="0 0 24 24"
@@ -66,20 +59,19 @@ export function Card({ title, price, image }) {
         </div>
       </div>
 
-      <img 
-        src={image} 
-        alt={title} 
-      />
+      <img src={image} alt={title} onClick={handleDetailsClick} />
 
-      <span 
-        className="dish-name"
-        onClick={handleDetailsClick}
-      >
+      <span className="dish-name" onClick={handleDetailsClick}>
         {`${title} >`}
       </span>
 
       <span className="price">
-        {`R$ ${String(newPrice.toFixed(2)).replace(".", ",")}`}
+        {`
+        R$ 
+        ${String((quantity * price).toFixed(2))
+          .replace(".", ",")
+          .padStart(2, "0")}
+        `}
       </span>
 
       <div>

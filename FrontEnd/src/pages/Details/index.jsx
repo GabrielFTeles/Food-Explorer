@@ -7,7 +7,7 @@ import { BackButton } from '../../components/BackButton';
 import foodImg from '../../assets/Mask group.png'
 import { Ingredient } from '../../components/Ingredient';
 
-export function Preview() {
+export function Details() {
   return (
     <Container>
       <Header />

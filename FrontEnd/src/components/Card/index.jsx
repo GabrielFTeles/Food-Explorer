@@ -11,7 +11,7 @@ export function Card({ title, price, image }) {
   const [quantity, setQuantity] = useState(1);
   const [newPrice, setNewPrice] = useState(price);
 
-  function handleCardClick(event) {
+  function handleDetailsClick(event) {
     
   }
 
@@ -66,9 +66,17 @@ export function Card({ title, price, image }) {
         </div>
       </div>
 
-      <img src={image} alt={title} />
+      <img 
+        src={image} 
+        alt={title} 
+      />
 
-      <span className="dish-name">{`${title} >`}</span>
+      <span 
+        className="dish-name"
+        onClick={handleDetailsClick}
+      >
+        {`${title} >`}
+      </span>
 
       <span className="price">
         {`R$ ${String(newPrice.toFixed(2)).replace(".", ",")}`}

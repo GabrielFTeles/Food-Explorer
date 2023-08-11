@@ -25,7 +25,7 @@ export function SignUp() {
         <Input 
           id="email"
           type="email"
-          label="Email"
+          label="E-mail"
           placeholder="Exemplo: exemplo@exemplo.com.br"
         />
 

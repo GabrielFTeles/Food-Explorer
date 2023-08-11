@@ -1,15 +1,17 @@
 import { useState } from 'react';
+import { useAuth } from '../../hooks/auth';
+
 import { Link } from 'react-router-dom';
 
 import { Container, MenuMobile } from './styles';
-
 import { List, X, MagnifyingGlass } from '@phosphor-icons/react';
-
 import { Logo } from '../Logo';
 import { Cart } from '../Cart';
 import { Input } from '../Input';
 
 export function Header() {
+  const { signOut } = useAuth();
+
   const [isMenuMobileOpen, setIsMenuMobileOpen] = useState(false);
 
   function toggleMobileMenu() {
@@ -67,9 +69,9 @@ export function Header() {
             isMenuMobileOpen &&
               <ul>
                 <li>
-                  <a href="#">
+                  <Link to="/" onClick={signOut}>
                     Sair
-                  </a>
+                  </Link>
                 </li>
               </ul>
           }

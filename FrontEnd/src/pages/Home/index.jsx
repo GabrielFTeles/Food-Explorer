@@ -1,12 +1,20 @@
+import { useEffect } from 'react';
+
+import { api } from '../../services/api';
+
 import { Container } from './styles';
 
 import { Header } from '../../components/Header';
+import { Footer } from '../../components/Footer';
 import { Category } from '../../components/Category';
 
 import foodsImg from '../../assets/FoodsOnAir.svg';
-import { Footer } from '../../components/Footer';
 
 export function Home() {
+  useEffect(() => {
+
+  }, []);
+
   return (
     <Container>
       <Header />

@@ -5,15 +5,7 @@ export const Container = styled.div`
   flex-direction: column;
   gap: 0.8rem;
 
-  background: ${({ theme }) => theme.COLORS.DARK_900};
-  border-radius: 0.8rem;
-  padding-inline: 1.4rem;
-  height: 4.8rem;
   width: 100%;
-
-  transition: 0.2s;
-
-  border: 1px solid transparent;
 
   > label {
     color: ${({ theme }) => theme.COLORS.LIGHT_400};
@@ -24,6 +16,15 @@ export const Container = styled.div`
     align-items: center;
     gap: 1.4rem;
     height: 100%;
+
+    background: ${({ theme }) => theme.COLORS.DARK_900};
+    border-radius: 0.8rem;
+    padding-inline: 1.4rem;
+    height: 4.8rem;
+
+    transition: 0.2s;
+
+    border: 1px solid transparent;
 
     > svg {
       path {
@@ -44,9 +45,8 @@ export const Container = styled.div`
         color: ${({ theme }) => theme.COLORS.LIGHT_500};
       }
     }
-  }
 
-  &:has(input:focus) {
+    &:has(input:focus) {
     border: 1px solid ${({ theme }) => theme.COLORS.CAKE_200};
 
     svg {
@@ -54,5 +54,6 @@ export const Container = styled.div`
         fill: ${({ theme }) => theme.COLORS.CAKE_200};
       }
     }
+  }
   }
 `;

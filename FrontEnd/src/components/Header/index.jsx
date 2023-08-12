@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useAuth } from '../../hooks/auth';
+import { useSearch } from '../../hooks/searchContext';
 
 import { Link } from 'react-router-dom';
 
@@ -11,11 +12,20 @@ import { Input } from '../Input';
 
 export function Header() {
   const { signOut } = useAuth();
+  const { getDishes } = useSearch();
 
   const [isMenuMobileOpen, setIsMenuMobileOpen] = useState(false);
+  const [search, setSearch] = useState('');
 
   function toggleMobileMenu() {
     setIsMenuMobileOpen(!isMenuMobileOpen);
+  }
+
+  function handleSearch({ key }) {
+    if (key === 'Enter') {
+      getDishes(search);
+      setSearch('');
+    }
   }
 
   return (
@@ -61,6 +71,8 @@ export function Header() {
               id="search"
               icon={MagnifyingGlass}
               placeholder="Busque por pratos ou ingredientes"
+              onChange={e => setSearch(e.target.value)}
+              onKeyUp={handleSearch}
             />
           }
 

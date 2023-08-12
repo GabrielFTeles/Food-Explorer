@@ -3,7 +3,7 @@ class DishesIndexService {
     this.dishesRepository = dishesRepository;
   }
 
-  async execute(title) {
+  async execute(title = "") {
     const dishes = await this.dishesRepository.getAllDishes(title);
     const ingredients = await this.dishesRepository.getAllIngredients();
 

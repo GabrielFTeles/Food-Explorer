@@ -16,7 +16,6 @@ export function Header() {
 
   function toggleMobileMenu() {
     setIsMenuMobileOpen(!isMenuMobileOpen);
-    document.body.dataset.openMenu = String(!isMenuMobileOpen);
   }
 
   return (

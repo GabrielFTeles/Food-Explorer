@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { api } from '../../services/api';
 
@@ -11,8 +11,24 @@ import { Category } from '../../components/Category';
 import foodsImg from '../../assets/FoodsOnAir.svg';
 
 export function Home() {
-  useEffect(() => {
+  const [meals, setMeals] = useState([]);
+  const [desserts, setDesserts] = useState([]);
+  const [drinks, setDrinks] = useState([]);
 
+  useEffect(() => {
+    async function getDishes() {
+      const { data } = await api.get('/dishes');
+
+      const meals = data.filter(dish => dish.category === 'meal');
+      const desserts = data.filter(dish => dish.category === 'dessert');
+      const drinks = data.filter(dish => dish.category === 'drink');
+
+      setMeals(meals);
+      setDesserts(desserts);
+      setDrinks(drinks);
+    }
+
+    getDishes();
   }, []);
 
   return (
@@ -32,12 +48,15 @@ export function Home() {
         <section className="dishes-section">
           <Category 
             title="Refeições"
+            dishes={meals}
           />
           <Category 
             title="Sobremesas"
+            dishes={desserts}
           />
           <Category 
             title="Bebidas"
+            dishes={drinks}
           />
         </section>
       </main>

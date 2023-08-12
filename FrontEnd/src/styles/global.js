@@ -17,7 +17,7 @@ export default createGlobalStyle`
     background: ${({ theme }) => theme.COLORS.DARK_400};
     min-height: 100dvh;
   
-    &[data-open-menu="true"] {
+    &:has(*.menuOpen) {
       overflow: hidden;
     }
   }

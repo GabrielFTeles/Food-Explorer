@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { api } from "../../services/api";
 
 import { Container } from "./styles";
 
@@ -12,8 +14,10 @@ import { Plus, Minus, Receipt } from "@phosphor-icons/react";
 import foodImg from "../../assets/Mask group.png";
 
 export function Details() {
+  const params = useParams();
+
   const [quantity, setQuantity] = useState(1);
-  const [newPrice, setNewPrice] = useState(25);
+  const [data, setData] = useState(null);
 
   function handleMinus() {
     if (quantity <= 1) return;
@@ -25,54 +29,68 @@ export function Details() {
     setQuantity((prevState) => prevState + 1);
   }
 
+  useEffect(() => {
+    async function getData() {
+      const { data } = await api.get(`/dishes/${params.id}`);
+
+      setData(data);
+    }
+
+    getData();
+  }, []);
+
   return (
     <Container>
       <Header />
       <main>
         <BackButton />
 
-        <div className="dish-info">
-          <img src={foodImg} alt="" />
+        {
+          data && (
+            <div className="dish-info">
+              <img src={foodImg} alt="" />
 
-          <div className="dish-description">
-            <h1>Salada Ravanello</h1>
+              <div className="dish-description">
+                <h1>{data.name}</h1>
 
-            <p>
-              Rabanetes, folhas verdes e molho agridoce salpicados com gergelim.
-            </p>
+                <p>{data.description}</p>
 
-            <div className="ingredients">
-              <Ingredient title="alface" />
-              <Ingredient title="cebola" />
-              <Ingredient title="pão naan" />
-              <Ingredient title="pepino" />
-              <Ingredient title="rabanete" />
-              <Ingredient title="tomate" />
+                <div className="ingredients">
+                  {
+                    data.ingredients.map((ingredient, index) => (
+                      <Ingredient 
+                        key={index}
+                        title={ingredient}
+                      />
+                    ))
+                  }
+                </div>
+              </div>
+
+              <div className="buttons-wrapper">
+                <div className="counter">
+                  <button onClick={handleMinus}>
+                    <Minus size={24} />
+                  </button>
+
+                  <span>{String(quantity).padStart(2, "0")}</span>
+
+                  <button onClick={handlePlus}>
+                    <Plus size={24} />
+                  </button>
+                </div>
+
+                <button>
+                  <Receipt size={20} />
+                  pedir ∙{" "}
+                  {`R$ ${String((data.price * quantity).toFixed(2))
+                    .replace(".", ",")
+                    .padStart(2, "0")}`}
+                </button>
+              </div>
             </div>
-          </div>
-
-          <div className="buttons-wrapper">
-            <div className="counter">
-              <button onClick={handleMinus}>
-                <Minus size={24} />
-              </button>
-
-              <span>{String(quantity).padStart(2, "0")}</span>
-
-              <button onClick={handlePlus}>
-                <Plus size={24} />
-              </button>
-            </div>
-
-            <button>
-              <Receipt size={20} />
-              pedir ∙{" "}
-              {`R$ ${String((newPrice * quantity).toFixed(2))
-                .replace(".", ",")
-                .padStart(2, "0")}`}
-            </button>
-          </div>
-        </div>
+          )
+        }
       </main>
       <Footer />
     </Container>

@@ -11,7 +11,7 @@ import { Card } from '../Card';
 
 import foodImg from '../../assets/Mask group-2.png';
 
-export function Category({ title }) {
+export function Category({ title, dishes }) {
   return (
     <Container>
       <h2>{title}</h2>
@@ -23,34 +23,21 @@ export function Category({ title }) {
         modules={[FreeMode]}
         className="mySwiper"
       >
-        <SwiperSlide>
-          <Card 
-            title="Prugna Pie"
-            price={10.97}
-            image={foodImg}
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Card 
-            title="Prugna Pie"
-            price={10.97}
-            image={foodImg}
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Card 
-            title="Prugna Pie"
-            price={10.97}
-            image={foodImg}
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Card 
-            title="Prugna Pie"
-            price={10.97}
-            image={foodImg}
-          />
-        </SwiperSlide>
+        {
+          dishes &&
+          dishes.map(dish => (
+            <SwiperSlide
+              key={dish.id}
+            >
+              <Card
+                id={dish.id}
+                title={dish.name}
+                price={dish.price}
+                image={foodImg}
+              />
+            </SwiperSlide>
+          ))
+        }
       </Swiper>
     </Container>
   );

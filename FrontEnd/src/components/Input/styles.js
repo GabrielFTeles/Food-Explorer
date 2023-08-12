@@ -44,6 +44,16 @@ export const Container = styled.div`
       &::placeholder {
         color: ${({ theme }) => theme.COLORS.LIGHT_500};
       }
+
+      &:-webkit-autofill,
+      &:-webkit-autofill:hover, 
+      &:-webkit-autofill:focus, 
+      &:-webkit-autofill:active{
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: ${({ theme }) => theme.COLORS.WHITE};
+        transition: background-color 5000s ease-in-out 0s;
+        box-shadow: inset 0 0 20px 20px #23232329;
+      }
     }
 
     &:has(input:focus) {

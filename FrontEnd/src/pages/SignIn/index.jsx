@@ -1,12 +1,12 @@
 import { useState } from 'react';
 
 import { useAuth } from '../../hooks/auth';
-import { api } from '../../services/api';
 
 import { Container, Form } from './styles';
 import { Logo } from '../../components/Logo';
 import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
+import { toast } from 'react-toastify';
 
 export function SignIn() {
   const { signIn } = useAuth();
@@ -15,17 +15,17 @@ export function SignIn() {
   const [password, setPassword] = useState('');
 
   async function handleSignIn(event) {
-    event.preventDefault()
-
     if (!email || !password) {
-      alert('Please provide e-mail and password.');
+      toast.error('Please provide e-mail and password.');
       return;
     }
 
     try {
-      await signIn({ email, password });
+      const user = await signIn({ email, password });
+
+      toast.success(`👋 Welcome, ${user.name}!`);
     } catch(error) {
-      alert(error.message);
+      toast.error(error.message)
     }
   }
 
@@ -55,6 +55,7 @@ export function SignIn() {
         <Button
           title="Entrar"
           onClick={handleSignIn}
+          type="button"
         />
 
         <span>Criar uma conta</span>

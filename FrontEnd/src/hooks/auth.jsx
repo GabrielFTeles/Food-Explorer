@@ -1,4 +1,5 @@
 import { createContext, useState, useContext, useEffect } from "react";
+import { toast } from "react-toastify";
 
 import { api } from "../services/api";
 
@@ -20,11 +21,13 @@ function AuthProvider({ children }) {
 
       api.defaults.headers.Authorization = `Bearer ${token}`;
 
+      return user;
+
     } catch (error) {
       if (error.response) {
-        alert(error.response.data.message);
+        throw new Error(error.response.data.message);
       } else {
-        alert("Can't sign, please try again later.")
+        throw new Error("Can't sign, please try again later.")
       }
     }
   }

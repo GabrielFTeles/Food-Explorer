@@ -5,13 +5,13 @@ import { Container } from "./styles";
 
 import { Plus, Minus } from "@phosphor-icons/react";
 
-export function Card({ title, price, image }) {
+export function Card({ id, title, price, image }) {
   const navigate = useNavigate();
 
   const [quantity, setQuantity] = useState(1);
 
   function handleDetailsClick() {
-    navigate("/details");
+    navigate(`/details/${id}`);
   }
 
   function handleMinus() {

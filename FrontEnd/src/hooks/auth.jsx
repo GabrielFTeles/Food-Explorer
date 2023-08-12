@@ -39,18 +39,22 @@ function AuthProvider({ children }) {
 
     setData({});
 
-    toast.info("You have been logged out.")
+    toast.info("You have been logged out.");
   }
 
   useEffect(() => {
     const user = localStorage.getItem('@foodexplorer:user');
     const token = localStorage.getItem('@foodexplorer:token');
 
-    if (user && token) {
-      api.defaults.headers.Authorization = `Bearer ${token}`;
-
-      setData({ user: JSON.parse(user), token });
+    if (!user || !token) {
+      localStorage.removeItem('@foodexplorer:user');
+      localStorage.removeItem('@foodexplorer:token');
+      return;
     }
+
+    api.defaults.headers.Authorization = `Bearer ${token}`;
+
+    setData({ user: JSON.parse(user), token });
   }, []);
 
   return (

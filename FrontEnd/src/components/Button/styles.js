@@ -7,4 +7,12 @@ export const Container = styled.button`
   background: ${({ theme }) => theme.COLORS.TOMATO_100};
   border-radius: 5px;
   width: 100%;
+
+  display: grid;
+  place-items: center;
+
+  &:disabled {
+    opacity: 0.8;
+    cursor: default;
+  }
 `;

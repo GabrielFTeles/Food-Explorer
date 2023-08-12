@@ -9,8 +9,6 @@ import 'swiper/css/pagination';
 
 import { Card } from '../Card';
 
-import foodImg from '../../assets/Mask group-2.png';
-
 export function Category({ title, dishes }) {
   return (
     <Container>
@@ -33,7 +31,7 @@ export function Category({ title, dishes }) {
                 id={dish.id}
                 title={dish.name}
                 price={dish.price}
-                image={foodImg}
+                image={dish.image}
               />
             </SwiperSlide>
           ))

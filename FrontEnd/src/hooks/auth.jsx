@@ -1,4 +1,5 @@
 import { createContext, useState, useContext, useEffect } from "react";
+
 import { toast } from "react-toastify";
 
 import { api } from "../services/api";
@@ -27,7 +28,7 @@ function AuthProvider({ children }) {
       if (error.response) {
         throw new Error(error.response.data.message);
       } else {
-        throw new Error("Can't sign, please try again later.")
+        throw new Error("Can't sign, please try again later.");
       }
     }
   }
@@ -37,6 +38,8 @@ function AuthProvider({ children }) {
     localStorage.removeItem('@foodexplorer:token');
 
     setData({});
+
+    toast.info("You have been logged out.")
   }
 
   useEffect(() => {

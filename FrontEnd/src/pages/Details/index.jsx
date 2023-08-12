@@ -11,8 +11,6 @@ import { Ingredient } from "../../components/Ingredient";
 
 import { Plus, Minus, Receipt } from "@phosphor-icons/react";
 
-import foodImg from "../../assets/Mask group.png";
-
 export function Details() {
   const params = useParams();
 
@@ -48,7 +46,7 @@ export function Details() {
         {
           data && (
             <div className="dish-info">
-              <img src={foodImg} alt="" />
+              <img src={`${api.defaults.baseURL}/files/${data.image}`} alt="" />
 
               <div className="dish-description">
                 <h1>{data.name}</h1>

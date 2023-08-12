@@ -1,11 +1,13 @@
 import { useState } from 'react';
 
+
 import { useAuth } from '../../hooks/auth';
 
 import { Container, Form } from './styles';
 import { Logo } from '../../components/Logo';
 import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
+import { ThreeDots } from  'react-loader-spinner'
 import { toast } from 'react-toastify';
 
 export function SignIn() {
@@ -13,20 +15,35 @@ export function SignIn() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
-  async function handleSignIn(event) {
+  function handleSignIn() {
     if (!email || !password) {
       toast.error('Please provide e-mail and password.');
       return;
     }
 
-    try {
-      const user = await signIn({ email, password });
+    setIsLoading(true);
 
-      toast.success(`👋 Welcome, ${user.name}!`);
-    } catch(error) {
-      toast.error(error.message)
-    }
+    toast.promise(
+      signIn({ email, password }),
+      {
+        pending: 'Signing in...',
+        success: {
+          render({ data }) {
+            setIsLoading(false);
+            return `👋 Welcome, ${data.name}!`;
+          }
+        },
+        error: {
+          render({ data }) {
+            setIsLoading(false);
+            return `${data.message}`;
+          }
+        }
+      }
+    )
+
   }
 
   return (
@@ -53,8 +70,9 @@ export function SignIn() {
         />
 
         <Button
-          title="Entrar"
+          title={ isLoading ? <ThreeDots ariaLabel="three-dots-loading" color="#FFF" height="16" width="50" /> : 'Entrar'}
           onClick={handleSignIn}
+          disabled={isLoading}
           type="button"
         />
 

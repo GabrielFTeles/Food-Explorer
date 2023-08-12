@@ -12,11 +12,11 @@ class UsersCreateService {
     const regexEmail = new RegExp('^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$');
 
     if (!regexEmail.test(email)) {
-      throw new AppError('Please enter a valid email.');
+      throw new AppError('Please enter a valid email.', 401);
     }
 
     if (emailAlreadyInUse) {
-      throw new AppError("Email already in use");
+      throw new AppError("Email already in use", 401);
     }
 
     const hashedPassword = await hash(password, 8);

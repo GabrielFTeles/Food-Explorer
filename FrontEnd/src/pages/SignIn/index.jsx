@@ -17,7 +17,9 @@ export function SignIn() {
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  function handleSignIn() {
+  function handleSignIn(event) {
+    event.preventDefault();
+
     if (!email || !password) {
       toast.error('Please provide e-mail and password.');
       return;
@@ -52,7 +54,7 @@ export function SignIn() {
         size={3.7}
       />
 
-      <Form>
+      <Form onSubmit={handleSignIn}>
         <Input 
           id="email"
           type="email"
@@ -73,7 +75,6 @@ export function SignIn() {
           title={ isLoading ? <ThreeDots ariaLabel="three-dots-loading" color="#FFF" height="16" width="50" /> : 'Entrar'}
           onClick={handleSignIn}
           disabled={isLoading}
-          type="button"
         />
 
         <Link to="/register">Criar uma conta</Link>

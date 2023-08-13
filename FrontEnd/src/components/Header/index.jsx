@@ -26,6 +26,7 @@ export function Header() {
       getDishes(search);
       setSearch('');
       event.target.value = '';
+      toggleMobileMenu();
     }
   }
 

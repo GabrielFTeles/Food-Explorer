@@ -11,13 +11,19 @@ function AuthProvider({ children }) {
 
   async function signUp({ name, email, password }) {
     try {
+      if (password.length < 6) throw new Error("Password must be at least 6 characters long.");
+
       await api.post('/users', { name, email, password });
     } catch (error) {
       if (error.response) {
         throw new Error(error.response.data.message);
-      } else {
-        throw new Error("Can't sign, please try again later.");
       }
+
+      if (error.message) {
+        throw new Error(error.message);
+      }
+
+      throw new Error("Can't create account, please try again later.");
     }
   }
 

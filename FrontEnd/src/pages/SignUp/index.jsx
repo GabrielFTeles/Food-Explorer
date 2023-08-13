@@ -22,7 +22,14 @@ export function SignUp() {
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  async function handleSignUp() {
+  async function handleSignUp(event) {
+    event.preventDefault();
+    
+    if (!name || !email || !password) {
+      toast.error('Please provide all fields.');
+      return;
+    }
+
     setIsLoading(true);
 
     toast.promise(
@@ -52,18 +59,18 @@ export function SignUp() {
         size={3.7}
       />
 
-      <Form>
+      <Form onSubmit={handleSignUp}>
         <Input 
           id="name"
           type="text"
           label="Seu nome"
-          placeholder="Exemplo: Gabriel Teles de Faria"
+          placeholder="Exemplo: Gabriel Teles"
           onChange={e => setName(e.target.value)}
         />
 
         <Input 
           id="email"
-          type="email"
+          type="text"
           label="E-mail"
           placeholder="Exemplo: exemplo@exemplo.com.br"
           onChange={e => setEmail(e.target.value)}
@@ -79,8 +86,6 @@ export function SignUp() {
 
         <Button
           title={ isLoading ? <ThreeDots ariaLabel="three-dots-loading" color="#FFF" height="16" width="50" /> : 'Criar conta'}
-          type="button"
-          onClick={handleSignUp}
         />
 
         <Link to="/">Já tenho uma conta</Link>

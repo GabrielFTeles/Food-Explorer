@@ -28,13 +28,14 @@ export function Home() {
   }
 
   useEffect(() => {
+    console.log('teste');
+
     if (dishes.length > 0) {
       return filterDishesByCategory(dishes);
     }
 
     async function renderDishes() {
       const { data } = await api.get('/dishes');
-
       filterDishesByCategory(data);
     }
 

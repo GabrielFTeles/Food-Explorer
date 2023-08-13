@@ -5,6 +5,7 @@ export default {
     DARK_400: '#000A0F',
     DARK_600: '#00111A',
     DARK_700: '#001119',
+    DARK_800: '#0D161B',
     DARK_900: '#0D1D25',
     DARK_1000: '#192227',
 

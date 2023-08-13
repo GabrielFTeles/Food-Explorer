@@ -7,7 +7,6 @@ export const Container = styled.div`
   min-height: 100dvh;
 
   p, h1 {
-    color: ${({ theme }) => theme.COLORS.LIGHT_300};
     line-height: 140%;
   }
 
@@ -50,8 +49,11 @@ export const Container = styled.div`
         flex-wrap: wrap;
         gap: 2.4rem;
       }
-    }
 
+      .edit-button {
+        margin-top: 2.8rem;
+      }
+    }
     
     .buttons-wrapper {
       display: flex;

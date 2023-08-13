@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useAuth } from "../../hooks/auth";
 import { api } from "../../services/api";
 
 import { Container } from "./styles";
@@ -10,9 +11,11 @@ import { BackButton } from "../../components/BackButton";
 import { Ingredient } from "../../components/Ingredient";
 
 import { Plus, Minus, Receipt } from "@phosphor-icons/react";
+import { Button } from "../../components/Button";
 
 export function Details() {
   const params = useParams();
+  const { isAdmin } = useAuth();
 
   const [quantity, setQuantity] = useState(1);
   const [data, setData] = useState(null);
@@ -43,28 +46,23 @@ export function Details() {
       <main>
         <BackButton />
 
-        {
-          data && (
-            <div className="dish-info">
-              <img src={`${api.defaults.baseURL}/files/${data.image}`} alt="" />
+        {data && (
+          <div className="dish-info">
+            <img src={`${api.defaults.baseURL}/files/${data.image}`} alt="" />
 
-              <div className="dish-description">
-                <h1>{data.name}</h1>
+            <div className="dish-description">
+              <h1>{data.name}</h1>
 
-                <p>{data.description}</p>
+              <p>{data.description}</p>
 
-                <div className="ingredients">
-                  {
-                    data.ingredients.map((ingredient, index) => (
-                      <Ingredient 
-                        key={index}
-                        title={ingredient}
-                      />
-                    ))
-                  }
-                </div>
+              <div className="ingredients">
+                {data.ingredients.map((ingredient, index) => (
+                  <Ingredient key={index} title={ingredient} />
+                ))}
               </div>
+            </div>
 
+            {!isAdmin && (
               <div className="buttons-wrapper">
                 <div className="counter">
                   <button onClick={handleMinus}>
@@ -86,9 +84,16 @@ export function Details() {
                     .padStart(2, "0")}`}
                 </button>
               </div>
-            </div>
-          )
-        }
+            )}
+
+            {isAdmin ? (
+              <Button
+                title="Editar prato"
+                className="edit-button"
+              />
+            ) : null}
+          </div>
+        )}
       </main>
       <Footer />
     </Container>

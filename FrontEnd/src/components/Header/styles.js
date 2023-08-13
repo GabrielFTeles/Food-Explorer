@@ -7,6 +7,8 @@ export const Container = styled.header`
   background: ${({ theme }) => theme.COLORS.DARK_700};
   padding: 5.6rem 2.8rem 2.4rem;
 
+  min-height: 11.7rem;
+
   a {
     text-decoration: none;
   }

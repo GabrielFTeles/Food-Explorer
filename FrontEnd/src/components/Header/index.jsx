@@ -86,6 +86,15 @@ export function Header() {
           {
             isMenuMobileOpen &&
               <ul>
+                {
+                  isAdmin ? (
+                    <li>
+                      <Link to="/new">
+                        Novo prato
+                      </Link>
+                    </li>
+                  ) : null
+                }
                 <li>
                   <Link to="/" onClick={signOut}>
                     Sair

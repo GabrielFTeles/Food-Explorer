@@ -1,4 +1,5 @@
 import { createContext, useState, useContext, useEffect } from "react";
+import jwtDecode from 'jwt-decode';
 
 import { toast } from "react-toastify";
 
@@ -35,8 +36,10 @@ function AuthProvider({ children }) {
 
       localStorage.setItem('@foodexplorer:user', JSON.stringify(user));
       localStorage.setItem('@foodexplorer:token', token);
+
+      const { isAdmin } = jwtDecode(token);
       
-      setData({ user, token });
+      setData({ user, token, isAdmin: +isAdmin });
 
       api.defaults.headers.Authorization = `Bearer ${token}`;
 
@@ -72,7 +75,9 @@ function AuthProvider({ children }) {
 
     api.defaults.headers.Authorization = `Bearer ${token}`;
 
-    setData({ user: JSON.parse(user), token });
+    const { isAdmin } = jwtDecode(token);
+
+    setData({ user: JSON.parse(user), token, isAdmin: +isAdmin });
   }, []);
 
   return (
@@ -82,6 +87,7 @@ function AuthProvider({ children }) {
         signOut,
         signUp,
         user: data.user,
+        isAdmin: data.isAdmin,
       }}
     >
       {children}

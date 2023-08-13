@@ -5,6 +5,7 @@ export const Container = styled.div`
 
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   gap: 1.2rem;
 
@@ -15,6 +16,11 @@ export const Container = styled.div`
   border: 1px solid ${({ theme }) => theme.COLORS.DARK_300};
   border-radius: 8px;
   background: ${({ theme }) => theme.COLORS.DARK_200};
+
+  > svg {
+    position: absolute;
+    top: 1.6rem; right: 1.6rem;
+  }
 
   .heart-container {
     --heart-color: rgb(255, 91, 137);

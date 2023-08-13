@@ -16,8 +16,22 @@ export const Container = styled.header`
     align-items: center;
     justify-content: space-between;
 
-    > a {
-      color: ${({ theme }) => theme.COLORS.WHITE};
+    .logo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.8rem;
+      flex: 1;
+
+      > a {
+        color: ${({ theme }) => theme.COLORS.WHITE};
+      }
+
+      > span {
+        font-family: Roboto;
+        color: ${({ theme }) => theme.COLORS.CAKE_200};
+        font-size: 1.2rem;
+      }
     }
 
     &.menuOpen {

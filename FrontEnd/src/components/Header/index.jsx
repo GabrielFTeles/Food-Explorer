@@ -11,7 +11,7 @@ import { Cart } from '../Cart';
 import { Input } from '../Input';
 
 export function Header() {
-  const { signOut } = useAuth();
+  const { signOut, isAdmin } = useAuth();
   const { getDishes } = useSearch();
 
   const [isMenuMobileOpen, setIsMenuMobileOpen] = useState(false);
@@ -42,16 +42,21 @@ export function Header() {
           onClick={toggleMobileMenu}
         />
 
-        <Link to="/">
-          <Logo 
-            size={2.1}
-          />
-        </Link>
+        <div className="logo">
+          <Link to="/">
+            <Logo 
+              size={2.1}
+            />
+          </Link>
 
-        <Cart 
-          size={30}
-          items={5}
-        />
+          {
+            isAdmin ? <span>admin</span> : null
+          }
+        </div>
+
+        {
+          !isAdmin && <Cart size={30} items={5} />
+        }
       </div>
 
       <MenuMobile 

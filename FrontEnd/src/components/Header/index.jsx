@@ -21,10 +21,11 @@ export function Header() {
     setIsMenuMobileOpen(!isMenuMobileOpen);
   }
 
-  function handleSearch({ key }) {
-    if (key === 'Enter') {
+  function handleSearch(event) {
+    if (event.key === 'Enter') {
       getDishes(search);
       setSearch('');
+      event.target.value = '';
     }
   }
 

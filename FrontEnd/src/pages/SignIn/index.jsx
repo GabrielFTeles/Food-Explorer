@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+import { Link } from 'react-router-dom';
 
 import { useAuth } from '../../hooks/auth';
 
@@ -76,7 +76,7 @@ export function SignIn() {
           type="button"
         />
 
-        <span>Criar uma conta</span>
+        <Link to="/register">Criar uma conta</Link>
       </Form>
     </Container>
   );

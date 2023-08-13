@@ -29,8 +29,6 @@ export function Home() {
   }
 
   useEffect(() => {
-    console.log(dishes)
-
     if (dishes.length > 0) {
       return filterDishesByCategory(dishes);
     }

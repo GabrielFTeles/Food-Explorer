@@ -9,6 +9,18 @@ export const AuthContext = createContext();
 function AuthProvider({ children }) {
   const [data, setData] = useState({});
 
+  async function signUp({ name, email, password }) {
+    try {
+      await api.post('/users', { name, email, password });
+    } catch (error) {
+      if (error.response) {
+        throw new Error(error.response.data.message);
+      } else {
+        throw new Error("Can't sign, please try again later.");
+      }
+    }
+  }
+
   async function signIn({ email, password }) {
     try {
       const response = await api.post('/sessions', { email, password});
@@ -62,6 +74,7 @@ function AuthProvider({ children }) {
       value={{
         signIn,
         signOut,
+        signUp,
         user: data.user,
       }}
     >

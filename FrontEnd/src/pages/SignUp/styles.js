@@ -19,4 +19,12 @@ export const Form = styled.form`
   flex-direction: column;
   align-items: center;
   gap: 3.2rem;
+
+  > a {
+    text-decoration: none;
+    color: ${({ theme }) => theme.COLORS.WHITE};
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 2.4rem;
+  }
 `;

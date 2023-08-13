@@ -61,9 +61,9 @@ export function Card({ id, title, price, image }) {
         </div>
       </div>
 
-      <img src={`${api.defaults.baseURL}/files/${image}`} alt={title} onClick={handleDetailsClick} />
+      <img src={`${api.defaults.baseURL}/files/${image}`} role="button" alt={title} onClick={handleDetailsClick} />
 
-      <span className="dish-name" onClick={handleDetailsClick}>
+      <span className="dish-name" role="button" onClick={handleDetailsClick}>
         {`${title} >`}
       </span>
 

@@ -17,6 +17,7 @@ export default {
     CAKE_200: '#82F3FF',
 
     TOMATO_100: '#750310',
+    TOMATO_400: '#AB4D55',
 
     GRADIENTS_200: 'linear-gradient(180deg, #091E26 0%, #00131C 100%)',
 

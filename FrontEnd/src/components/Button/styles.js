@@ -13,6 +13,7 @@ export const Container = styled.button`
 
   &:disabled {
     opacity: 0.8;
+    background: ${({ theme }) => theme.COLORS.TOMATO_400};
     cursor: default;
   }
 `;

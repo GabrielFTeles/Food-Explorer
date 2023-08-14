@@ -1,10 +1,11 @@
 import { Container } from './styles';
 
-import { BackButton } from '../../components/BackButton';
+import { Input } from '../../components/Input';
 import { Footer } from '../../components/Footer';
 import { Header } from '../../components/Header';
-import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
+import { FileInput } from '../../components/FileInput';
+import { BackButton } from '../../components/BackButton';
 
 export function New() {
   return (
@@ -15,6 +16,29 @@ export function New() {
         <BackButton />
 
         <h1>Novo prato</h1>
+
+        <FileInput 
+          id="image"
+          label="Imagem do prato"
+          placeholder="Selecione uma imagem"
+        />
+
+        <Input 
+          id="name"
+          label="Nome"
+          placeholder="Ex.: Salada Ceasar"
+        />
+
+        <Input 
+          id="price"
+          label="Preço"
+          placeholder="R$ 00,00"
+        />
+
+        <Button 
+          title="Salvar alterações"
+          disabled={true}
+        />
       </main>
 
       <Footer />

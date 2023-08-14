@@ -10,6 +10,7 @@ export const Container = styled.div`
   font-family: 'Roboto';
 
   > label {
+    width: fit-content;
     color: ${({ theme }) => theme.COLORS.LIGHT_400};
   }
 

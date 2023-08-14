@@ -18,9 +18,14 @@ export const Container = styled.div`
 
     .input-wrap {
       background: ${({ theme }) => theme.COLORS.DARK_800};
+
+      &:has(input:focus) {
+        background: ${({ theme }) => theme.COLORS.DARK_900};
+      }
     }
 
     > h1 {
+      font-size: 3.2rem;
       font-weight: 500;
     }
   }

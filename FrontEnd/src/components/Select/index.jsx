@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-import { Container } from './styles';
-import { CaretDown } from '@phosphor-icons/react'
+import { Container } from "./styles";
+import { CaretDown } from "@phosphor-icons/react";
 
-export function Select({ id, label, options, onSelect, ...rest}) {
+export function Select({ label, options, onSelect }) {
   const [active, setActive] = useState(false);
   const [selected, setSelected] = useState(options[0]);
 
@@ -17,26 +17,28 @@ export function Select({ id, label, options, onSelect, ...rest}) {
 
   return (
     <Container>
-      <label htmlFor={id}>{label}</label>
+      <label onClick={toggleSelect}>{label}</label>
 
       <div className={active ? "active" : ""} onClick={toggleSelect}>
         <span>{selected}</span>
-        <CaretDown  size={20} />
+        <CaretDown size={20} />
 
         <ul>
-          {
-            options.filter(option => option !== selected)
-              .map((option, index) => (
-                <li key={index} onClick={() => {
+          {options
+            .filter((option) => option !== selected)
+            .map((option, index) => (
+              <li
+                key={index}
+                onClick={() => {
                   handleSelected(option);
                   onSelect(option);
-                }}>
-                  <span>{option}</span>
-                </li>
-            ))
-          }
+                }}
+              >
+                <span>{option}</span>
+              </li>
+            ))}
         </ul>
       </div>
     </Container>
-  )
+  );
 }

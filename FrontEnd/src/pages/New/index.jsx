@@ -8,11 +8,15 @@ import { Header } from '../../components/Header';
 import { Button } from '../../components/Button';
 import { FileInput } from '../../components/FileInput';
 import { BackButton } from '../../components/BackButton';
-import { NewIngredient } from '../../components/NewIngredient';
+import { IngredientItem } from '../../components/IngredientItem';
 import { TextArea } from '../../components/TextArea';
 import { Select } from '../../components/Select';
 
 export function New() {
+  const [name, setName] = useState('');
+  const [category, setCategory] = useState('');
+  const [ingredients, setIngredients] = useState('');
+  const [newIngredient, setNewIngredient] = useState('');
 
   return (
     <Container>
@@ -45,10 +49,10 @@ export function New() {
         <div className="new-ingredients">
           <label htmlFor="ingredient">Ingredientes</label>
           <div>
-            <NewIngredient 
+            <IngredientItem 
               value="Tste"
             />
-            <NewIngredient 
+            <IngredientItem 
               id="ingredient"
               isNew={true.toString()}
               placeholder="Adicionar"

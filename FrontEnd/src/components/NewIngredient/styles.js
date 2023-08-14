@@ -8,15 +8,17 @@ export const Container = styled.div`
 
   width: fit-content;
 
-  padding: 1rem 1.6rem;
+  padding: 0.8rem 1.6rem;
 
-  border: 1px dashed ${({ theme }) => theme.COLORS.LIGHT_500};
+  border: 2px dashed ${({ theme }) => theme.COLORS.LIGHT_500};
   border-radius: 8px;
+
+  transition: 0.2s;
 
   background: ${({ theme, $isnew }) => ($isnew === "true") ? "transparent" : theme.COLORS.LIGHT_600};
 
   &:has(input:focus) {
-    border: ${({ theme, $isnew }) => ($isnew === "true") ? `1px dashed ${theme.COLORS.WHITE}` : "1px solid transparent"};
+    border: ${({ theme, $isnew }) => ($isnew === "true") ? `2px dashed ${theme.COLORS.WHITE}` : "2px solid transparent"};
 
     & > button {
       svg {

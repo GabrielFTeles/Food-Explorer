@@ -41,6 +41,7 @@ export default createGlobalStyle`
     border: none;
     color: ${({ theme }) => theme.COLORS.WHITE};
   }
+  
   ul {
     list-style: none;
   }

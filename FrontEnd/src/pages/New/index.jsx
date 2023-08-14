@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import { Container } from './styles';
 
 import { Input } from '../../components/Input';
@@ -8,8 +10,10 @@ import { FileInput } from '../../components/FileInput';
 import { BackButton } from '../../components/BackButton';
 import { NewIngredient } from '../../components/NewIngredient';
 import { TextArea } from '../../components/TextArea';
+import { Select } from '../../components/Select';
 
 export function New() {
+
   return (
     <Container>
       <Header />
@@ -29,6 +33,13 @@ export function New() {
           id="name"
           label="Nome"
           placeholder="Ex.: Salada Ceasar"
+        />
+
+        <Select
+          id="category"
+          label="Categoria"
+          options={["Refeição", "Sobremesa", "Bebida"]}
+          onSelect={(test) => console.log(test)}
         />
 
         <div className="new-ingredients">

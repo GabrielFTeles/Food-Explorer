@@ -24,6 +24,34 @@ export const Container = styled.div`
       }
     }
 
+    .new-ingredients {
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+
+      font-family: 'Roboto';
+
+      > label {
+        color: ${({ theme }) => theme.COLORS.LIGHT_400};
+      }
+
+      > div {
+        display: flex;
+        align-items: center;
+        gap: 1.6rem;
+
+        padding: 0.8rem 1rem;
+        border-radius: 0.8rem;
+        background: ${({ theme }) => theme.COLORS.DARK_800};
+
+        transition: 0.2s;
+
+        &:has(input:focus) {
+          background: ${({ theme }) => theme.COLORS.DARK_900};
+        }
+      }
+    }
+
     > h1 {
       font-size: 3.2rem;
       font-weight: 500;

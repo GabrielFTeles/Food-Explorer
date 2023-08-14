@@ -12,6 +12,7 @@ export default {
     LIGHT_300: '#E1E1E6',
     LIGHT_400: '#C4C4CC',
     LIGHT_500: '#7C7C8A',
+    LIGHT_600: '#76797B',
     LIGHT_700: '#4D585E',
 
     CAKE_200: '#82F3FF',

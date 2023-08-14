@@ -6,6 +6,7 @@ import { Header } from '../../components/Header';
 import { Button } from '../../components/Button';
 import { FileInput } from '../../components/FileInput';
 import { BackButton } from '../../components/BackButton';
+import { NewIngredient } from '../../components/NewIngredient';
 
 export function New() {
   return (
@@ -28,6 +29,20 @@ export function New() {
           label="Nome"
           placeholder="Ex.: Salada Ceasar"
         />
+
+        <div className="new-ingredients">
+          <label htmlFor="ingredient">Ingredientes</label>
+          <div>
+            <NewIngredient 
+              value="Tste"
+            />
+            <NewIngredient 
+              id="ingredient"
+              isNew={true.toString()}
+              placeholder="Adicionar"
+            />
+          </div>
+        </div>
 
         <Input 
           id="price"

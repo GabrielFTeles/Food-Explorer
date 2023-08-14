@@ -57,7 +57,6 @@ export function SignIn() {
       <Form onSubmit={handleSignIn}>
         <Input 
           id="email"
-          type="email"
           label="E-mail"
           placeholder="exemplo@email.com"
           onChange={(e) => setEmail(e.target.value)}

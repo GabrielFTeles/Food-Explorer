@@ -59,14 +59,15 @@ export const Container = styled.div`
       }
     }
 
-    &:has(input:focus) {
-    border: 1px solid ${({ theme }) => theme.COLORS.CAKE_200};
+    &:has(input:focus),
+    &:has(input:valid) {
+      border: 1px solid ${({ theme }) => theme.COLORS.CAKE_200};
 
-    svg {
-      path {
-        fill: ${({ theme }) => theme.COLORS.CAKE_200};
+      svg {
+        path {
+          fill: ${({ theme }) => theme.COLORS.CAKE_200};
+        }
       }
     }
-  }
   }
 `;

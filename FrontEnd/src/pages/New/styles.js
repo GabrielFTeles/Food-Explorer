@@ -19,7 +19,8 @@ export const Container = styled.div`
     .input-wrap {
       background: ${({ theme }) => theme.COLORS.DARK_800};
 
-      &:has(input:focus) {
+      &:has(input:focus),
+      &:has(input:valid) {
         background: ${({ theme }) => theme.COLORS.DARK_900};
       }
     }

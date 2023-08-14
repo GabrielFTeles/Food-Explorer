@@ -1,7 +1,13 @@
 import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  * { 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Poppins;
+    font-size: 1.6rem;
+  }
 
   :root {
     font-size: 62.5%;
@@ -11,8 +17,6 @@ export default createGlobalStyle`
     --webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     color: ${({ theme }) => theme.COLORS.WHITE};
-    font-family: Poppins;
-    font-size: 1.6rem;
 
     background: ${({ theme }) => theme.COLORS.DARK_400};
     min-height: 100dvh;

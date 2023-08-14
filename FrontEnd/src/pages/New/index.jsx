@@ -7,6 +7,7 @@ import { Button } from '../../components/Button';
 import { FileInput } from '../../components/FileInput';
 import { BackButton } from '../../components/BackButton';
 import { NewIngredient } from '../../components/NewIngredient';
+import { TextArea } from '../../components/TextArea';
 
 export function New() {
   return (
@@ -48,6 +49,12 @@ export function New() {
           id="price"
           label="Preço"
           placeholder="R$ 00,00"
+        />
+
+        <TextArea 
+          id="description"
+          label="Descrição"
+          placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"
         />
 
         <Button 

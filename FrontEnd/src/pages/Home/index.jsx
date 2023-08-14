@@ -28,16 +28,16 @@ export function Home() {
   }
 
   useEffect(() => {
-    console.log('teste');
-
     if (dishes.length > 0) {
       return filterDishesByCategory(dishes);
     }
 
     async function renderDishes() {
       const { data } = await api.get('/dishes');
+      console.log(data)
       filterDishesByCategory(data);
     }
+
 
     renderDishes();
   }, [dishes]);

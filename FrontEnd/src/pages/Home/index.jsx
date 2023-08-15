@@ -34,7 +34,6 @@ export function Home() {
 
     async function renderDishes() {
       const { data } = await api.get('/dishes');
-      console.log(data)
       filterDishesByCategory(data);
     }
 

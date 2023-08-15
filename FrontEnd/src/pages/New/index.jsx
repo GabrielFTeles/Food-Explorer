@@ -77,7 +77,7 @@ export function New() {
         <FileInput 
           id="image"
           label="Imagem do prato"
-          placeholder="Selecione uma imagem"
+          placeholder={image ? image.name : "Selecione uma imagem"}
           onChange={(event) => setImage(event.target.files[0])}
         />
 

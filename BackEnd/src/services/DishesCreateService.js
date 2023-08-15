@@ -5,14 +5,14 @@ class DishesCreateService {
     this.dishesRepository = dishesRepository;
   }
 
-  async execute({ name, description, category, image, price, ingredients }) {
+  async execute({ name, description, category, price, image, ingredients }) {
     const dishAlreadyExists = await this.dishesRepository.getDishByName(name);
 
     if (dishAlreadyExists) {
       throw new AppError(`${name} already exists, please insert other name.`);
     }
 
-    const dishCreated_id = await this.dishesRepository.createDish({ name, description, category, image, price });
+    const dishCreated_id = await this.dishesRepository.createDish({ name, description, category, price, image});
 
     const ingredientsWithDishId = ingredients.map(ingredient => ({
       name: ingredient,

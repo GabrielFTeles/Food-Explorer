@@ -29,7 +29,8 @@ class DishesController {
   }
 
   async create(request, response) {
-    const { name, description, category, image, price, ingredients } = request.body;
+    const { name, description, category, price, ingredients } = request.body;
+    const image = "food-placeholder.png"
 
     const dishesRepository = new DishesRepository();
     const dishesCreateService = new DishesCreateService(dishesRepository);
@@ -41,12 +42,12 @@ class DishesController {
 
   async update(request, response) {
     const { id } = request.params;
-    const { name, description, category, image, price, ingredients } = request.body;
+    const { name, description, category, price, ingredients } = request.body;
 
     const dishesRepository = new DishesRepository();
     const dishesUpdateService = new DishesUpdateService(dishesRepository);
 
-    await dishesUpdateService.execute({ id, name, description, category, image, price, ingredients });
+    await dishesUpdateService.execute({ id, name, description, category, price, ingredients });
 
     return response.json();
   }

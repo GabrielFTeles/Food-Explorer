@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { Container } from "./styles";
 import { CaretDown } from "@phosphor-icons/react";
@@ -14,6 +14,10 @@ export function Select({ label, options, onSelect }) {
   function handleSelected(option) {
     setSelected(option);
   }
+
+  useEffect(() => {
+    onSelect(selected);
+  }, []);
 
   return (
     <Container>

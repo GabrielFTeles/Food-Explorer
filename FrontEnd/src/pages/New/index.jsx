@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { api } from '../../services/api';
 
@@ -17,6 +18,8 @@ import { TextArea } from '../../components/TextArea';
 import { Select } from '../../components/Select';
 
 export function New() {
+  const navigate = useNavigate();
+
   const [image, setImage] = useState(null);
   const [name, setName] = useState('');
   const [category, setCategory] = useState('');
@@ -42,6 +45,7 @@ export function New() {
   }
 
   function handleNewIngredient() {
+    if (!newIngredient) return;
     setIngredients(prevState => [...prevState, newIngredient]);
     setNewIngredient('');
   }
@@ -52,13 +56,17 @@ export function New() {
 
   function handleImage() {
     const formData = new FormData();
-
     formData.append('image', image);
-
     return formData;
   }
 
   function handleNewDish() {
+    if (newIngredient) return toast.info('Adicione o ingrediente antes de criar o prato.');
+
+    if (!name || !category || ingredients.length === 0 || !price || !description) {
+      return toast.error('Preencha todos os campos para criar um prato.');
+    }
+
     toast.promise(
       api.post('/dishes', { name, description, category, price, ingredients }),
       {
@@ -66,8 +74,7 @@ export function New() {
         success: {
           render({ data: { data } }) {
             const imageFormData = handleImage();
-
-            api.patch(`/dishes/${data.dish_id}`, imageFormData);
+            api.patch(`/dishes/${data.dish_id}`, imageFormData).then(() => navigate('/'));
             return `Prato criado com sucesso!`;
           }
         },
@@ -150,7 +157,7 @@ export function New() {
 
         <Button 
           title="Salvar alterações"
-          disabled={(!name || !category || !ingredients || !price || !description)}
+          disabled={(!name || !category || ingredients.length === 0 || !price || !description)}
           onClick={handleNewDish}
         />
       </main>

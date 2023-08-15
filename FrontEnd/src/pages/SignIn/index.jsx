@@ -34,8 +34,9 @@ export function SignIn() {
         success: {
           render({ data }) {
             setIsLoading(false);
-            return `👋 Welcome, ${data.name}!`;
-          }
+            return `Welcome, ${data.name}!`;
+          },
+          icon: "👋",
         },
         error: {
           render({ data }) {

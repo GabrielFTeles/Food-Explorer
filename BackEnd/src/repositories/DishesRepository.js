@@ -42,10 +42,10 @@ class DishesRepository {
     await knex('ingredients').insert(ingredients);
   }
 
-  async updateDish({id, name, description, category, price }) {
+  async updateDish({id, name, description, category, price, image }) {
     const updatedDish = await knex('dishes')
       .where({ id })
-      .update({ name, description, category, price });
+      .update({ name, description, category, price, image });
 
     return updatedDish;
   }

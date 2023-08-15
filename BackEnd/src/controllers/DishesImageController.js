@@ -4,12 +4,12 @@ const DishesImageUpdateService = require('../services/DishesImageUpdateService')
 class DishesImageController {
   async update(request, response) {
     const { id } = request.params;
-    const { filename } = request.file;
+    const dishImage = request.file.filename;
 
     const dishesRepository = new DishesRepository();
     const dishesImageUpdateService = new DishesImageUpdateService(dishesRepository);
 
-    const dish = await dishesImageUpdateService.execute({ id, filename });
+    const dish = await dishesImageUpdateService.execute({ id, dishImage });
 
     return response.json(dish);
   }

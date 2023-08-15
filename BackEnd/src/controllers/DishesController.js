@@ -30,24 +30,27 @@ class DishesController {
 
   async create(request, response) {
     const { name, description, category, price, ingredients } = request.body;
-    const image = "food-placeholder.png"
+    const image = "default.jpg"
 
     const dishesRepository = new DishesRepository();
     const dishesCreateService = new DishesCreateService(dishesRepository);
 
-    await dishesCreateService.execute({ name, description, category, price, image, ingredients });
+    const dish_id = await dishesCreateService.execute({ name, description, category, price, image, ingredients });
 
-    return response.status(201).json();
+    return response.status(201).json({
+      message: "Dish created successfully",
+      dish_id,
+    });
   }
 
   async update(request, response) {
     const { id } = request.params;
-    const { name, description, category, price, ingredients } = request.body;
+    const { name, description, category, price, image, ingredients } = request.body;
 
     const dishesRepository = new DishesRepository();
     const dishesUpdateService = new DishesUpdateService(dishesRepository);
 
-    await dishesUpdateService.execute({ id, name, description, category, price, ingredients });
+    await dishesUpdateService.execute({ id, name, description, category, price, image, ingredients });
 
     return response.json();
   }

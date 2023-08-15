@@ -50,12 +50,27 @@ export function New() {
     setIngredients(prevState => prevState.filter(item => item !== ingredient));
   }
 
+  function handleImage() {
+    const formData = new FormData();
+
+    formData.append('image', image);
+
+    return formData;
+  }
+
   function handleNewDish() {
     toast.promise(
-      api.post('/dishes', { name, description, category, image: "Espresso.png", price, ingredients }),
+      api.post('/dishes', { name, description, category, price, ingredients }),
       {
         pending: 'Criando prato...',
-        success: 'Prato criado com sucesso!',
+        success: {
+          render({ data: { data } }) {
+            const imageFormData = handleImage();
+
+            api.patch(`/dishes/${data.dish_id}`, imageFormData);
+            return `Prato criado com sucesso!`;
+          }
+        },
         error: {
           render({ data }) {
             return `${data.message}`;

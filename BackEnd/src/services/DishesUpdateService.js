@@ -3,9 +3,9 @@ class DishesUpdateService {
     this.dishesRepository = dishesRepository;
   }
 
-  async execute({id, name, description, category, price, ingredients }) {
+  async execute({id, name, description, category, price, image, ingredients }) {
     const updatedDish_id = await this.dishesRepository
-      .updateDish({id, name, description, category, price });
+      .updateDish({id, name, description, category, price, image });
 
     const ingredientsWithDishId = ingredients.map(ingredient => ({
       name: ingredient,

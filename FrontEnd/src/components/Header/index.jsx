@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useAuth } from '../../hooks/auth';
 import { useSearch } from '../../hooks/searchContext';
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { Container, MenuMobile } from './styles';
 import { List, X, MagnifyingGlass } from '@phosphor-icons/react';
@@ -11,6 +11,7 @@ import { Cart } from '../Cart';
 import { Input } from '../Input';
 
 export function Header() {
+  const navigate = useNavigate();
   const { signOut, isAdmin } = useAuth();
   const { getDishes } = useSearch();
 
@@ -26,6 +27,9 @@ export function Header() {
       getDishes(search);
       setSearch('');
       event.target.value = '';
+
+      if (window.location.pathname !== '/') navigate('/');
+
       toggleMobileMenu();
     }
   }

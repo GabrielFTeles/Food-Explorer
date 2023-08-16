@@ -8,6 +8,7 @@ export function IngredientItem({ value, isNew = false, onClick, ...rest }) {
       <input
         readOnly={!isNew}
         value={value}
+        autoComplete="off"
         {...rest}
       />
 

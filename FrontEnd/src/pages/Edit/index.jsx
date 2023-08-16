@@ -6,7 +6,6 @@ import { api } from '../../services/api';
 import { toast } from 'react-toastify';
 
 import { Container } from './styles';
-
 import { Input } from '../../components/Input';
 import { Footer } from '../../components/Footer';
 import { Header } from '../../components/Header';
@@ -16,6 +15,8 @@ import { BackButton } from '../../components/BackButton';
 import { IngredientItem } from '../../components/IngredientItem';
 import { TextArea } from '../../components/TextArea';
 import { Select } from '../../components/Select';
+
+import { Trash } from '@phosphor-icons/react';
 
 export function Edit() {
   const params = useParams();
@@ -71,6 +72,27 @@ export function Edit() {
 
             return `Alterações salvas com sucesso!`;
           }
+        },
+        error: {
+          render({ data }) {
+            return `${data.message}`;
+          }
+        }
+      }
+    );
+  }
+
+  function handleDeleteDish() {
+    toast.promise(
+      api.delete(`/dishes/${params.id}`),
+      {
+        pending: 'Excluindo prato...',
+        success: {
+          render() {
+            navigate('/');
+            return 'Prato excluído com sucesso!';
+          },
+          icon: <Trash size={30} />,
         },
         error: {
           render({ data }) {
@@ -190,7 +212,7 @@ export function Edit() {
         <div className="buttons-wrapper">
           <Button 
             title="Excluir"
-            onClick={handleSaveDish}
+            onClick={handleDeleteDish}
           />
           <Button 
             title="Salvar alterações"

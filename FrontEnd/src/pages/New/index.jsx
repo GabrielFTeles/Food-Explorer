@@ -53,29 +53,22 @@ export function New() {
 
     if (!price) return toast.error('O preço deve ser um número.');
 
-    toast.promise(
-      api.post('/dishes', { name, description, category, price, ingredients }),
-      {
-        pending: 'Criando prato...',
-        success: {
-          render({ data: { data } }) {
-            if (image) {
-              const imageFormData = handleImage();
-              api.patch(`/dishes/${data.dish_id}`, imageFormData).then(() => navigate('/'));
-            } else {
-              navigate('/');
-            }
+    const createDishToast = toast.loading("Criando prato...");
 
-            return `Prato criado com sucesso!`;
-          }
-        },
-        error: {
-          render({ data }) {
-            return `${data.message}`;
-          }
+    api.post('/dishes', { name, description, category, price, ingredients })
+      .then(({ data }) => {
+        toast.update(createDishToast, { render: "Prato criado com sucesso!", type: "success", isLoading: false, autoClose: 5000 })
+
+        if (image) {
+          const imageFormData = handleImage();
+          api.patch(`/dishes/${data.dish_id}`, imageFormData).then(() => navigate('/'));
+        } else {
+          navigate('/');
         }
-      }
-    );
+      })
+      .catch(({ response: { data } }) => {
+        toast.update(createDishToast, { render: () => `${data.message}`, type: "error", isLoading: false, autoClose: 5000 })
+      });
   }
 
   return (
@@ -98,7 +91,7 @@ export function New() {
           id="name"
           label="Nome"
           placeholder="Ex.: Salada Ceasar"
-          onChange={(event) => setName(event.target.value)}
+          onChange={(event) => setName(event.target.value.trim())}
         />
 
         <Select
@@ -139,7 +132,7 @@ export function New() {
               isNew={true.toString()}
               placeholder="Adicionar"
               value={newIngredient}
-              onChange={(event) => setNewIngredient(event.target.value)}
+              onChange={(event) => setNewIngredient(event.target.value.trim())}
               onClick={handleNewIngredient}
             />
           </div>
@@ -148,16 +141,23 @@ export function New() {
         <Input 
           id="price"
           label="Preço"
-          type="number"
+          type="text"
           placeholder="R$ 00,00"
-          onChange={(event) => setPrice(Number(event.target.value))}
+          onChange={(event) => {
+            const value = event.target.value.replace(/[^0-9.,]/g, '');
+            setPrice(Number(value.replace(',', '.')));
+          }}
+          onBlur={(event) => {
+            const value = event.target.value.replace(/[^0-9.,]/g, '');
+            event.target.value = `R$ ${Number(value.replace(',', '.')).toFixed(2)}`.replace('.', ',');
+          }}
         />
 
         <TextArea 
           id="description"
           label="Descrição"
           placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"
-          onChange={(event) => setDescription(event.target.value)}
+          onChange={(event) => setDescription(event.target.value.trim())}
         />
 
         <Button 

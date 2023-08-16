@@ -28,22 +28,6 @@ export function New() {
   const [price, setPrice] = useState(0);
   const [description, setDescription] = useState('');
 
-  function handleCategory(option) {
-    switch (option) {
-      case 'Refeição':
-        setCategory('meal');
-        break;
-      case 'Sobremesa':
-        setCategory('dessert');
-        break;
-      case 'Bebida':
-        setCategory('drink');
-        break;
-      default:
-        break;
-    }
-  }
-
   function handleNewIngredient() {
     if (!newIngredient) return;
     setIngredients(prevState => [...prevState, newIngredient]);
@@ -120,8 +104,21 @@ export function New() {
         <Select
           id="category"
           label="Categoria"
-          options={["Refeição", "Sobremesa", "Bebida"]}
-          onSelect={handleCategory}
+          options={[
+            {
+              title: "Refeição",
+              value: "meal"
+            },
+            {
+              title: "Sobremesa",
+              value: "dessert"
+            },
+            {
+              title: "Bebida",
+              value: "drink"
+            }
+          ]}
+          onSelect={setCategory}
         />
 
         <div className="new-ingredients">

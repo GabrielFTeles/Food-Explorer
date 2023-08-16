@@ -28,22 +28,7 @@ export function Edit() {
   const [newIngredient, setNewIngredient] = useState('');
   const [price, setPrice] = useState(0);
   const [description, setDescription] = useState('');
-
-  function handleCategory(option) {
-    switch (option) {
-      case 'Refeição':
-        setCategory('meal');
-        break;
-      case 'Sobremesa':
-        setCategory('dessert');
-        break;
-      case 'Bebida':
-        setCategory('drink');
-        break;
-      default:
-        break;
-    }
-  }
+  const [startSelected, setStartSelected] = useState('');
 
   function handleNewIngredient() {
     if (!newIngredient) return;
@@ -103,6 +88,7 @@ export function Edit() {
       setImage({ name: data.image });
       setName(data.name);
       setCategory(data.category);
+      setStartSelected(data.category);
       setIngredients(data.ingredients);
       setPrice(data.price);
       setDescription(data.description);
@@ -138,8 +124,22 @@ export function Edit() {
         <Select
           id="category"
           label="Categoria"
-          options={["Refeição", "Sobremesa", "Bebida"]}
-          onSelect={handleCategory}
+          startSelected={startSelected}
+          options={[
+            {
+              title: "Refeição",
+              value: "meal"
+            },
+            {
+              title: "Sobremesa",
+              value: "dessert"
+            },
+            {
+              title: "Bebida",
+              value: "drink"
+            }
+          ]}
+          onSelect={(value) => setCategory(value)}
         />
 
         <div className="new-ingredients">

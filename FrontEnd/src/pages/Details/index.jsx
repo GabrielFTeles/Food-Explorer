@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../../hooks/auth";
 import { api } from "../../services/api";
 
@@ -14,6 +14,7 @@ import { Plus, Minus, Receipt } from "@phosphor-icons/react";
 import { Button } from "../../components/Button";
 
 export function Details() {
+  const navigate = useNavigate();
   const params = useParams();
   const { isAdmin } = useAuth();
 
@@ -88,6 +89,7 @@ export function Details() {
 
             {isAdmin ? (
               <Button
+                onClick={() => navigate(`/edit/${params.id}`)}
                 title="Editar prato"
                 className="edit-button"
               />

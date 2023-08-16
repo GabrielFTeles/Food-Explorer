@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Container } from "./styles";
 import { CaretDown } from "@phosphor-icons/react";
 
-export function Select({ label, options, onSelect }) {
+export function Select({ startSelected, label, options, onSelect }) {
   const [active, setActive] = useState(false);
   const [selected, setSelected] = useState(options[0]);
 
@@ -16,29 +16,35 @@ export function Select({ label, options, onSelect }) {
   }
 
   useEffect(() => {
-    onSelect(selected);
-  }, []);
+    if (startSelected) {
+      const optionFound = options.find((option) => option.value === startSelected);
+      setSelected(optionFound);
+      onSelect(optionFound.value);
+    }
+
+    onSelect(selected.value);
+  }, [startSelected]);
 
   return (
     <Container>
       <label onClick={toggleSelect}>{label}</label>
 
       <div className={active ? "active" : ""} onClick={toggleSelect}>
-        <span>{selected}</span>
+        <span>{selected.title}</span>
         <CaretDown size={20} />
 
         <ul>
           {options
-            .filter((option) => option !== selected)
+            .filter((option) => option.value !== selected.value)
             .map((option, index) => (
               <li
                 key={index}
                 onClick={() => {
                   handleSelected(option);
-                  onSelect(option);
+                  onSelect(option.value);
                 }}
               >
-                <span>{option}</span>
+                <span>{option.title}</span>
               </li>
             ))}
         </ul>

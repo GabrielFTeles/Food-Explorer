@@ -33,6 +33,10 @@ export const Container = styled.div`
       button {
         padding: 1.2rem;
       }
+      
+      button:nth-of-type(1) {
+        background: ${({ theme }) => theme.COLORS.DARK_800};
+      }
     }
 
     .new-ingredients {

@@ -22,6 +22,7 @@ export function Edit() {
   const navigate = useNavigate();
 
   const [image, setImage] = useState(null);
+  const [imageName, setImageName] = useState('');
   const [name, setName] = useState('');
   const [category, setCategory] = useState('');
   const [ingredients, setIngredients] = useState([]);
@@ -56,14 +57,14 @@ export function Edit() {
     if (!price) return toast.error('O preço deve ser um número.');
 
     toast.promise(
-      api.put('/dishes', { name, description, category, price, ingredients }),
+      api.put(`/dishes/${params.id}`, { name, description, category, price, ingredients }),
       {
         pending: 'Salvando alterações...',
         success: {
           render({ data: { data } }) {
             if (image) {
               const imageFormData = handleImage();
-              api.patch(`/dishes/${data.dish_id}`, imageFormData).then(() => navigate('/'));
+              api.patch(`/dishes/${data.id}`, imageFormData).then(() => navigate('/'));
             } else {
               navigate('/');
             }
@@ -85,7 +86,7 @@ export function Edit() {
       const dish_id = params.id;
       const { data } = await api.get(`/dishes/${dish_id}`);
 
-      setImage({ name: data.image });
+      setImageName(data.image);
       setName(data.name);
       setCategory(data.category);
       setStartSelected(data.category);
@@ -109,8 +110,11 @@ export function Edit() {
         <FileInput 
           id="image"
           label="Imagem do prato"
-          placeholder={image ? image.name : "Selecione uma imagem para alterar"}
-          onChange={(event) => setImage(event.target.files[0])}
+          placeholder={imageName}
+          onChange={(event) => {
+            setImage(event.target.files[0]);
+            setImageName(event.target.files[0].name);
+          }}
         />
 
         <Input 

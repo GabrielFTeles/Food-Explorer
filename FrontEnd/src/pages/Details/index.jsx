@@ -8,7 +8,7 @@ import { Container } from "./styles";
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
 import { BackButton } from "../../components/BackButton";
-import { Ingredient } from "../../components/Ingredient";
+import { IngredientTag } from "../../components/IngredientTag";
 
 import { Plus, Minus, Receipt } from "@phosphor-icons/react";
 import { Button } from "../../components/Button";
@@ -58,7 +58,7 @@ export function Details() {
 
               <div className="ingredients">
                 {data.ingredients.map((ingredient, index) => (
-                  <Ingredient key={index} title={ingredient} />
+                  <IngredientTag key={index} title={ingredient} />
                 ))}
               </div>
             </div>

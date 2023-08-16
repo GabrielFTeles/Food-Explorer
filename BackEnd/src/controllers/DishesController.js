@@ -45,14 +45,17 @@ class DishesController {
 
   async update(request, response) {
     const { id } = request.params;
-    const { name, description, category, price, image, ingredients } = request.body;
+    const { name, description, category, price, ingredients } = request.body;
 
     const dishesRepository = new DishesRepository();
     const dishesUpdateService = new DishesUpdateService(dishesRepository);
 
-    await dishesUpdateService.execute({ id, name, description, category, price, image, ingredients });
+    await dishesUpdateService.execute({ id, name, description, category, price, ingredients });
 
-    return response.json();
+    return response.json({
+      message: "Dish updated successfully",
+      id: +id,
+    });
   }
 
   async delete(request, response) {

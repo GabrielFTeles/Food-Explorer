@@ -32,7 +32,7 @@ export function Card({ id, title, price, image }) {
     <Container>
 
       {
-        isAdmin ? (<PencilSimple size={28} />) : (
+        isAdmin ? (<PencilSimple size={28} onClick={() => navigate(`/edit/${id}`)} />) : (
         <div className="heart-container" title="Like">
           <input type="checkbox" className="checkbox" id="Give-It-An-Id" />
           <div className="svg-container">

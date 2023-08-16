@@ -7,6 +7,7 @@ export const Container = styled.div`
 
   > label:nth-of-type(1) {
     font-family: Roboto;
+    width: fit-content;
     color: ${({ theme }) => theme.COLORS.LIGHT_400};
     line-height: 100%;
   }
@@ -15,13 +16,13 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     gap: 0.8rem;
-
+    
     width: 100%;
-
+    
     padding: 1.2rem 3.2rem;
-
+    
     border-radius: 8px;
-
+    
     font-size: 1.4rem;
     font-weight: 500;
     line-height: 2.4rem;

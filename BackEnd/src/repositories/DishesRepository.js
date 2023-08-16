@@ -43,11 +43,9 @@ class DishesRepository {
   }
 
   async updateDish({id, name, description, category, price, image }) {
-    const updatedDish = await knex('dishes')
+    await knex('dishes')
       .where({ id })
       .update({ name, description, category, price, image });
-
-    return updatedDish;
   }
 
   async updateIngredients(dish_id, ingredients) {

@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { api } from '../../services/api';
 
@@ -17,7 +17,8 @@ import { IngredientItem } from '../../components/IngredientItem';
 import { TextArea } from '../../components/TextArea';
 import { Select } from '../../components/Select';
 
-export function New() {
+export function Edit() {
+  const params = useParams();
   const navigate = useNavigate();
 
   const [image, setImage] = useState(null);
@@ -60,19 +61,19 @@ export function New() {
     return formData;
   }
 
-  function handleNewDish() {
-    if (newIngredient) return toast.info('Adicione o ingrediente antes de criar o prato.');
+  function handleSaveDish() {
+    if (newIngredient) return toast.info('Adicione o ingrediente antes de salvar as alterações.');
 
     if (!name || !category || ingredients.length === 0 || !price || !description) {
-      return toast.error('Preencha todos os campos para criar um prato.');
+      return toast.error('Preencha todos os campos para salvar as edições.');
     }
 
     if (!price) return toast.error('O preço deve ser um número.');
 
     toast.promise(
-      api.post('/dishes', { name, description, category, price, ingredients }),
+      api.put('/dishes', { name, description, category, price, ingredients }),
       {
-        pending: 'Criando prato...',
+        pending: 'Salvando alterações...',
         success: {
           render({ data: { data } }) {
             if (image) {
@@ -82,7 +83,7 @@ export function New() {
               navigate('/');
             }
 
-            return `Prato criado com sucesso!`;
+            return `Alterações salvas com sucesso!`;
           }
         },
         error: {
@@ -94,6 +95,22 @@ export function New() {
     );
   }
 
+  useEffect(() => {
+    async function getDishesData() {
+      const dish_id = params.id;
+      const { data } = await api.get(`/dishes/${dish_id}`);
+
+      setImage({ name: data.image });
+      setName(data.name);
+      setCategory(data.category);
+      setIngredients(data.ingredients);
+      setPrice(data.price);
+      setDescription(data.description);
+    }
+
+    getDishesData();
+  }, []);
+
   return (
     <Container>
       <Header />
@@ -101,18 +118,19 @@ export function New() {
       <main>
         <BackButton />
 
-        <h1>Novo prato</h1>
+        <h1>Editar prato</h1>
 
         <FileInput 
           id="image"
           label="Imagem do prato"
-          placeholder={image ? image.name : "Selecione uma imagem"}
+          placeholder={image ? image.name : "Selecione uma imagem para alterar"}
           onChange={(event) => setImage(event.target.files[0])}
         />
 
         <Input 
           id="name"
           label="Nome"
+          value={name}
           placeholder="Ex.: Salada Ceasar"
           onChange={(event) => setName(event.target.value)}
         />
@@ -152,22 +170,30 @@ export function New() {
           id="price"
           label="Preço"
           type="number"
-          placeholder="R$ 00,00"
+          value={price}
+          placeholder="R$ 40,00"
           onChange={(event) => setPrice(Number(event.target.value))}
         />
 
         <TextArea 
           id="description"
           label="Descrição"
+          value={description}
           placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"
           onChange={(event) => setDescription(event.target.value)}
         />
 
-        <Button 
-          title="Salvar alterações"
-          disabled={(!name || !category || ingredients.length === 0 || !price || !description)}
-          onClick={handleNewDish}
-        />
+        <div className="buttons-wrapper">
+          <Button 
+            title="Excluir"
+            onClick={handleSaveDish}
+          />
+          <Button 
+            title="Salvar alterações"
+            disabled={(!name || !category || ingredients.length === 0 || !price || !description)}
+            onClick={handleSaveDish}
+          />
+        </div>
       </main>
 
       <Footer />

@@ -13,7 +13,7 @@ import { Input } from '../Input';
 export function Header() {
   const navigate = useNavigate();
   const { signOut, isAdmin } = useAuth();
-  const { getDishes } = useSearch();
+  const { searchDishes, getAllDishes } = useSearch();
 
   const [isMenuMobileOpen, setIsMenuMobileOpen] = useState(false);
   const [search, setSearch] = useState('');
@@ -24,7 +24,7 @@ export function Header() {
 
   function handleSearch(event) {
     if (event.key === 'Enter') {
-      getDishes(search);
+      searchDishes(search);
       setSearch('');
       event.target.value = '';
 
@@ -32,6 +32,11 @@ export function Header() {
 
       toggleMobileMenu();
     }
+  }
+
+  async function handleBackHome() {
+    await getAllDishes();
+    navigate("/");
   }
 
   return (
@@ -47,11 +52,10 @@ export function Header() {
         />
 
         <div className="logo">
-          <Link to="/">
-            <Logo 
-              size={2.1}
-            />
-          </Link>
+          <Logo 
+            onClick={handleBackHome}
+            size={2.1}
+          />
 
           {
             isAdmin ? <span>admin</span> : null

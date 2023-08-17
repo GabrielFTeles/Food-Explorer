@@ -1,110 +1,136 @@
-import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
-import { api } from '../../services/api';
+import { api } from "../../services/api";
 
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
-import { Container } from './styles';
-import { Input } from '../../components/Input';
-import { Footer } from '../../components/Footer';
-import { Header } from '../../components/Header';
-import { Button } from '../../components/Button';
-import { FileInput } from '../../components/FileInput';
-import { BackButton } from '../../components/BackButton';
-import { IngredientItem } from '../../components/IngredientItem';
-import { TextArea } from '../../components/TextArea';
-import { Select } from '../../components/Select';
-
-import { Trash } from '@phosphor-icons/react';
+import { Container } from "./styles";
+import { Input } from "../../components/Input";
+import { Footer } from "../../components/Footer";
+import { Header } from "../../components/Header";
+import { Button } from "../../components/Button";
+import { FileInput } from "../../components/FileInput";
+import { BackButton } from "../../components/BackButton";
+import { IngredientItem } from "../../components/IngredientItem";
+import { TextArea } from "../../components/TextArea";
+import { Select } from "../../components/Select";
 
 export function Edit() {
   const params = useParams();
   const navigate = useNavigate();
 
   const [image, setImage] = useState(null);
-  const [imageName, setImageName] = useState('');
-  const [name, setName] = useState('');
-  const [category, setCategory] = useState('');
+  const [imageName, setImageName] = useState("");
+  const [name, setName] = useState("");
+  const [category, setCategory] = useState("");
   const [ingredients, setIngredients] = useState([]);
-  const [newIngredient, setNewIngredient] = useState('');
+  const [newIngredient, setNewIngredient] = useState("");
   const [price, setPrice] = useState(0);
-  const [description, setDescription] = useState('');
-  const [startSelected, setStartSelected] = useState('');
+  const [description, setDescription] = useState("");
+  const [startSelected, setStartSelected] = useState("");
 
   function handleNewIngredient() {
     if (!newIngredient) return;
-    setIngredients(prevState => [...prevState, newIngredient]);
-    setNewIngredient('');
+    setIngredients((prevState) => [...prevState, newIngredient]);
+    setNewIngredient("");
   }
 
   function handleRemoveIngredient(ingredient) {
-    setIngredients(prevState => prevState.filter(item => item !== ingredient));
+    setIngredients((prevState) =>
+      prevState.filter((item) => item !== ingredient)
+    );
   }
 
   function handleImage() {
     const formData = new FormData();
-    formData.append('image', image);
+    formData.append("image", image);
     return formData;
   }
 
-  function handleSaveDish() {
-    if (newIngredient) return toast.info('Adicione o ingrediente antes de salvar as alterações.');
+  async function handleBackHome() {
+    await getAllDishes();
+    navigate("/");
+  }
 
-    if (!name || !category || ingredients.length === 0 || !price || !description) {
-      return toast.error('Preencha todos os campos para salvar as edições.');
+  function handleSaveDish() {
+    if (newIngredient)
+      return toast.info(
+        "Adicione o ingrediente antes de salvar as alterações."
+      );
+
+    if (
+      !name ||
+      !category ||
+      ingredients.length === 0 ||
+      !price ||
+      !description
+    ) {
+      return toast.error("Preencha todos os campos para salvar as edições.");
     }
 
-    if (!price) return toast.error('O preço deve ser um número.');
+    if (!price) return toast.error("O preço deve ser um número.");
 
-    toast.promise(
-      api.put(`/dishes/${params.id}`, { name, description, category, price, ingredients }),
-      {
-        pending: 'Salvando alterações...',
-        success: {
-          render({ data: { data } }) {
-            if (image) {
-              const imageFormData = handleImage();
-              api.patch(`/dishes/${data.id}`, imageFormData).then(() => navigate('/'));
-            } else {
-              navigate('/');
-            }
+    const updateDishToast = toast.loading("Salvando alterações...");
 
-            return `Alterações salvas com sucesso!`;
-          }
-        },
-        error: {
-          render({ data }) {
-            return `${data.message}`;
-          }
+    api
+      .put(`/dishes/${params.id}`, {
+        name,
+        description,
+        category,
+        price,
+        ingredients,
+      })
+      .then(({ data }) => {
+        toast.update(updateDishToast, {
+          render: "Alterações salvas com sucesso!",
+          type: "success",
+          isLoading: false,
+          autoClose: 5000,
+          closeOnClick: true,
+          closeButton: true,
+        });
+
+        if (image) {
+          const imageFormData = handleImage();
+          api
+            .patch(`/dishes/${data.id}`, imageFormData)
+            .then(() => handleBackHome());
+        } else {
+          handleBackHome();
         }
-      }
-    );
+      })
+      .catch(({ data }) => {
+        toast.update(updateDishToast, {
+          render: () => `${data.message}`,
+          type: "error",
+          isLoading: false,
+          autoClose: 5000,
+          closeOnClick: true,
+          closeButton: true,
+        });
+      });
   }
 
   function handleDeleteDish() {
-    toast.promise(
-      api.delete(`/dishes/${params.id}`),
-      {
-        pending: 'Excluindo prato...',
-        success: {
-          render() {
-            navigate('/');
-            return 'Prato excluído com sucesso!';
-          },
-          icon: <Trash size={30} />,
+    toast.promise(api.delete(`/dishes/${params.id}`), {
+      pending: "Excluindo prato...",
+      success: {
+        render() {
+          handleBackHome();
+          return "Prato excluído com sucesso!";
         },
-        error: {
-          render({ data }) {
-            return `${data.message}`;
-          }
-        }
-      }
-    );
+      },
+      error: {
+        render({ data }) {
+          return `${data.message}`;
+        },
+      },
+    });
   }
 
   useEffect(() => {
-    async function getDishesData() {
+    async function searchDishesData() {
       const dish_id = params.id;
       const { data } = await api.get(`/dishes/${dish_id}`);
 
@@ -117,7 +143,7 @@ export function Edit() {
       setDescription(data.description);
     }
 
-    getDishesData();
+    searchDishesData();
   }, []);
 
   return (
@@ -129,7 +155,7 @@ export function Edit() {
 
         <h1>Editar prato</h1>
 
-        <FileInput 
+        <FileInput
           id="image"
           label="Imagem do prato"
           placeholder={imageName}
@@ -139,7 +165,7 @@ export function Edit() {
           }}
         />
 
-        <Input 
+        <Input
           id="name"
           label="Nome"
           value={name}
@@ -154,16 +180,16 @@ export function Edit() {
           options={[
             {
               title: "Refeição",
-              value: "meal"
+              value: "meal",
             },
             {
               title: "Sobremesa",
-              value: "dessert"
+              value: "dessert",
             },
             {
               title: "Bebida",
-              value: "drink"
-            }
+              value: "drink",
+            },
           ]}
           onSelect={(value) => setCategory(value)}
         />
@@ -171,17 +197,15 @@ export function Edit() {
         <div className="new-ingredients">
           <label htmlFor="ingredient">Ingredientes</label>
           <div>
-            {
-              ingredients.map((ingredient, index) => (
-                <IngredientItem 
-                  key={index}
-                  value={ingredient}
-                  onClick={() => handleRemoveIngredient(ingredient)}
-                />
-              ))
-            }
+            {ingredients.map((ingredient, index) => (
+              <IngredientItem
+                key={index}
+                value={ingredient}
+                onClick={() => handleRemoveIngredient(ingredient)}
+              />
+            ))}
 
-            <IngredientItem 
+            <IngredientItem
               id="ingredient"
               isNew={true.toString()}
               placeholder="Adicionar"
@@ -192,7 +216,7 @@ export function Edit() {
           </div>
         </div>
 
-        <Input 
+        <Input
           id="price"
           label="Preço"
           type="number"
@@ -201,7 +225,7 @@ export function Edit() {
           onChange={(event) => setPrice(Number(event.target.value))}
         />
 
-        <TextArea 
+        <TextArea
           id="description"
           label="Descrição"
           value={description}
@@ -210,13 +234,16 @@ export function Edit() {
         />
 
         <div className="buttons-wrapper">
-          <Button 
-            title="Excluir"
-            onClick={handleDeleteDish}
-          />
-          <Button 
+          <Button title="Excluir" onClick={handleDeleteDish} />
+          <Button
             title="Salvar alterações"
-            disabled={(!name || !category || ingredients.length === 0 || !price || !description)}
+            disabled={
+              !name ||
+              !category ||
+              ingredients.length === 0 ||
+              !price ||
+              !description
+            }
             onClick={handleSaveDish}
           />
         </div>

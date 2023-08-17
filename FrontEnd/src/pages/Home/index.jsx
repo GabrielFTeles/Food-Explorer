@@ -37,7 +37,6 @@ export function Home() {
       filterDishesByCategory(data);
     }
 
-
     renderDishes();
   }, [dishes]);
 

@@ -1,74 +1,111 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSearch } from "../../hooks/searchContext";
 
-import { api } from '../../services/api';
+import { api } from "../../services/api";
 
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
-import { Container } from './styles';
+import { Container } from "./styles";
 
-import { Input } from '../../components/Input';
-import { Footer } from '../../components/Footer';
-import { Header } from '../../components/Header';
-import { Button } from '../../components/Button';
-import { FileInput } from '../../components/FileInput';
-import { BackButton } from '../../components/BackButton';
-import { IngredientItem } from '../../components/IngredientItem';
-import { TextArea } from '../../components/TextArea';
-import { Select } from '../../components/Select';
+import { Input } from "../../components/Input";
+import { Footer } from "../../components/Footer";
+import { Header } from "../../components/Header";
+import { Button } from "../../components/Button";
+import { FileInput } from "../../components/FileInput";
+import { BackButton } from "../../components/BackButton";
+import { IngredientItem } from "../../components/IngredientItem";
+import { TextArea } from "../../components/TextArea";
+import { Select } from "../../components/Select";
 
 export function New() {
   const navigate = useNavigate();
+  const { getAllDishes } = useSearch();
 
   const [image, setImage] = useState(null);
-  const [name, setName] = useState('');
-  const [category, setCategory] = useState('');
+  const [name, setName] = useState("");
+  const [category, setCategory] = useState("");
   const [ingredients, setIngredients] = useState([]);
-  const [newIngredient, setNewIngredient] = useState('');
+  const [newIngredient, setNewIngredient] = useState("");
   const [price, setPrice] = useState(0);
-  const [description, setDescription] = useState('');
+  const [description, setDescription] = useState("");
 
   function handleNewIngredient() {
     if (!newIngredient) return;
-    setIngredients(prevState => [...prevState, newIngredient]);
-    setNewIngredient('');
+    setIngredients((prevState) => [...prevState, newIngredient]);
+    setNewIngredient("");
   }
 
   function handleRemoveIngredient(ingredient) {
-    setIngredients(prevState => prevState.filter(item => item !== ingredient));
+    setIngredients((prevState) =>
+      prevState.filter((item) => item !== ingredient)
+    );
   }
 
   function handleImage() {
     const formData = new FormData();
-    formData.append('image', image);
+    formData.append("image", image);
     return formData;
   }
 
-  function handleNewDish() {
-    if (newIngredient) return toast.info('Adicione o ingrediente antes de criar o prato.');
+  async function handleBackHome() {
+    await getAllDishes();
+    navigate("/");
+  }
 
-    if (!name || !category || ingredients.length === 0 || !price || !description) {
-      return toast.error('Preencha todos os campos para criar um prato.');
-    }
-
-    if (!price) return toast.error('O preço deve ser um número.');
-
+  function createNewDish() {
     const createDishToast = toast.loading("Criando prato...");
 
-    api.post('/dishes', { name, description, category, price, ingredients })
+    api
+      .post("/dishes", { name, description, category, price, ingredients })
       .then(({ data }) => {
-        toast.update(createDishToast, { render: "Prato criado com sucesso!", type: "success", isLoading: false, autoClose: 5000 })
+        toast.update(createDishToast, {
+          render: "Prato criado com sucesso!",
+          type: "success",
+          isLoading: false,
+          autoClose: 5000,
+          closeOnClick: true,
+          closeButton: true,
+        });
 
         if (image) {
           const imageFormData = handleImage();
-          api.patch(`/dishes/${data.dish_id}`, imageFormData).then(() => navigate('/'));
+          api
+            .patch(`/dishes/${data.dish_id}`, imageFormData)
+            .then(() => handleBackHome());
         } else {
-          navigate('/');
+          handleBackHome();
         }
       })
       .catch(({ response: { data } }) => {
-        toast.update(createDishToast, { render: () => `${data.message}`, type: "error", isLoading: false, autoClose: 5000 })
+        toast.update(createDishToast, {
+          render: () => `${data.message}`,
+          type: "error",
+          isLoading: false,
+          autoClose: 5000,
+          closeOnClick: true,
+          closeButton: true,
+        });
       });
+  }
+
+  function handleNewDish() {
+    if (newIngredient)
+      return toast.info("Adicione o ingrediente antes de criar o prato.");
+
+    if (
+      !name ||
+      !category ||
+      ingredients.length === 0 ||
+      !price ||
+      !description
+    ) {
+      return toast.error("Preencha todos os campos para criar um prato.");
+    }
+
+    if (!price) return toast.error("O preço deve ser um número.");
+
+    createNewDish();
   }
 
   return (
@@ -80,14 +117,14 @@ export function New() {
 
         <h1>Novo prato</h1>
 
-        <FileInput 
+        <FileInput
           id="image"
           label="Imagem do prato"
           placeholder={image ? image.name : "Selecione uma imagem"}
           onChange={(event) => setImage(event.target.files[0])}
         />
 
-        <Input 
+        <Input
           id="name"
           label="Nome"
           placeholder="Ex.: Salada Ceasar"
@@ -100,16 +137,16 @@ export function New() {
           options={[
             {
               title: "Refeição",
-              value: "meal"
+              value: "meal",
             },
             {
               title: "Sobremesa",
-              value: "dessert"
+              value: "dessert",
             },
             {
               title: "Bebida",
-              value: "drink"
-            }
+              value: "drink",
+            },
           ]}
           onSelect={setCategory}
         />
@@ -117,17 +154,15 @@ export function New() {
         <div className="new-ingredients">
           <label htmlFor="ingredient">Ingredientes</label>
           <div>
-            {
-              ingredients.map((ingredient, index) => (
-                <IngredientItem 
-                  key={index}
-                  value={ingredient}
-                  onClick={() => handleRemoveIngredient(ingredient)}
-                />
-              ))
-            }
+            {ingredients.map((ingredient, index) => (
+              <IngredientItem
+                key={index}
+                value={ingredient}
+                onClick={() => handleRemoveIngredient(ingredient)}
+              />
+            ))}
 
-            <IngredientItem 
+            <IngredientItem
               id="ingredient"
               isNew={true.toString()}
               placeholder="Adicionar"
@@ -138,31 +173,37 @@ export function New() {
           </div>
         </div>
 
-        <Input 
+        <Input
           id="price"
           label="Preço"
           type="text"
           placeholder="R$ 00,00"
           onChange={(event) => {
-            const value = event.target.value.replace(/[^0-9.,]/g, '');
-            setPrice(Number(value.replace(',', '.')));
+            const value = event.target.value.replace(/[^0-9.,]/g, "");
+            setPrice(Number(value.replace(",", ".")));
           }}
           onBlur={(event) => {
-            const value = event.target.value.replace(/[^0-9.,]/g, '');
-            event.target.value = `R$ ${Number(value.replace(',', '.')).toFixed(2)}`.replace('.', ',');
+            const value = event.target.value.replace(/[^0-9.,]/g, "");
+            event.target.value = `R$ ${Number(value.replace(",", ".")).toFixed(2)}`.replace(".", ",");
           }}
         />
 
-        <TextArea 
+        <TextArea
           id="description"
           label="Descrição"
           placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"
           onChange={(event) => setDescription(event.target.value.trim())}
         />
 
-        <Button 
+        <Button
           title="Salvar alterações"
-          disabled={(!name || !category || ingredients.length === 0 || !price || !description)}
+          disabled={
+            !name ||
+            !category ||
+            ingredients.length === 0 ||
+            !price ||
+            !description
+          }
           onClick={handleNewDish}
         />
       </main>

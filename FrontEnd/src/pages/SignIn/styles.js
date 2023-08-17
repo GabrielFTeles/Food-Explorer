@@ -2,10 +2,10 @@ import styled from 'styled-components';
 
 export const Container = styled.main`
   font-family: Roboto;
-  padding-top: 15.8rem;
 
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   gap: 7.3rem;
   

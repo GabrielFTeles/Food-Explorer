@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useSearch } from "../../hooks/searchContext";
 
 import { api } from "../../services/api";
 
@@ -19,6 +20,7 @@ import { Select } from "../../components/Select";
 export function Edit() {
   const params = useParams();
   const navigate = useNavigate();
+  const { getAllDishes } = useSearch();
 
   const [image, setImage] = useState(null);
   const [imageName, setImageName] = useState("");

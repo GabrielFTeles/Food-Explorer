@@ -49,7 +49,7 @@ export function Home() {
           <img src={foodsImg} alt="Foods throwed on air" />
 
           <div>
-            <h3>Sabores inigualáveis</h3>
+            <h1>Sabores inigualáveis</h1>
             <p>Sinta o cuidado do preparo com ingredientes selecionados.</p>
           </div>
         </div>

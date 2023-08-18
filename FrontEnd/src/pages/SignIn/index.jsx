@@ -56,6 +56,8 @@ export function SignIn() {
       />
 
       <Form onSubmit={handleSignIn}>
+        <h1>Faça login</h1>
+
         <Input 
           id="email"
           label="E-mail"

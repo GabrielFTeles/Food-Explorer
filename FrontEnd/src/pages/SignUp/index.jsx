@@ -60,6 +60,8 @@ export function SignUp() {
       />
 
       <Form onSubmit={handleSignUp}>
+        <h1>Crie sua conta</h1>
+
         <Input 
           id="name"
           type="text"

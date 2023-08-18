@@ -5,9 +5,10 @@ import { useSearch } from '../../hooks/searchContext';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { Container, MenuMobile } from './styles';
-import { List, X, MagnifyingGlass } from '@phosphor-icons/react';
+import { List, X, MagnifyingGlass, SignOut } from '@phosphor-icons/react';
 import { Logo } from '../Logo';
-import { Cart } from '../Cart';
+import { CartMobile } from '../CartMobile';
+import { CartDesktop } from '../CartDesktop';
 import { Input } from '../Input';
 
 export function Header() {
@@ -30,7 +31,7 @@ export function Header() {
 
       if (window.location.pathname !== '/') navigate('/');
 
-      toggleMobileMenu();
+      if (isMenuMobileOpen) toggleMobileMenu();
     }
   }
 
@@ -62,9 +63,24 @@ export function Header() {
           }
         </div>
 
+        <Input 
+          id="desktop-search"
+          className="desktop-search"
+          icon={MagnifyingGlass}
+          placeholder="Busque por pratos ou ingredientes"
+          onChange={e => setSearch(e.target.value)}
+          onKeyUp={handleSearch}
+        />
+
         {
-          !isAdmin && <Cart size={30} items={5} />
+          !isAdmin && <CartMobile size={30} items={5} className="cart-mobile" />
         }
+
+        {
+          !isAdmin && <CartDesktop size={30} items={5} className="cart-desktop" />
+        }
+
+        <SignOut size={60} role="button" aria-label="Sair" className="sign-out" />
       </div>
 
       <MenuMobile 

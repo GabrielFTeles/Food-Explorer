@@ -2,9 +2,9 @@ import { Container } from "./styles";
 
 import { Receipt } from '@phosphor-icons/react';
 
-export function Cart({ size, items }) {
+export function CartMobile({ size, items, ...rest }) {
   return (
-    <Container>
+    <Container {...rest}>
       <Receipt 
         size={size} 
       />

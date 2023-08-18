@@ -29,7 +29,6 @@ export default createGlobalStyle`
   *[role="button"] {
     cursor: pointer;
   }
-
   
   button {
     font-family: 'Poppins';

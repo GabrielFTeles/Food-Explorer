@@ -11,10 +11,6 @@ import { Details } from "../pages/Details";
 export function App() {
   const { isAdmin } = useAuth();
 
-  function AdminRoute({ element: Component }) {
-    return isAdmin ? <Component /> : <Navigate to="/" />;
-  }
-
   return (
     <SearchProvider>
       <Routes>

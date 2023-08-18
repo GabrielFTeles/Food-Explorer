@@ -5,12 +5,13 @@ export const Container = styled.header`
   top: 0;
   z-index: 100;
   background: ${({ theme }) => theme.COLORS.DARK_700};
-  padding: 5.6rem 2.8rem 2.4rem;
+  padding: 5.6rem 0 2.4rem;
 
   min-height: 11.7rem;
 
   a {
     text-decoration: none;
+    color: ${({ theme }) => theme.COLORS.WHITE};
   }
 
   > .header-content {
@@ -19,6 +20,8 @@ export const Container = styled.header`
     justify-content: space-between;
 
     width: min(100%, 70rem);
+
+    padding-inline: 2.8rem;
 
     margin-inline: auto;
 
@@ -33,9 +36,7 @@ export const Container = styled.header`
       gap: 0.8rem;
       flex: 1;
 
-      > a {
-        color: ${({ theme }) => theme.COLORS.WHITE};
-      }
+      cursor: pointer;
 
       > span {
         font-family: Roboto;
@@ -62,7 +63,7 @@ export const Container = styled.header`
     padding-block: 2.4rem;
 
     > .header-content {
-      width: 100%;
+      width: min(100%, 112rem);
 
       gap: 3.2rem;
 
@@ -72,7 +73,13 @@ export const Container = styled.header`
 
       .logo {
         min-width: 17rem;
+        flex-direction: column;
+        gap: 0;
         flex: 0;
+
+        > span {
+          align-self: flex-end;
+        }
       }
 
       .desktop-search {
@@ -102,11 +109,13 @@ export const MenuMobile = styled.div`
   gap: 1rem;
 
   position: absolute;
-  left: 0; top: 0;
+  left: 50%; top: 0;
   z-index: 10;
 
+  transform: translateX(-50%);
+
   height: 100dvh;
-  width: 100%;
+  width: min(100%, 70rem);
 
   padding: 6.2rem 2.8rem 2.4rem;
 

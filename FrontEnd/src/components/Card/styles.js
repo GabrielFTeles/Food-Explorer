@@ -13,6 +13,8 @@ export const Container = styled.div`
   width: 21rem;
   height: 29.2rem;
 
+  text-align: center;
+
   border: 1px solid ${({ theme }) => theme.COLORS.DARK_300};
   border-radius: 8px;
   background: ${({ theme }) => theme.COLORS.DARK_200};
@@ -21,6 +23,79 @@ export const Container = styled.div`
     position: absolute;
     top: 1.6rem; right: 1.6rem;
   }
+
+  > .dish-name {
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 2.4rem;
+  }
+
+  > .price {
+    font-family: Roboto;
+    color: ${({ theme }) => theme.COLORS.CAKE_200};
+    line-height: 2.4rem;
+  }
+
+  > img {
+    width: 8.8rem;
+    height: 8.8rem;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  > div {
+    display: flex;
+    align-items: center;
+    gap: 1.4rem;
+
+    font-family: Roboto;
+
+    button {
+      background: transparent;
+    }
+  }
+
+  > button {
+    font-size: 1.4rem;
+    font-weight: 500;
+
+    height: 3.2rem;
+    background: ${({ theme }) => theme.COLORS.TOMATO_100};
+    border-radius: 5px;
+    width: 100%;
+  }
+
+  > .dish-description {
+    font-family: Roboto;
+    font-size: 1.4rem;
+    line-height: 160%; 
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: 30.4rem;
+    height: 46.2rem;
+    
+    gap: 1.5rem;
+
+    > img {
+      width: 18rem;
+      height: 18rem;
+    }
+
+    > .dish-name {
+      font-size: 2.4rem;
+      font-weight: 700;
+      line-height: 140%;
+    }
+
+    .price {
+      font-size: 3.2rem;
+      line-height: 160%;
+    }
+  }
+
+
+  
 
   .heart-container {
     --heart-color: rgb(255, 91, 137);
@@ -112,44 +187,5 @@ export const Container = styled.div`
     }
   }
 
-  > .dish-name {
-    font-size: 1.4rem;
-    font-weight: 500;
-    line-height: 2.4rem;
-  }
-
-  > .price {
-    font-family: Roboto;
-    color: ${({ theme }) => theme.COLORS.CAKE_200};
-    line-height: 2.4rem;
-  }
-
-  > img {
-    width: 8.8rem;
-    height: 8.8rem;
-    border-radius: 50%;
-    object-fit: cover;
-  }
-
-  > div {
-    display: flex;
-    align-items: center;
-    gap: 1.4rem;
-
-    font-family: Roboto;
-
-    button {
-      background: transparent;
-    }
-  }
-
-  > button {
-    font-size: 1.4rem;
-    font-weight: 500;
-
-    height: 3.2rem;
-    background: ${({ theme }) => theme.COLORS.TOMATO_100};
-    border-radius: 5px;
-    width: 100%;
-  }
+  
 `;

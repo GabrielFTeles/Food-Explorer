@@ -80,7 +80,14 @@ export function Header() {
           !isAdmin && <CartDesktop size={30} items={5} className="cart-desktop" />
         }
 
-        <SignOut size={60} role="button" aria-label="Sair" className="sign-out" />
+        <Link to="/" onClick={signOut}>
+          <SignOut 
+            size={40}
+            role="button"
+            aria-label="Sair"
+            className="sign-out"
+          />
+        </Link>
       </div>
 
       <MenuMobile 

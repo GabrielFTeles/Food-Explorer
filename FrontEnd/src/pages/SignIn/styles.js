@@ -12,6 +12,8 @@ export const Container = styled.main`
   gap: 7.3rem;
   
   height: 100dvh;
+  width: min(100%, 152rem);
+  margin: 0 auto;
 
   @media screen and (min-width: 1024px) {
     flex-direction: row;

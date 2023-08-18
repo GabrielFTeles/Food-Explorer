@@ -1,10 +1,10 @@
 import { Container } from './styles';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { FreeMode } from 'swiper/modules'
+import { FreeMode, Navigation } from 'swiper/modules'
 
 import 'swiper/css';
 import 'swiper/css/free-mode';
-import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 
 
 import { Card } from '../Card';
@@ -15,10 +15,12 @@ export function Category({ title, dishes }) {
       <h2>{title}</h2>
 
       <Swiper
-        slidesPerView={1.7}
-        spaceBetween={0}
+        slidesPerView="auto"
+        spaceBetween={20}
+        centerInsufficientSlides={true}
         freeMode={true}
-        modules={[FreeMode]}
+        navigation={true}
+        modules={[FreeMode, Navigation]}
         className="mySwiper"
       >
         {
@@ -30,6 +32,7 @@ export function Category({ title, dishes }) {
               <Card
                 id={dish.id}
                 title={dish.name}
+                description={dish.description}
                 price={dish.price}
                 image={dish.image}
               />

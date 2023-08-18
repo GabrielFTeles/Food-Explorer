@@ -8,8 +8,9 @@ export const Container = styled.div`
 
   main {
     flex: 1;
-
-    padding-inline: 1rem;
+    width: min(100%, 70rem);
+    margin: 0 auto;
+    padding-inline: 1.5rem;
 
     > .introduction-container {
       width: min(100%, 42.8rem);
@@ -80,6 +81,7 @@ export const Container = styled.div`
 
         &::before {
           height: 70%;
+          border-radius: 8px;
         }
       }
     }
@@ -87,8 +89,10 @@ export const Container = styled.div`
 
   @media screen and (min-width: 1024px) {
     main {
+      width: min(100%, 112rem);
+
       > .introduction-container {
-        width: min(100%, 112rem);
+        width: 100%;
         height: 40rem;
         justify-content: initial;
 

@@ -37,6 +37,7 @@ export function SignIn() {
             return `Welcome, ${data.name}!`;
           },
           icon: "👋",
+          type: "default",
         },
         error: {
           render({ data }) {

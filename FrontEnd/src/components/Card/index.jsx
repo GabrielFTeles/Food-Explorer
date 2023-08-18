@@ -3,13 +3,16 @@ import { api } from "../../services/api";
 import { useAuth } from "../../hooks/auth";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import React from 'react';
+import { useMediaQuery } from 'react-responsive';
 
 import { Container } from "./styles";
 
 import { Plus, Minus, PencilSimple } from "@phosphor-icons/react";
 
-export function Card({ id, title, price, image }) {
+export function Card({ id, title, description, price, image }) {
   const navigate = useNavigate();
+  const isMobile = useMediaQuery({ minWidth: 1024 });
   const { isAdmin } = useAuth();
 
   const [quantity, setQuantity] = useState(1);
@@ -32,7 +35,7 @@ export function Card({ id, title, price, image }) {
     <Container>
 
       {
-        isAdmin ? (<PencilSimple size={28} onClick={() => navigate(`/edit/${id}`)} />) : (
+        isAdmin ? (<PencilSimple size={28} role="button" onClick={() => navigate(`/edit/${id}`)} />) : (
         <div className="heart-container" title="Like">
           <input type="checkbox" className="checkbox" id="Give-It-An-Id" />
           <div className="svg-container">
@@ -69,9 +72,13 @@ export function Card({ id, title, price, image }) {
 
       <img src={`${api.defaults.baseURL}/files/${image}`} role="button" alt={title} onClick={handleDetailsClick} />
 
-      <span className="dish-name" role="button" onClick={handleDetailsClick}>
+      <h3 className="dish-name" role="button" onClick={handleDetailsClick}>
         {`${title} >`}
-      </span>
+      </h3>
+
+      {
+        isMobile && <p className="dish-description">{description}</p>
+      }
 
       <span className="price">
         {`

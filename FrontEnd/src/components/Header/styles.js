@@ -46,9 +46,13 @@ export const Container = styled.header`
     }
 
     .new-dish {
-      min-width: 21.6rem;
-      font-size: 14px;
-      font-weight: 500;
+      display: none;
+
+      > button {
+        min-width: 21.6rem;
+        font-size: 14px;
+        font-weight: 500;
+      }
     }
 
     .sign-out {
@@ -85,6 +89,10 @@ export const Container = styled.header`
       }
 
       .desktop-search {
+        display: block;
+      }
+
+      .new-dish {
         display: block;
       }
 

@@ -78,9 +78,8 @@ export function Header() {
 
         {
           isAdmin ? (
-            <Link to="/new">
+            <Link to="/new" className="new-dish">
               <Button 
-                className="new-dish"
                 title="Novo prato"
               />
             </Link>

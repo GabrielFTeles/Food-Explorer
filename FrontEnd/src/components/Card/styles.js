@@ -28,6 +28,21 @@ export const Container = styled.div`
     font-size: 1.4rem;
     font-weight: 500;
     line-height: 2.4rem;
+    
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+
+    > span {
+      font-size: 1.4rem;
+      word-break: break-word;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
 
   > .price {
@@ -81,6 +96,12 @@ export const Container = styled.div`
       background: ${({ theme }) => theme.COLORS.TOMATO_100};
       border-radius: 5px;
       width: 100%;
+
+      transition: 0.3s;
+
+      &:hover {
+        background: ${({ theme }) => theme.COLORS.TOMATO_200};
+      }
     }
   }
 
@@ -112,6 +133,10 @@ export const Container = styled.div`
       font-size: 2.4rem;
       font-weight: 700;
       line-height: 140%;
+
+      > span {
+        font-size: 2.4rem;
+      }
     }
 
     .price {
@@ -120,6 +145,7 @@ export const Container = styled.div`
     }
 
     .buttons-wrapper {
+      height: fit-content;
       flex-direction: row;
       justify-content: center;
       gap: 1.6rem;

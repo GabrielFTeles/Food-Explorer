@@ -21,7 +21,7 @@ export function Edit() {
   const params = useParams();
   const navigate = useNavigate();
   const { getAllDishes } = useSearch();
-
+  
   const [image, setImage] = useState(null);
   const [imageName, setImageName] = useState("");
   const [name, setName] = useState("");
@@ -224,7 +224,7 @@ export function Edit() {
           type="number"
           value={price}
           placeholder="R$ 40,00"
-          onChange={(event) => setPrice(Number(event.target.value))}
+          onChange={(event) => setPrice(event.target.value)}
         />
 
         <TextArea

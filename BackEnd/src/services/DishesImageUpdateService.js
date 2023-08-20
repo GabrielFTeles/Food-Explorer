@@ -6,7 +6,7 @@ class DishesImageUpdateService {
     this.dishesRepository = dishesRepository;
   }
 
-  async execute({ id, dishImage }) {
+  async execute({ id, dishImageName }) {
     const diskStorage = new DiskStorage();
 
     const dish = await this.dishesRepository.getDishById(id);
@@ -15,7 +15,7 @@ class DishesImageUpdateService {
 
     if (dish.image !== 'default.jpg') await diskStorage.deleteFile(dish.image);
 
-    const filename = await diskStorage.saveFile(dishImage);
+    const filename = await diskStorage.saveFile(dishImageName);
 
     dish.image = filename;
 

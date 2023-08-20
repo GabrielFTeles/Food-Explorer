@@ -99,6 +99,12 @@ export const Container = styled.div`
         border-radius: 3px;
 
         background: ${({ theme }) => theme.COLORS.TOMATO_100};
+
+        transition: 0.3s;
+
+        &:hover {
+          background: ${({ theme }) => theme.COLORS.TOMATO_200};
+        }
       }
     }
   }

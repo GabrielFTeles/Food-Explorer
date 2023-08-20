@@ -53,6 +53,10 @@ export const Container = styled.div`
       display: flex;
     }
 
+    .swiper-button-disabled {
+      display: none;
+    }
+
     > h2 {
       font-size: 3rem;
     }

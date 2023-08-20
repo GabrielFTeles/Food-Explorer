@@ -11,6 +11,8 @@ import { Logo } from '../Logo';
 import { CartMobile } from '../CartMobile';
 import { CartDesktop } from '../CartDesktop';
 import { Input } from '../Input';
+import { Button } from '../Button';
+
 
 export function Header() {
   const navigate = useNavigate();
@@ -73,6 +75,17 @@ export function Header() {
           onChange={e => setSearch(e.target.value)}
           onKeyUp={handleSearch}
         />
+
+        {
+          isAdmin ? (
+            <Link to="/new">
+              <Button 
+                className="new-dish"
+                title="Novo prato"
+              />
+            </Link>
+          ) : null
+        }
 
         {
           isAdmin ? null : isDesktop ? 

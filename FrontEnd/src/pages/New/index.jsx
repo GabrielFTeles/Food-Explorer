@@ -180,11 +180,17 @@ export function New() {
           placeholder="R$ 00,00"
           onChange={(event) => {
             const value = event.target.value.replace(/[^0-9.,]/g, "");
-            setPrice(Number(value.replace(",", ".")));
+            setPrice(Number(value.replace(",", ".")).toFixed(2));
           }}
           onBlur={(event) => {
             const value = event.target.value.replace(/[^0-9.,]/g, "");
-            event.target.value = `R$ ${Number(value.replace(",", ".")).toFixed(2)}`.replace(".", ",");
+            const newValue = isNaN(Number(value.replace(",", ".")))
+              ? `R$ 0`
+              : `R$ ${Number(value.replace(",", ".")).toFixed(2)}`.replace(
+                  ".",
+                  ","
+                );
+            event.target.value = newValue;
           }}
         />
 

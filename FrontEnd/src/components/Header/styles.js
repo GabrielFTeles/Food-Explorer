@@ -45,6 +45,12 @@ export const Container = styled.header`
       }
     }
 
+    .new-dish {
+      min-width: 21.6rem;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
     .sign-out {
       display: none;
     }
@@ -160,6 +166,10 @@ export const MenuMobile = styled.div`
     > nav {
       max-height: calc(100% - 11.7rem);
     }
+  }
+
+  @media screen and (min-width: 1024px) {
+    display: none;
   }
   
 `;

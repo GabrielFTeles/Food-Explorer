@@ -36,6 +36,13 @@ export const Form = styled.form`
   flex-direction: column;
   gap: 2.4rem;
 
+  > .first-row,
+  > .second-row {
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+  }
+
   .input-wrap {
     background: ${({ theme }) => theme.COLORS.DARK_800};
 

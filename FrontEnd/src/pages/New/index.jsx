@@ -7,7 +7,7 @@ import { api } from "../../services/api";
 import { toast } from "react-toastify";
 
 import { Container } from "./styles";
-
+import { Form } from "./styles";
 import { Input } from "../../components/Input";
 import { Footer } from "../../components/Footer";
 import { Header } from "../../components/Header";
@@ -115,103 +115,114 @@ export function New() {
       <main>
         <BackButton />
 
-        <h1>Novo prato</h1>
+        <Form>
+          <h1>Novo prato</h1>
 
-        <FileInput
-          id="image"
-          label="Imagem do prato"
-          placeholder={image ? image.name : "Selecione uma imagem"}
-          onChange={(event) => setImage(event.target.files[0])}
-        />
+          <div className="first-row">
+            <FileInput
+              id="image"
+              label="Imagem do prato"
+              mouseOverText={image ? image.name : "Selecionar imagem"}
+              placeholder={image ? image.name : "Selecione uma imagem"}
+              onChange={(event) => setImage(event.target.files[0])}
+            />
 
-        <Input
-          id="name"
-          label="Nome"
-          placeholder="Ex.: Salada Ceasar"
-          onChange={(event) => setName(event.target.value.trim())}
-        />
+            <Input
+              id="name"
+              label="Nome"
+              placeholder="Ex.: Salada Ceasar"
+              onChange={(event) => setName(event.target.value.trim())}
+            />
 
-        <Select
-          id="category"
-          label="Categoria"
-          options={[
-            {
-              title: "Refeição",
-              value: "meal",
-            },
-            {
-              title: "Sobremesa",
-              value: "dessert",
-            },
-            {
-              title: "Bebida",
-              value: "drink",
-            },
-          ]}
-          onSelect={setCategory}
-        />
-
-        <div className="new-ingredients">
-          <label htmlFor="ingredient">Ingredientes</label>
-          <div>
-            {ingredients.map((ingredient, index) => (
-              <IngredientItem
-                key={index}
-                value={ingredient}
-                onClick={() => handleRemoveIngredient(ingredient)}
-              />
-            ))}
-
-            <IngredientItem
-              id="ingredient"
-              isNew={true.toString()}
-              placeholder="Adicionar"
-              value={newIngredient}
-              onChange={(event) => setNewIngredient(event.target.value.trim())}
-              onClick={handleNewIngredient}
+            <Select
+              id="category"
+              label="Categoria"
+              options={[
+                {
+                  title: "Refeição",
+                  value: "meal",
+                },
+                {
+                  title: "Sobremesa",
+                  value: "dessert",
+                },
+                {
+                  title: "Bebida",
+                  value: "drink",
+                },
+              ]}
+              onSelect={setCategory}
             />
           </div>
-        </div>
 
-        <Input
-          id="price"
-          label="Preço"
-          type="text"
-          placeholder="R$ 00,00"
-          onChange={(event) => {
-            const value = event.target.value.replace(/[^0-9.,]/g, "");
-            setPrice(Number(value.replace(",", ".")).toFixed(2));
-          }}
-          onBlur={(event) => {
-            const value = event.target.value.replace(/[^0-9.,]/g, "");
-            const newValue = isNaN(Number(value.replace(",", ".")))
-              ? `R$ 0`
-              : `R$ ${Number(value.replace(",", ".")).toFixed(2)}`.replace(
-                  ".",
-                  ","
-                );
-            event.target.value = newValue;
-          }}
-        />
+          <div className="second-row">
+            <div className="new-ingredients">
+              <label htmlFor="ingredient">Ingredientes</label>
+              <div>
+                {ingredients.map((ingredient, index) => (
+                  <IngredientItem
+                    key={index}
+                    value={ingredient}
+                    onClick={() => handleRemoveIngredient(ingredient)}
+                  />
+                ))}
 
-        <TextArea
-          id="description"
-          label="Descrição"
-          placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"
-          onChange={(event) => setDescription(event.target.value.trim())}
-        />
+                <IngredientItem
+                  id="ingredient"
+                  isNew={true.toString()}
+                  placeholder="Adicionar"
+                  value={newIngredient}
+                  onChange={(event) => setNewIngredient(event.target.value.trim())}
+                  onClick={handleNewIngredient}
+                />
+              </div>
+            </div>
 
-        <Button
-          title="Salvar alterações"
-          disabled={
-            !name ||
-            !category ||
-            ingredients.length === 0 ||
-            !price ||
-            !description
-          }
-          onClick={handleNewDish}
-        />
+            <Input
+              id="price"
+              label="Preço"
+              type="text"
+              placeholder="R$ 00,00"
+              onChange={(event) => {
+                const value = event.target.value.replace(/[^0-9.,]/g, "");
+                setPrice(Number(value.replace(",", ".")).toFixed(2));
+              }}
+              onBlur={(event) => {
+                const value = event.target.value.replace(/[^0-9.,]/g, "");
+                const newValue = isNaN(Number(value.replace(",", ".")))
+                  ? `R$ 0`
+                  : `R$ ${Number(value.replace(",", ".")).toFixed(2)}`.replace(
+                      ".",
+                      ","
+                    );
+                event.target.value = newValue;
+              }}
+            />
+          </div>
+
+          <div className="third-row">
+            <TextArea
+              id="description"
+              label="Descrição"
+              placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"
+              onChange={(event) => setDescription(event.target.value.trim())}
+            />
+          </div>
+
+          <div className="buttons-wrapper">
+            <Button
+              title="Salvar alterações"
+              disabled={
+                !name ||
+                !category ||
+                ingredients.length === 0 ||
+                !price ||
+                !description
+              }
+              onClick={handleNewDish}
+            />
+          </div>
+        </Form>
       </main>
 
       <Footer />

@@ -6,6 +6,7 @@ export const Container = styled.div`
   gap: 1.6rem;
 
   > label {
+    font-family: Roboto;
     width: fit-content;
     color: ${({ theme }) => theme.COLORS.LIGHT_400};
   }
@@ -17,7 +18,7 @@ export const Container = styled.div`
 
     position: relative;
 
-    padding: 1.6rem;
+    padding: 1.2rem 1.6rem;
 
     border: 1px solid transparent;
     border-radius: 5px;
@@ -41,7 +42,7 @@ export const Container = styled.div`
       transition: 0.4s max-height, 0.4s visibility;
 
       position: absolute;
-      left: -1px; top: 5rem;
+      left: -1px; top: 4.5rem;
 
       border: 1px solid transparent;
       border-top: none;
@@ -59,6 +60,7 @@ export const Container = styled.div`
 
     &.active {
       border: 1px solid ${({ theme }) => theme.COLORS.CAKE_200};
+      border-radius: 5px 5px 0 0;
 
       > svg {
         transform: rotate(-180deg);

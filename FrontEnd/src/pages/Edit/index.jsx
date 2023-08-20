@@ -7,6 +7,7 @@ import { api } from "../../services/api";
 import { toast } from "react-toastify";
 
 import { Container } from "./styles";
+import { Form } from "./styles";
 import { Input } from "../../components/Input";
 import { Footer } from "../../components/Footer";
 import { Header } from "../../components/Header";
@@ -155,100 +156,109 @@ export function Edit() {
       <main>
         <BackButton />
 
-        <h1>Editar prato</h1>
+        <Form>
+          <h1>Editar prato</h1>
 
-        <FileInput
-          id="image"
-          label="Imagem do prato"
-          placeholder={imageName}
-          onChange={(event) => {
-            setImage(event.target.files[0]);
-            setImageName(event.target.files[0].name);
-          }}
-        />
+          <div className="first-row">
+            <FileInput
+              id="image"
+              label="Imagem do prato"
+              mouseOverText={imageName}
+              placeholder={imageName}
+              onChange={(event) => {
+                setImage(event.target.files[0]);
+                setImageName(event.target.files[0].name);
+              }}
+            />
 
-        <Input
-          id="name"
-          label="Nome"
-          value={name}
-          placeholder="Ex.: Salada Ceasar"
-          onChange={(event) => setName(event.target.value)}
-        />
+            <Input
+              id="name"
+              label="Nome"
+              value={name}
+              placeholder="Ex.: Salada Ceasar"
+              onChange={(event) => setName(event.target.value)}
+            />
 
-        <Select
-          id="category"
-          label="Categoria"
-          startSelected={startSelected}
-          options={[
-            {
-              title: "Refeição",
-              value: "meal",
-            },
-            {
-              title: "Sobremesa",
-              value: "dessert",
-            },
-            {
-              title: "Bebida",
-              value: "drink",
-            },
-          ]}
-          onSelect={(value) => setCategory(value)}
-        />
-
-        <div className="new-ingredients">
-          <label htmlFor="ingredient">Ingredientes</label>
-          <div>
-            {ingredients.map((ingredient, index) => (
-              <IngredientItem
-                key={index}
-                value={ingredient}
-                onClick={() => handleRemoveIngredient(ingredient)}
-              />
-            ))}
-
-            <IngredientItem
-              id="ingredient"
-              isNew={true.toString()}
-              placeholder="Adicionar"
-              value={newIngredient}
-              onChange={(event) => setNewIngredient(event.target.value)}
-              onClick={handleNewIngredient}
+            <Select
+              id="category"
+              label="Categoria"
+              startSelected={startSelected}
+              options={[
+                {
+                  title: "Refeição",
+                  value: "meal",
+                },
+                {
+                  title: "Sobremesa",
+                  value: "dessert",
+                },
+                {
+                  title: "Bebida",
+                  value: "drink",
+                },
+              ]}
+              onSelect={(value) => setCategory(value)}
             />
           </div>
-        </div>
 
-        <Input
-          id="price"
-          label="Preço"
-          type="number"
-          value={price}
-          placeholder="R$ 40,00"
-          onChange={(event) => setPrice(event.target.value)}
-        />
+          <div className="second-row">
+            <div className="new-ingredients">
+              <label htmlFor="ingredient">Ingredientes</label>
+              <div>
+                {ingredients.map((ingredient, index) => (
+                  <IngredientItem
+                    key={index}
+                    value={ingredient}
+                    onClick={() => handleRemoveIngredient(ingredient)}
+                  />
+                ))}
 
-        <TextArea
-          id="description"
-          label="Descrição"
-          value={description}
-          placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"
-          onChange={(event) => setDescription(event.target.value)}
-        />
+                <IngredientItem
+                  id="ingredient"
+                  isNew={true.toString()}
+                  placeholder="Adicionar"
+                  value={newIngredient}
+                  onChange={(event) => setNewIngredient(event.target.value)}
+                  onClick={handleNewIngredient}
+                />
+              </div>
+            </div>
 
-        <div className="buttons-wrapper">
-          <Button title="Excluir" onClick={handleDeleteDish} />
-          <Button
-            title="Salvar alterações"
-            disabled={
-              !name ||
-              !category ||
-              ingredients.length === 0 ||
-              !price ||
-              !description
-            }
-            onClick={handleSaveDish}
-          />
-        </div>
+            <Input
+              id="price"
+              label="Preço"
+              type="number"
+              value={price}
+              placeholder="R$ 40,00"
+              onChange={(event) => setPrice(event.target.value)}
+            />
+          </div>
+
+          <div className="third-row">
+            <TextArea
+              id="description"
+              label="Descrição"
+              value={description}
+              placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"
+              onChange={(event) => setDescription(event.target.value)}
+            />
+          </div>
+
+          <div className="buttons-wrapper">
+            <Button title="Excluir prato" onClick={handleDeleteDish} type="button" />
+            <Button
+              title="Salvar alterações"
+              disabled={
+                !name ||
+                !category ||
+                ingredients.length === 0 ||
+                !price ||
+                !description
+              }
+              onClick={handleSaveDish}
+            />
+          </div>
+        </Form>
       </main>
 
       <Footer />

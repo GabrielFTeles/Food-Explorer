@@ -5,9 +5,8 @@ export const Container = styled.div`
   flex-direction: column;
   gap: 1.6rem;
 
-  font-family: 'Roboto';
-
   > label {
+    font-family: Roboto;
     width: fit-content;
     color: ${({ theme }) => theme.COLORS.LIGHT_400};
   }

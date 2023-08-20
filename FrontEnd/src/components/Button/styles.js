@@ -8,8 +8,9 @@ export const Container = styled.button`
   border-radius: 5px;
   width: 100%;
 
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   transition: 0.3s;
 

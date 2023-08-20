@@ -89,7 +89,9 @@ export function New() {
       });
   }
 
-  function handleNewDish() {
+  function handleNewDish(event) {
+    event.preventDefault();
+
     if (newIngredient)
       return toast.info("Adicione o ingrediente antes de criar o prato.");
 
@@ -115,7 +117,7 @@ export function New() {
       <main>
         <BackButton />
 
-        <Form>
+        <Form onSubmit={handleNewDish}>
           <h1>Novo prato</h1>
 
           <div className="first-row">

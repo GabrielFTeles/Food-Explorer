@@ -56,9 +56,8 @@ export function Header() {
           onClick={toggleMobileMenu}
         />
 
-        <div className="logo">
+        <div className="logo" onClick={handleBackHome}>
           <Logo 
-            onClick={handleBackHome}
             size={2.1}
           />
 

@@ -16,6 +16,9 @@ export const Container = styled.div`
     justify-content: space-between;
     align-items: center;
 
+    cursor: pointer;
+    user-select: none;
+
     position: relative;
 
     padding: 1.2rem 1.6rem;
@@ -55,12 +58,20 @@ export const Container = styled.div`
 
       li {
         padding: 1rem 1.6rem;
+
+        &:hover {
+          background: #26546c;
+        }
       }
     }
 
     &.active {
       border: 1px solid ${({ theme }) => theme.COLORS.CAKE_200};
       border-radius: 5px 5px 0 0;
+
+      &:not(:has(li:hover)):hover {
+        background: #26546c;
+      }
 
       > svg {
         transform: rotate(-180deg);

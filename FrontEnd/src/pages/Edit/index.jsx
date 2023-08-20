@@ -56,24 +56,7 @@ export function Edit() {
     navigate("/");
   }
 
-  function handleSaveDish() {
-    if (newIngredient)
-      return toast.info(
-        "Adicione o ingrediente antes de salvar as alterações."
-      );
-
-    if (
-      !name ||
-      !category ||
-      ingredients.length === 0 ||
-      !price ||
-      !description
-    ) {
-      return toast.error("Preencha todos os campos para salvar as edições.");
-    }
-
-    if (!price) return toast.error("O preço deve ser um número.");
-
+  function saveDish() {
     const updateDishToast = toast.loading("Salvando alterações...");
 
     api
@@ -113,6 +96,29 @@ export function Edit() {
           closeButton: true,
         });
       });
+  }
+
+  function handleSaveDish(event) {
+    event.preventDefault();
+
+    if (newIngredient)
+      return toast.info(
+        "Adicione o ingrediente antes de salvar as alterações."
+      );
+
+    if (
+      !name ||
+      !category ||
+      ingredients.length === 0 ||
+      !price ||
+      !description
+    ) {
+      return toast.error("Preencha todos os campos para salvar as edições.");
+    }
+
+    if (!price) return toast.error("O preço deve ser um número.");
+
+    saveDish();
   }
 
   function handleDeleteDish() {
@@ -156,7 +162,7 @@ export function Edit() {
       <main>
         <BackButton />
 
-        <Form>
+        <Form onSubmit={handleSaveDish}>
           <h1>Editar prato</h1>
 
           <div className="first-row">

@@ -3,7 +3,6 @@ import { api } from "../../services/api";
 import { useAuth } from "../../hooks/auth";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import React from 'react';
 import { useMediaQuery } from 'react-responsive';
 
 import { Container } from "./styles";
@@ -12,7 +11,7 @@ import { Plus, Minus, PencilSimple } from "@phosphor-icons/react";
 
 export function Card({ id, title, description, price, image }) {
   const navigate = useNavigate();
-  const isMobile = useMediaQuery({ minWidth: 1024 });
+  const isDesktop = useMediaQuery({ minWidth: 1024 });
   const { isAdmin } = useAuth();
 
   const [quantity, setQuantity] = useState(1);
@@ -77,7 +76,7 @@ export function Card({ id, title, description, price, image }) {
       </h3>
 
       {
-        isMobile && <p className="dish-description">{description}</p>
+        isDesktop && <p className="dish-description">{description}</p>
       }
 
       <span className="price">
@@ -91,23 +90,21 @@ export function Card({ id, title, description, price, image }) {
 
       {
         !isAdmin && (
-        <div>
-          <button onClick={handleMinus}>
-            <Minus size={24} />
-          </button>
-  
-          <span>{String(quantity).padStart(2, "0")}</span>
-  
-          <button onClick={handlePlus}>
-            <Plus size={24} />
-          </button>
-        </div>
-        )
-      }
+        <div className="buttons-wrapper">
+          <div>
+            <button onClick={handleMinus}>
+              <Minus size={20} />
+            </button>
+    
+            <span>{String(quantity).padStart(2, "0")}</span>
+    
+            <button onClick={handlePlus}>
+              <Plus size={20} />
+            </button>
+          </div>
 
-      {
-        !isAdmin && (
           <button>incluir</button>
+        </div>
         )
       }
     </Container>

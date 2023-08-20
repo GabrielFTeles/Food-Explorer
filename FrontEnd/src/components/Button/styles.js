@@ -5,7 +5,6 @@ export const Container = styled.button`
   font-weight: 500;
   padding: 1.2rem 2.4rem;
   background: ${({ theme }) => theme.COLORS.TOMATO_100};
-  border-bottom: 2px solid transparent;
   border-radius: 5px;
   width: 100%;
 
@@ -16,7 +15,6 @@ export const Container = styled.button`
 
   &:hover {
     background: ${({ theme }) => theme.COLORS.TOMATO_200};
-    border-bottom: 2px solid ${({ theme }) => theme.COLORS.WHITE};
   }
 
   &:disabled {

@@ -6,7 +6,7 @@ export const Container = styled.button`
   justify-content: center;
   gap: 0.8rem;
 
-  min-width: 20rem;
+  min-width: 19rem;
 
   padding: 1.2rem 3.2rem;
 

@@ -16,7 +16,7 @@ export function Category({ title, dishes }) {
 
       <Swiper
         slidesPerView="auto"
-        spaceBetween={20}
+        spaceBetween={16}
         centerInsufficientSlides={true}
         freeMode={true}
         navigation={true}

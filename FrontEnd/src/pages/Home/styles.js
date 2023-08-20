@@ -8,7 +8,7 @@ export const Container = styled.div`
 
   main {
     flex: 1;
-    width: min(100%, 70rem);
+    width: min(100%, 76.8rem);
     margin: 0 auto;
     padding-inline: 1.5rem;
 
@@ -53,6 +53,14 @@ export const Container = styled.div`
         background: ${({ theme }) => theme.COLORS.GRADIENTS_200};
       }
     }
+
+    .dishes-section {
+      display: flex;
+      flex-direction: column;
+      gap: 2.4rem;
+
+      margin-bottom: 2.4rem;
+    }
   }
 
   @media screen and (min-width: 600px) {
@@ -83,6 +91,11 @@ export const Container = styled.div`
           height: 70%;
           border-radius: 8px;
         }
+      }
+
+      .dishes-section {
+        gap: 3.2rem;
+        margin-bottom: 3.2rem;
       }
     }
   }
@@ -117,6 +130,18 @@ export const Container = styled.div`
           height: 70%;
         }
       }
+
+      .dishes-section {
+        gap: 4.6rem;
+        margin-bottom: 4.6rem;
+      }
+    }
+  }
+
+  @media screen and (min-width: 1368px) {
+    main {
+      width: 100%;
+      padding-inline: 12rem;
     }
   }
   

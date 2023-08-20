@@ -75,7 +75,7 @@ export function SignIn() {
         />
 
         <Button
-          title={ isLoading ? <ThreeDots ariaLabel="three-dots-loading" color="#FFF" height="16" width="50" /> : 'Entrar'}
+          title={ isLoading ? <ThreeDots ariaLabel="three-dots-loading" color="#FFF" height="21" width="50" /> : 'Entrar'}
           onClick={handleSignIn}
           disabled={isLoading}
         />

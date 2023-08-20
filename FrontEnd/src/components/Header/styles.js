@@ -19,7 +19,7 @@ export const Container = styled.header`
     align-items: center;
     justify-content: space-between;
 
-    width: min(100%, 70rem);
+    width: min(100%, 76.8rem);
 
     padding-inline: 2.8rem;
 
@@ -43,10 +43,6 @@ export const Container = styled.header`
         color: ${({ theme }) => theme.COLORS.CAKE_200};
         font-size: 1.2rem;
       }
-    }
-
-    .cart-desktop {
-      display: none;
     }
 
     .sign-out {
@@ -86,18 +82,17 @@ export const Container = styled.header`
         display: block;
       }
 
-      .cart-desktop {
-        display: flex;
-      }
-
-      .cart-mobile {
-        display: none;
-      }
-
       .sign-out {
         display: block;
         height: fit-content;
       }
+    }
+  }
+
+  @media screen and (min-width: 1368px) {
+    > .header-content {
+      width: 100%;
+      padding-inline: 12rem;
     }
   }
 `;
@@ -115,7 +110,7 @@ export const MenuMobile = styled.div`
   transform: translateX(-50%);
 
   height: 100dvh;
-  width: min(100%, 70rem);
+  width: min(100%, 76.8rem);
 
   padding: 6.2rem 2.8rem 2.4rem;
 

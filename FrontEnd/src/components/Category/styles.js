@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  margin-bottom: 2.4rem;
-
   padding-left: 1rem;
 
   display: flex;
@@ -35,8 +33,8 @@ export const Container = styled.div`
 
     color: ${({ theme }) => theme.COLORS.WHITE};
     height: 100%;
-    width: 10%;
-    top: 1.8rem;
+    width: 8%;
+    top: 2.2rem;
     
     &::after {
       font-size: 3.4rem;

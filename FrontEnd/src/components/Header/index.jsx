@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useAuth } from '../../hooks/auth';
 import { useSearch } from '../../hooks/searchContext';
+import { useMediaQuery } from 'react-responsive';
 
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -13,6 +14,7 @@ import { Input } from '../Input';
 
 export function Header() {
   const navigate = useNavigate();
+  const isDesktop = useMediaQuery({ minWidth: 1024 });
   const { signOut, isAdmin } = useAuth();
   const { searchDishes, getAllDishes } = useSearch();
 
@@ -73,11 +75,9 @@ export function Header() {
         />
 
         {
-          !isAdmin && <CartMobile size={30} items={5} className="cart-mobile" />
-        }
-
-        {
-          !isAdmin && <CartDesktop size={30} items={5} className="cart-desktop" />
+          isAdmin ? null : isDesktop ? 
+          (<CartDesktop size={30} items={5} />) :
+          (<CartMobile size={30} items={5} />) 
         }
 
         <Link to="/" onClick={signOut}>

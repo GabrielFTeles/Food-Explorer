@@ -43,36 +43,62 @@ export const Container = styled.div`
     object-fit: cover;
   }
 
-  > div {
+  .buttons-wrapper {
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    gap: 1.4rem;
 
-    font-family: Roboto;
-
-    button {
-      background: transparent;
-    }
-  }
-
-  > button {
-    font-size: 1.4rem;
-    font-weight: 500;
-
-    height: 3.2rem;
-    background: ${({ theme }) => theme.COLORS.TOMATO_100};
-    border-radius: 5px;
     width: 100%;
+    height: 100%;
+
+    > div {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      width: 8rem;
+  
+      span {
+        font-family: Roboto;
+      }
+  
+      button {
+        background: transparent;
+        display: grid;
+        place-items: center;
+      }
+    }
+
+    > button {
+      display: grid;
+      place-items: center;
+      
+      font-size: 1.4rem;
+      font-weight: 500;
+
+      height: 3.2rem;
+      background: ${({ theme }) => theme.COLORS.TOMATO_100};
+      border-radius: 5px;
+      width: 100%;
+    }
   }
 
   > .dish-description {
     font-family: Roboto;
     font-size: 1.4rem;
-    line-height: 160%; 
+    line-height: 160%;
+    width: 25rem;
+    height: 4.4rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 
   @media screen and (min-width: 1024px) {
-    width: 30.4rem;
+    width: 30.6rem;
     height: 46.2rem;
     
     gap: 1.5rem;
@@ -92,9 +118,28 @@ export const Container = styled.div`
       font-size: 3.2rem;
       line-height: 160%;
     }
+
+    .buttons-wrapper {
+      flex-direction: row;
+      justify-content: center;
+      gap: 1.6rem;
+
+      > div {
+        width: 9rem;
+
+        span {
+          font-weight: 700;
+          font-size: 2rem;
+        }
+      }
+
+      > button {
+        height: auto;
+        padding: 1.2rem 2.4rem;
+        width: fit-content;
+      }
+    }
   }
-
-
   
 
   .heart-container {
@@ -109,6 +154,7 @@ export const Container = styled.div`
 
   .heart-container .checkbox {
     position: absolute;
+    left: 0;
     width: 100%;
     height: 100%;
     opacity: 0;

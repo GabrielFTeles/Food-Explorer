@@ -216,6 +216,7 @@ export function Edit() {
                     key={index}
                     value={ingredient}
                     onClick={() => handleRemoveIngredient(ingredient)}
+                    style={{ width: `${ingredient.length / 1.15}rem` }}
                   />
                 ))}
 
@@ -226,6 +227,7 @@ export function Edit() {
                   value={newIngredient}
                   onChange={(event) => setNewIngredient(event.target.value)}
                   onClick={handleNewIngredient}
+                  style={{ width: `${newIngredient.length / 1.15}rem` }}
                 />
               </div>
             </div>

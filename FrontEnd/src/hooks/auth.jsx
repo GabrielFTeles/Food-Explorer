@@ -60,7 +60,9 @@ function AuthProvider({ children }) {
 
     setData({});
 
-    toast.info("You have been logged out.");
+    toast.info("Até mais, volte sempre", {
+      icon: "👋"
+    });
   }
 
   useEffect(() => {

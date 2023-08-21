@@ -69,7 +69,7 @@ export function Card({ id, title, description, price, image }) {
         </div>)
       }
 
-      <img src={`${api.defaults.baseURL}/files/${image}`} role="button" alt={title} onClick={handleDetailsClick} />
+      <img src={`${api.defaults.baseURL}/files/${image}`} role="button" alt={`Foto do ${title}`} onClick={handleDetailsClick} />
 
       <h3 className="dish-name" role="button" onClick={handleDetailsClick}>
         <span>{title}</span> &gt;

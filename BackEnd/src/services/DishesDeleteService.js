@@ -1,6 +1,5 @@
 const DiskStorage = require('../providers/DiskStorage');
 const AppError = require('../utils/AppError');
-const { diskStorage } = require('multer');
 
 class DishesDeleteService {
   constructor(dishesRepository) {
@@ -12,7 +11,7 @@ class DishesDeleteService {
 
     const dish = await this.dishesRepository.getDishById(id);
 
-    if (!dish) throw new AppError('Dish not found', 404);
+    if (!dish) throw new AppError('O prato não foi encontrado.', 404);
 
     if (dish.image !== 'default.jpg') await diskStorage.deleteFile(dish.image);
 

@@ -26,7 +26,7 @@ export function SignUp() {
     event.preventDefault();
     
     if (!name || !email || !password) {
-      toast.error('Please provide all fields.');
+      toast.error('Por favor preencha todos os campos.');
       return;
     }
 
@@ -35,12 +35,12 @@ export function SignUp() {
     toast.promise(
       signUp({ name, email, password }),
       {
-        pending: 'Signing up...',
+        pending: 'Criando a conta, aguarde...',
         success: {
           render() {
             setIsLoading(false);
             navigate('/');
-            return `Account created!`;
+            return `Conta criada com sucesso!`;
           }
         },
         error: {
@@ -87,7 +87,8 @@ export function SignUp() {
         />
 
         <Button
-          title={ isLoading ? <ThreeDots ariaLabel="three-dots-loading" color="#FFF" height="16" width="50" /> : 'Criar conta'}
+          title={ isLoading ? <ThreeDots ariaLabel="three-dots-loading" color="#FFF" height="21" width="50" /> : 'Criar conta'}
+          disabled={isLoading}
         />
 
         <Link to="/">Já tenho uma conta</Link>

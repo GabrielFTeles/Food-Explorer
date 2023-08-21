@@ -11,7 +11,7 @@ class DishesImageUpdateService {
 
     const dish = await this.dishesRepository.getDishById(id);
 
-    if (!dish) throw new AppError('Dish not found', 404);
+    if (!dish) throw new AppError('O prato não foi encontrado.', 404);
 
     if (dish.image !== 'default.jpg') await diskStorage.deleteFile(dish.image);
 

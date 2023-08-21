@@ -13,38 +13,38 @@ const DishesImageController = require("../controllers/DishesImageController");
 const dishesController = new DishesController();
 const dishesImageController = new DishesImageController();
 
-const authenticationMiddleware = require("../middlewares/authenticationMiddleware");
-const adminAuthorizationMiddleware = require("../middlewares/adminAuthorizationMiddleware");
+const authenticationValidation = require("../middlewares/authenticationValidation");
+const adminAuthorizationValidation = require("../middlewares/adminAuthorizationValidation");
 
-dishesRoutes.get("/:id", authenticationMiddleware, dishesController.show);
-dishesRoutes.get("/", authenticationMiddleware, dishesController.index);
+dishesRoutes.get("/:id", authenticationValidation, dishesController.show);
+dishesRoutes.get("/", authenticationValidation, dishesController.index);
 
 dishesRoutes.post(
   "/",
-  authenticationMiddleware,
-  adminAuthorizationMiddleware,
+  authenticationValidation,
+  adminAuthorizationValidation,
   dishesController.create
 );
 
 dishesRoutes.patch(
   "/:id",
-  authenticationMiddleware,
-  adminAuthorizationMiddleware,
+  authenticationValidation,
+  adminAuthorizationValidation,
   upload.single('image'),
   dishesImageController.update
 )
 
 dishesRoutes.put(
   "/:id",
-  authenticationMiddleware,
-  adminAuthorizationMiddleware,
+  authenticationValidation,
+  adminAuthorizationValidation,
   dishesController.update
 );
 
 dishesRoutes.delete(
   "/:id",
-  authenticationMiddleware,
-  adminAuthorizationMiddleware,
+  authenticationValidation,
+  adminAuthorizationValidation,
   dishesController.delete
 );
 

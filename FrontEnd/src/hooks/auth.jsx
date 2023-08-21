@@ -12,7 +12,7 @@ function AuthProvider({ children }) {
 
   async function signUp({ name, email, password }) {
     try {
-      if (password.length < 6) throw new Error("Password must be at least 6 characters long.");
+      if (password.length < 6) throw new Error("A senha precisa ter pelo menos 6 digitos.");
 
       await api.post('/users', { name, email, password });
     } catch (error) {
@@ -24,7 +24,7 @@ function AuthProvider({ children }) {
         throw new Error(error.message);
       }
 
-      throw new Error("Can't create account, please try again later.");
+      throw new Error("Não foi possível criar uma conta, por favor tente novamente.");
     }
   }
 
@@ -49,7 +49,7 @@ function AuthProvider({ children }) {
       if (error.response) {
         throw new Error(error.response.data.message);
       } else {
-        throw new Error("Can't sign, please try again later.");
+        throw new Error("Não foi possível entrar, por favor tente novamente mais tarde.");
       }
     }
   }

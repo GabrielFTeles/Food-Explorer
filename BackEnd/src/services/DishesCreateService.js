@@ -9,7 +9,7 @@ class DishesCreateService {
     const dishAlreadyExists = await this.dishesRepository.getDishByName(name);
 
     if (dishAlreadyExists) {
-      throw new AppError(`${name} already exists, please insert other name.`);
+      throw new AppError(`${name} já existe, insira outro nome.`);
     }
 
     const dishCreated_id = await this.dishesRepository.createDish({ name, description, category, price, image});

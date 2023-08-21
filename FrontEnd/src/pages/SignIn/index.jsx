@@ -21,7 +21,7 @@ export function SignIn() {
     event.preventDefault();
 
     if (!email || !password) {
-      toast.error('Please provide e-mail and password.');
+      toast.error('Insira um E-mail e senha para entrar.');
       return;
     }
 
@@ -30,11 +30,11 @@ export function SignIn() {
     toast.promise(
       signIn({ email, password }),
       {
-        pending: 'Signing in...',
+        pending: 'Entrando, aguarde...',
         success: {
           render({ data }) {
             setIsLoading(false);
-            return `Welcome, ${data.name}!`;
+            return `Bem vindo, ${data.name}!`;
           },
           icon: "👋",
           type: "default",

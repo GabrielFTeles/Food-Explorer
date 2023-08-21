@@ -13,13 +13,13 @@ class SessionsCreateService {
     const user = await this.sessionsRepository.getUserByEmail(email);
 
     if (!user) {
-      throw new AppError('E-mail or password invalid.', 401);
+      throw new AppError('E-mail e/ou senha incorretos.', 401);
     }
 
     const passwordMatch = await compare(password, user.password);
 
     if (!passwordMatch) {
-      throw new AppError('E-mail or password invalid.', 401);
+      throw new AppError('E-mail e/ou senha incorretos.', 401);
     }
 
     const { secret, expiresIn } = authConfig.jwt;

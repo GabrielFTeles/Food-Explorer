@@ -2,7 +2,7 @@ const { verify } = require('jsonwebtoken');
 const AppError = require('../utils/AppError');
 const authConfig = require('../configs/auth');
 
-function authenticationMiddleware (request, response, next) {
+function authenticationValidation (request, response, next) {
   const authHeader = request.headers.authorization;
 
   if (!authHeader) {
@@ -27,4 +27,4 @@ function authenticationMiddleware (request, response, next) {
   }
 }
 
-module.exports = authenticationMiddleware;
+module.exports = authenticationValidation;

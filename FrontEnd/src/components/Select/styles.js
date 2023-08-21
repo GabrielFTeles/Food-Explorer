@@ -5,6 +5,8 @@ export const Container = styled.div`
   flex-direction: column;
   gap: 1.6rem;
 
+  width: 100%;
+
   > label {
     font-family: Roboto;
     width: fit-content;

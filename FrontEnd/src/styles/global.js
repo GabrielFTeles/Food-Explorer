@@ -26,20 +26,20 @@ export default createGlobalStyle`
     }
   }
 
-  body {
+  * {
     scrollbar-width: auto;
     scrollbar-color: #82f3ff rgba(0, 0, 0, 0);
   }
 
-  body::-webkit-scrollbar {
+  *::-webkit-scrollbar {
     width: 5px;
   }
 
-  body::-webkit-scrollbar-track {
+  *::-webkit-scrollbar-track {
     background: rgba(0, 0, 0, 0);
   }
 
-  body::-webkit-scrollbar-thumb {
+  *::-webkit-scrollbar-thumb {
     background-color: #82f3ff;
     border-radius: 8px;
   }

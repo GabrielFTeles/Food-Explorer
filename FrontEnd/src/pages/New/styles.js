@@ -98,8 +98,8 @@ export const Form = styled.form`
 
   @media screen and (min-width: 1024px) {
     > .first-row {
-      display: flex;
-      align-items: center;
+      flex-direction: row;
+      justify-content: center;
       gap: 3.2rem;
 
       > div:nth-of-type(1) {
@@ -113,7 +113,8 @@ export const Form = styled.form`
     }
 
     > .second-row {
-      display: flex;
+      flex-direction: row;
+      justify-content: center;
       gap: 3.2rem;
 
       > div:nth-of-type(1) {

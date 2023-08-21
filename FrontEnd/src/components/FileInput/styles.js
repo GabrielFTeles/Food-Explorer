@@ -4,6 +4,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.7rem;
+  width: 100%;
 
   > label:nth-of-type(1) {
     font-family: Roboto;

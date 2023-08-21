@@ -14,11 +14,13 @@ export const Container = styled.div`
     
     flex: 1;
     
-    width: min(100%, 31.6rem);
+    width: min(100%, 76.8rem);
     padding-block: 3.6rem 5.4rem;
     margin-inline: auto;
 
-    .dish-info,
+    padding-inline: 2.8rem;
+
+    .dish,
     .dish-description {
       text-align: center;
       
@@ -28,7 +30,7 @@ export const Container = styled.div`
       gap: 2.4rem;
     }
 
-    .dish-info {
+    .dish {
       margin-top: 1.6rem;
 
       h1 {
@@ -59,8 +61,11 @@ export const Container = styled.div`
     }
     
     .buttons-wrapper {
+      margin-top: 4.8rem;
+
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 1.6rem;
 
       width: 100%;
@@ -88,9 +93,10 @@ export const Container = styled.div`
         align-items: center;
         justify-content: center;
         gap: 0.6rem;
-        flex: 1;
 
-        height: 3.8rem;
+        width: fit-content;
+        
+        padding: 1.2rem 2.4rem;
 
         font-size: 1.2rem;
         font-weight: 500;
@@ -106,6 +112,53 @@ export const Container = styled.div`
           background: ${({ theme }) => theme.COLORS.TOMATO_200};
         }
       }
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    > main {
+      width: min(100%, 112rem);
+
+      .dish {
+        flex-direction: row;
+
+        > img {
+          width: 40rem;
+          height: 40rem;
+        }
+
+        .dish-description {
+          align-items: flex-start;
+          text-align: start;
+
+          > p {
+            text-align: justify;
+            padding-right: 1rem;
+            max-height: 27rem;
+            overflow-y: auto;
+          }
+        }
+
+        .edit-button {
+          width: fit-content;
+        }
+
+        .ingredients {
+          justify-content: flex-start;
+          gap: 1.2rem;
+        }
+
+        .buttons-wrapper {
+          justify-content: flex-start;
+        }
+      }
+    } 
+  }
+
+  @media screen and (min-width: 1368px) {
+    main {
+      width: 100%;
+      padding-inline: 12rem;
     }
   }
 `;

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSearch } from '../../hooks/searchContext';
 
+import { toast } from 'react-toastify';
 import { api } from '../../services/api';
 
 import { Container } from './styles';
@@ -18,13 +19,13 @@ export function Home() {
   const [drinks, setDrinks] = useState([]);
 
   function filterDishesByCategory(data) {
-      const meals = data.filter(dish => dish.category === 'meal');
-      const desserts = data.filter(dish => dish.category === 'dessert');
-      const drinks = data.filter(dish => dish.category === 'drink');
+    const meals = data.filter(dish => dish.category === 'meal');
+    const desserts = data.filter(dish => dish.category === 'dessert');
+    const drinks = data.filter(dish => dish.category === 'drink');
 
-      setMeals(meals);
-      setDesserts(desserts);
-      setDrinks(drinks);
+    setMeals(meals);
+    setDesserts(desserts);
+    setDrinks(drinks);
   }
 
   useEffect(() => {
@@ -33,8 +34,14 @@ export function Home() {
     }
 
     async function renderDishes() {
-      const { data } = await api.get('/dishes');
-      filterDishesByCategory(data);
+      try {
+        const { data } = await api.get('/dishes');
+        filterDishesByCategory(data);
+      } catch (error) {
+        if (error.response) return toast.error(error.response.data.message);
+
+        toast.error('Erro ao carregar pratos.');
+      }
     }
 
     renderDishes();

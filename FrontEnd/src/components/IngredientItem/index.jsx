@@ -9,6 +9,7 @@ export function IngredientItem({ value, isNew = false, onClick, ...rest }) {
         readOnly={!isNew}
         value={value}
         autoComplete="off"
+        maxLength={30}
         {...rest}
       />
 

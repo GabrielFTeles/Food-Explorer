@@ -43,7 +43,8 @@ export const Container = styled.div`
 
   > input {
     font-family: Roboto;
-    width: 6.7rem;
+    min-width: 6.7rem;
+    max-width: 23rem;
 
     &::placeholder {
       color: ${({ theme }) => theme.COLORS.LIGHT_500};

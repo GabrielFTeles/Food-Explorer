@@ -41,14 +41,14 @@ export const Form = styled.form`
     display: flex;
     flex-direction: column;
     gap: 2.4rem;
-  }
 
-  .input-wrap {
-    background: ${({ theme }) => theme.COLORS.DARK_800};
+    .input-wrap {
+      background: ${({ theme }) => theme.COLORS.DARK_800};
 
-    &:has(input:focus),
-    &:has(input:valid) {
-      background: ${({ theme }) => theme.COLORS.DARK_900};
+      &:has(input:focus),
+      &:has(input:valid) {
+        background: ${({ theme }) => theme.COLORS.DARK_900};
+      }
     }
   }
 

@@ -3,8 +3,8 @@ class DishesIndexService {
     this.dishesRepository = dishesRepository;
   }
 
-  async execute(title = "") {
-    const dishes = await this.dishesRepository.getAllDishes(title);
+  async execute(searchText = "") {
+    const dishes = await this.dishesRepository.getAllDishes(searchText);
     const ingredients = await this.dishesRepository.getAllIngredients();
 
     const dishesWithIngredients = dishes.map(dish => {

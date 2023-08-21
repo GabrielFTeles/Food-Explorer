@@ -1,8 +1,13 @@
 const knex = require('../database/knex');
 
 class DishesRepository {
-  async getAllDishes(title) {
-    const dishes = await knex('dishes').whereLike('name', `%${title}%`);
+  async getAllDishes(searchText) {
+    const dishes = await knex('dishes as d')
+    .innerJoin('ingredients as i', 'd.id', 'i.dish_id')
+    .whereLike('d.name', `%${searchText}%`)
+    .orWhereLike('i.name', `%${searchText}%`)
+    .groupBy('d.id')
+    .select('d.*');
 
     return dishes;
   }

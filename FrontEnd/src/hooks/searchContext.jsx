@@ -17,7 +17,7 @@ function SearchProvider({ children }) {
     const searchToast = toast.loading("Buscando pratos...");
 
     api
-      .get(`/dishes?title=${searchText}`)
+      .get(`/dishes?searchText=${searchText}`)
       .then(({ data }) => {
         toast.update(searchToast, {
           render: () => {

@@ -7,12 +7,12 @@ const DishesUpdateService = require("../services/DishesUpdateService");
 
 class DishesController {
   async index(request, response) {
-    const { title } = request.query;
+    const { searchText } = request.query;
 
     const dishesRepository = new DishesRepository();
     const dishesIndexService = new DishesIndexService(dishesRepository);
 
-    const dishes = await dishesIndexService.execute(title);
+    const dishes = await dishesIndexService.execute(searchText);
 
     return response.json(dishes);
   }

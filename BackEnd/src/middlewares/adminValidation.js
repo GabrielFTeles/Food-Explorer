@@ -1,6 +1,6 @@
 const AppError = require('../utils/AppError');
 
-function adminAuthorizationValidation (request, response, next) {
+function adminValidation (request, response, next) {
   if (!request.user.isAdmin) {
     throw new AppError('User does not have permission to access this resource', 403);
   }
@@ -8,4 +8,4 @@ function adminAuthorizationValidation (request, response, next) {
   return next();
 }
 
-module.exports = adminAuthorizationValidation;
+module.exports = adminValidation;

@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAuth } from '../../hooks/auth';
+import { useCart } from '../../hooks/cart';
 import { useSearch } from '../../hooks/searchContext';
 import { useMediaQuery } from 'react-responsive';
 
@@ -18,9 +19,11 @@ export function Header() {
   const navigate = useNavigate();
   const isDesktop = useMediaQuery({ minWidth: 1024 });
   const { signOut, isAdmin } = useAuth();
+  const { getCartTotalItems } = useCart();
   const { searchDishes, getAllDishes } = useSearch();
 
   const [isMenuMobileOpen, setIsMenuMobileOpen] = useState(false);
+  const [totalCartItems, setTotalCartItems] = useState(0);
   const [search, setSearch] = useState('');
 
   function toggleMobileMenu() {
@@ -43,6 +46,10 @@ export function Header() {
     await getAllDishes();
     navigate("/");
   }
+
+  useEffect(() => {
+    setTotalCartItems(getCartTotalItems());
+  })
 
   return (
     <Container>
@@ -87,8 +94,8 @@ export function Header() {
 
         {
           isAdmin ? null : isDesktop ? 
-          (<CartDesktop size={30} items={5} />) :
-          (<CartMobile size={30} items={5} />) 
+          (<CartDesktop size={30} items={totalCartItems} />) :
+          (<CartMobile size={30} items={totalCartItems} />) 
         }
 
         <Link to="/" onClick={signOut}>

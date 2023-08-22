@@ -1,8 +1,9 @@
 import { api } from "../../services/api";
 
-import { useAuth } from "../../hooks/auth";
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useAuth } from "../../hooks/auth";
+import { useCart } from "../../hooks/cart";
+import { useNavigate } from "react-router-dom";
 import { useMediaQuery } from 'react-responsive';
 
 import { Container } from "./styles";
@@ -13,6 +14,7 @@ export function Card({ id, title, description, price, image }) {
   const navigate = useNavigate();
   const isDesktop = useMediaQuery({ minWidth: 1024 });
   const { isAdmin } = useAuth();
+  const { addToCart } = useCart();
 
   const [quantity, setQuantity] = useState(1);
 
@@ -28,6 +30,10 @@ export function Card({ id, title, description, price, image }) {
 
   function handlePlus() {
     setQuantity((prevState) => prevState + 1);
+  }
+
+  function handleAddToCart() {
+    addToCart({ id, title, price, image, quantity });
   }
 
   return (
@@ -103,7 +109,7 @@ export function Card({ id, title, description, price, image }) {
             </button>
           </div>
 
-          <button>incluir</button>
+          <button onClick={handleAddToCart}>incluir</button>
         </div>
         )
       }

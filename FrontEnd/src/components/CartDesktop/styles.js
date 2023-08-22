@@ -7,6 +7,7 @@ export const Container = styled.button`
   gap: 0.8rem;
 
   min-width: 19rem;
+  white-space: nowrap;
 
   padding: 1.2rem 3.2rem;
 
@@ -14,6 +15,10 @@ export const Container = styled.button`
   background: ${({ theme }) => theme.COLORS.TOMATO_100};
 
   transition: 0.3s;
+
+  > svg {
+    min-width: 2.8rem;
+  }
 
   > span {
     font-size: 1.4rem;

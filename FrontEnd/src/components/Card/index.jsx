@@ -76,7 +76,7 @@ export function Card({ id, title, description, price, image }) {
       </h3>
 
       {
-        isDesktop && <p className="dish-description">{description}</p>
+        isDesktop && <p className="dish-description" role="button" onClick={() => navigate(`/edit/${id}`)}>{description}</p>
       }
 
       <span className="price">

@@ -9,6 +9,7 @@ export const Container = styled.div`
 
   .swiper {
     width: 100%;
+    position: relative;
   }
 
   .swiper-slide {
@@ -48,6 +49,22 @@ export const Container = styled.div`
   }
 
   @media screen and (min-width: 1024px) {
+    .swiper {
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0; top: 0;
+        z-index: 10;
+
+        pointer-events: none;
+
+        width: 100%;
+        height: 100%;
+
+        background: linear-gradient(90deg, rgba(0,10,15,1) 0%, rgba(0,10,15,0) 18%, rgba(0,10,15,0) 82%, rgba(0,10,15,1) 100%);
+      }
+    }
+
     .swiper-button-next,
     .swiper-button-prev {
       display: flex;

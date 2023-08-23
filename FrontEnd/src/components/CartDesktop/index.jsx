@@ -4,7 +4,7 @@ import { Receipt } from '@phosphor-icons/react';
 
 export function CartDesktop({ size, items, ...rest }) {
   return (
-    <Container {...rest}>
+    <Container to="/orders" {...rest}>
       <Receipt 
         size={size} 
       />

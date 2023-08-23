@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+import { Link } from 'react-router-dom';
+
+export const Container = styled(Link)`
   position: relative;
 
   > .items {
@@ -8,16 +10,15 @@ export const Container = styled.div`
     place-items: center;
 
     position: absolute;
-    top: -0.5rem; right: -0.5rem;
+    top: -0.6rem; right: -0.6rem;
 
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     font-weight: 500;
-    line-height: 2.1rem;
 
     background: ${({ theme }) => theme.COLORS.TOMATO_100};
 
-    height: 2rem;
-    width: 2rem;
+    height: 2.2rem;
+    width: 2.2rem;
 
     border-radius: 50%;
   }

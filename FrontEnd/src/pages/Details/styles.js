@@ -11,14 +11,7 @@ export const Container = styled.div`
   }
 
   > main {
-    
-    flex: 1;
-    
-    width: min(100%, 76.8rem);
     padding-block: 3.6rem 5.4rem;
-    margin-inline: auto;
-
-    padding-inline: 2.8rem;
 
     .dish,
     .dish-description {

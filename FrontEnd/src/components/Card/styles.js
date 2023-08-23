@@ -52,8 +52,11 @@ export const Container = styled.div`
   }
 
   > img {
-    width: 8.8rem;
-    height: 8.8rem;
+    max-width: 8.8rem;
+    min-width: 8.8rem;
+    max-height: 8.8rem;
+    min-height: 8.8rem;
+
     border-radius: 50%;
     object-fit: cover;
   }
@@ -125,8 +128,10 @@ export const Container = styled.div`
     gap: 1.5rem;
 
     > img {
-      width: 18rem;
-      height: 18rem;
+      max-width: 18rem;
+      min-width: 18rem;
+      max-height: 18rem;
+      min-height: 18rem;
     }
 
     > .dish-name {

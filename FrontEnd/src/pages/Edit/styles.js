@@ -5,15 +5,6 @@ export const Container = styled.div`
   flex-direction: column;
   min-height: 100dvh;
 
-  > main {
-    flex: 1;
-
-    margin: 1rem auto 5.3rem;
-    padding-inline: 2.8rem;
-
-    width: min(100%, 76.8rem);
-  }
-
   @media screen and (min-width: 1024px) {
     > main {
       margin-top: 4rem;

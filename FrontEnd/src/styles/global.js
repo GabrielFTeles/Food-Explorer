@@ -47,6 +47,15 @@ export default createGlobalStyle`
   *[role="button"] {
     cursor: pointer;
   }
+
+  main {
+    flex: 1;
+
+    margin: 1rem auto 5.3rem;
+    padding-inline: 2.8rem;
+
+    width: min(100%, 76.8rem);
+  }
   
   button {
     font-family: 'Poppins';

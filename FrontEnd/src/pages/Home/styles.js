@@ -7,11 +7,6 @@ export const Container = styled.div`
   min-height: 100dvh;
 
   main {
-    flex: 1;
-    width: min(100%, 76.8rem);
-    margin: 0 auto;
-    padding-inline: 1.5rem;
-
     > .introduction-container {
       width: min(100%, 42.8rem);
 

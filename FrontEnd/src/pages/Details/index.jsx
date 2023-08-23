@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../../hooks/auth";
+import { useCart } from "../../hooks/cart";
 import { api } from "../../services/api";
 
 import { Container } from "./styles";
@@ -15,6 +16,7 @@ import { Button } from "../../components/Button";
 export function Details() {
   const navigate = useNavigate();
   const params = useParams();
+  const { addToCart } = useCart();
   const { isAdmin } = useAuth();
 
   const [quantity, setQuantity] = useState(1);
@@ -28,6 +30,18 @@ export function Details() {
 
   function handlePlus() {
     setQuantity((prevState) => prevState + 1);
+  }
+
+  function handleAddToCart() {
+    addToCart({
+      id: data.id,
+      title: data.name,
+      price: data.price,
+      image: data.image,
+      quantity,
+    });
+
+    navigate("/orders");
   }
 
   useEffect(() => {
@@ -77,7 +91,7 @@ export function Details() {
                     </button>
                   </div>
 
-                  <button>
+                  <button onClick={handleAddToCart}>
                     <Receipt size={20} />
                     pedir ∙{" "}
                     {`R$ ${String((data.price * quantity).toFixed(2))

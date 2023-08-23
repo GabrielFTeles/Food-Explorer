@@ -14,7 +14,7 @@ import { Header } from "../../components/Header";
 import { Button } from "../../components/Button";
 import { FileInput } from "../../components/FileInput";
 import { BackButton } from "../../components/BackButton";
-import { IngredientItem } from "../../components/IngredientItem";
+import { IngredientInput } from "../../components/IngredientInput";
 import { TextArea } from "../../components/TextArea";
 import { Select } from "../../components/Select";
 
@@ -212,7 +212,7 @@ export function Edit() {
               <label htmlFor="ingredient">Ingredientes</label>
               <div>
                 {ingredients.map((ingredient, index) => (
-                  <IngredientItem
+                  <IngredientInput
                     key={index}
                     value={ingredient}
                     onClick={() => handleRemoveIngredient(ingredient)}
@@ -220,7 +220,7 @@ export function Edit() {
                   />
                 ))}
 
-                <IngredientItem
+                <IngredientInput
                   id="ingredient"
                   isNew={true.toString()}
                   placeholder="Adicionar"

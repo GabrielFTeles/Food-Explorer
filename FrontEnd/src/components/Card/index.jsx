@@ -86,12 +86,12 @@ export function Card({ id, title, description, price, image }) {
       }
 
       <span className="price">
-        {`
-        R$ 
-        ${String((quantity * price).toFixed(2))
-          .replace(".", ",")
-          .padStart(2, "0")}
-        `}
+        {
+          new Intl.NumberFormat('pt-BR', {
+            style: 'currency',
+            currency: 'BRL'
+          }).format(price * quantity)
+        }
       </span>
 
       {

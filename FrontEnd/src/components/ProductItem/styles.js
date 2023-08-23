@@ -27,6 +27,13 @@ export const Container = styled.li`
       font-family: Roboto;
       font-size: 1.2rem;
       line-height: 160%;
+
+      transition: 0.2s;
+
+      &:hover {
+        text-decoration: underline;
+        filter: brightness(1.3);
+      }
     }
   }
 

@@ -8,11 +8,7 @@ import { ProductItem } from '../../components/ProductItem';
 
 export function Orders() {
   const { cart, removeFromCart, getCartTotalPrice } = useCart();
-  const totalPrice = formatPrice(getCartTotalPrice());
-
-  function formatPrice(price) {
-    return price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
-  }
+  const totalPrice = getCartTotalPrice();
 
   return (
     <Container>
@@ -37,7 +33,14 @@ export function Orders() {
           }
         </ul>
 
-        <span>Total: {totalPrice}</span>
+        <span>Total: {" "}
+          {
+            new Intl.NumberFormat('pt-BR', {
+              style: 'currency',
+              currency: 'BRL'
+            }).format(totalPrice)
+          }
+        </span>
 
         {
           cart.length > 0 && (

@@ -94,9 +94,12 @@ export function Details() {
                   <button onClick={handleAddToCart}>
                     <Receipt size={20} />
                     pedir ∙{" "}
-                    {`R$ ${String((data.price * quantity).toFixed(2))
-                      .replace(".", ",")
-                      .padStart(2, "0")}`}
+                    {
+                      new Intl.NumberFormat('pt-BR', {
+                        style: 'currency',
+                        currency: 'BRL'
+                      }).format(data.price * quantity)
+                    }
                   </button>
                 </div>
               )}

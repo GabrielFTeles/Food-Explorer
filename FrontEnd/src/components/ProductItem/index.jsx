@@ -1,14 +1,7 @@
 import { Container } from './styles';
-
 import { api } from '../../services/api';
 
 export function ProductItem({ image, title, price, quantity, buttonText, onClick }) {
-  const totalPrice = formatPrice(price * quantity);
-
-  function formatPrice(price) {
-    return price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
-  }
-
   return (
     <Container>
       <img src={`${api.defaults.baseURL}/files/${image}`} alt={`Foto do ${title}`} />
@@ -27,7 +20,12 @@ export function ProductItem({ image, title, price, quantity, buttonText, onClick
           {
             price && (
             <span className="price">
-              {totalPrice}
+              {
+                new Intl.NumberFormat('pt-BR', {
+                  style: 'currency',
+                  currency: 'BRL'
+                }).format(price * quantity)
+              }
             </span>
             )
           }

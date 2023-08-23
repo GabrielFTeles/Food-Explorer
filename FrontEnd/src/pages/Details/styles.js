@@ -29,6 +29,12 @@ export const Container = styled.div`
       h1 {
         font-size: 2.7rem;
         font-weight: 500;
+        word-break: break-word;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        text-overflow: ellipsis;
+        overflow: hidden;
       }
 
       img {

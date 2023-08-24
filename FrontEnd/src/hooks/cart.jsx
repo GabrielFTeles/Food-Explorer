@@ -24,7 +24,7 @@ export function CartProvider({ children }) {
       updateLocalStorage([...cart, { id, title, price, image, quantity }]);
     }
 
-    toast.success("Prato adicionado ao carrinho!", { autoClose: 1000, icon: <BowlFood size={28} fill="#07bc0d"/> });
+    toast.success("Prato adicionado ao carrinho!", { autoClose: 1500, icon: <BowlFood size={28} fill="#07bc0d"/>, position: "bottom-right" });
   }
 
   function removeFromCart(id) {

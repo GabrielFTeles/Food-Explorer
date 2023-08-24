@@ -86,7 +86,7 @@ export function Orders() {
         }
 
         {
-          (proceededToPayment || isDesktop) && (
+          (proceededToPayment || isDesktop && cart.length > 0) && (
             <div className="payment">
               {
                 !isDesktop && (

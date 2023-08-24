@@ -1,10 +1,10 @@
 import { api } from "../../services/api";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "../../hooks/auth";
 import { useCart } from "../../hooks/cart";
 import { useNavigate } from "react-router-dom";
-import { useMediaQuery } from 'react-responsive';
+import { useMediaQuery } from "react-responsive";
 
 import { Container } from "./styles";
 
@@ -17,6 +17,7 @@ export function Card({ id, title, description, price, image }) {
   const { addToCart } = useCart();
 
   const [quantity, setQuantity] = useState(1);
+  const [isFavorited, setIsFavorited] = useState(false);
 
   function handleDetailsClick() {
     navigate(`/details/${id}`);
@@ -36,13 +37,36 @@ export function Card({ id, title, description, price, image }) {
     addToCart({ id, title, price, image, quantity });
   }
 
+  async function handleFavorite() {
+    if (isFavorited) {
+      await api.delete(`/favorites/${id}`);
+    } else {
+      await api.post(`/favorites/${id}`);
+    }
+
+    setIsFavorited(!isFavorited);
+  }
+
+  useEffect(() => {
+    async function checkIsFavorited() {
+      const data = await api.get(`/favorites/${id}`);
+      if (data.data.isFavorited) setIsFavorited(true);
+    }
+
+    checkIsFavorited();
+  }, [])
+
   return (
     <Container>
-
-      {
-        isAdmin ? (<PencilSimple size={28} role="button" onClick={() => navigate(`/edit/${id}`)} />) : (
+      {isAdmin ? (
+        <PencilSimple
+          size={28}
+          role="button"
+          onClick={() => navigate(`/edit/${id}`)}
+        />
+      ) : (
         <div className="heart-container" title="Like">
-          <input type="checkbox" className="checkbox" id="Give-It-An-Id" />
+          <input type="checkbox" className="checkbox" checked={isFavorited} onChange={ handleFavorite } id="Give-It-An-Id" />
           <div className="svg-container">
             <svg
               viewBox="0 0 24 24"
@@ -72,38 +96,46 @@ export function Card({ id, title, description, price, image }) {
               <polygon points="80,80 70,70"></polygon>
             </svg>
           </div>
-        </div>)
-      }
+        </div>
+      )}
 
-      <img src={`${api.defaults.baseURL}/files/${image}`} role="button" alt={`Foto do ${title}`} onClick={handleDetailsClick} />
+      <img
+        src={`${api.defaults.baseURL}/files/${image}`}
+        role="button"
+        alt={`Foto do ${title}`}
+        onClick={handleDetailsClick}
+      />
 
       <h3 className="dish-name" role="button" onClick={handleDetailsClick}>
         <span>{title}</span> &gt;
       </h3>
 
-      {
-        isDesktop && <p className="dish-description" role="button" onClick={() => navigate(`/edit/${id}`)}>{description}</p>
-      }
+      {isDesktop && (
+        <p
+          className="dish-description"
+          role="button"
+          onClick={() => navigate(`/edit/${id}`)}
+        >
+          {description}
+        </p>
+      )}
 
       <span className="price">
-        {
-          new Intl.NumberFormat('pt-BR', {
-            style: 'currency',
-            currency: 'BRL'
-          }).format(price * quantity)
-        }
+        {new Intl.NumberFormat("pt-BR", {
+          style: "currency",
+          currency: "BRL",
+        }).format(price * quantity)}
       </span>
 
-      {
-        !isAdmin && (
+      {!isAdmin && (
         <div className="buttons-wrapper">
           <div>
             <button onClick={handleMinus}>
               <Minus size={20} />
             </button>
-    
+
             <span>{String(quantity).padStart(2, "0")}</span>
-    
+
             <button onClick={handlePlus}>
               <Plus size={20} />
             </button>
@@ -111,8 +143,7 @@ export function Card({ id, title, description, price, image }) {
 
           <button onClick={handleAddToCart}>incluir</button>
         </div>
-        )
-      }
+      )}
     </Container>
   );
 }

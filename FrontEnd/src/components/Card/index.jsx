@@ -5,6 +5,7 @@ import { useAuth } from "../../hooks/auth";
 import { useCart } from "../../hooks/cart";
 import { useNavigate } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
+import { useFavorites } from "../../hooks/favorites";
 
 import { Container } from "./styles";
 
@@ -15,9 +16,11 @@ export function Card({ id, title, description, price, image }) {
   const isDesktop = useMediaQuery({ minWidth: 1024 });
   const { isAdmin } = useAuth();
   const { addToCart } = useCart();
+  const { favorites } = useFavorites();
 
   const [quantity, setQuantity] = useState(1);
   const [isFavorited, setIsFavorited] = useState(false);
+  const [isFavoriteLoading, setIsFavoriteLoading] = useState(false);
 
   function handleDetailsClick() {
     navigate(`/details/${id}`);
@@ -25,7 +28,6 @@ export function Card({ id, title, description, price, image }) {
 
   function handleMinus() {
     if (quantity <= 1) return;
-
     setQuantity((prevState) => prevState - 1);
   }
 
@@ -38,6 +40,8 @@ export function Card({ id, title, description, price, image }) {
   }
 
   async function handleFavorite() {
+    setIsFavoriteLoading(true);
+
     if (isFavorited) {
       await api.delete(`/favorites/${id}`);
     } else {
@@ -45,15 +49,11 @@ export function Card({ id, title, description, price, image }) {
     }
 
     setIsFavorited(!isFavorited);
+    setIsFavoriteLoading(false);
   }
 
   useEffect(() => {
-    async function checkIsFavorited() {
-      const data = await api.get(`/favorites/${id}`);
-      if (data.data.isFavorited) setIsFavorited(true);
-    }
-
-    checkIsFavorited();
+    if (favorites.find(favorite => favorite.id === id)) setIsFavorited(true);
   }, [])
 
   return (
@@ -65,8 +65,8 @@ export function Card({ id, title, description, price, image }) {
           onClick={() => navigate(`/edit/${id}`)}
         />
       ) : (
-        <div className="heart-container" title="Like">
-          <input type="checkbox" className="checkbox" checked={isFavorited} onChange={ handleFavorite } id="Give-It-An-Id" />
+        <div role="button" className="heart-container" title="Favoritar">
+          <input type="checkbox" className="checkbox" checked={isFavorited} onChange={ handleFavorite } disabled={isFavoriteLoading} id="Give-It-An-Id" />
           <div className="svg-container">
             <svg
               viewBox="0 0 24 24"

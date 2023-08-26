@@ -1,9 +1,21 @@
 const FavoritesRepository = require('../repositories/FavoritesRepository');
+const FavoritesIndexService = require('../services/FavoritesIndexService');
+const FavoritesShowService = require('../services/FavoritesShowService');
 const FavoritesCreateService = require('../services/FavoritesCreateService');
 const FavoritesDeleteService = require('../services/FavoritesDeleteService');
-const FavoritesShowService = require('../services/FavoritesShowService');
 
 class FavoritesController {
+  async index(request, response) {
+    const { id: user_id } = request.user;
+
+    const favoritesRepository = new FavoritesRepository();
+    const favoritesIndexService = new FavoritesIndexService(favoritesRepository);
+
+    const favorites = await favoritesIndexService.execute({ user_id });
+
+    return response.json(favorites);
+  }
+
   async show(request, response) {
     const { dish_id } = request.params;
     const { id: user_id } = request.user;

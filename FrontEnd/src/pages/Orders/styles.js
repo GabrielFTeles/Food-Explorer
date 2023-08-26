@@ -128,8 +128,9 @@ export const Container = styled.div`
       }
     }
 
-    @media screen {
-      
+    @media screen and (min-width: 1368px) {
+      width: 100%;
+      padding-inline: 12rem;
     }
   }
 `;

@@ -8,6 +8,7 @@ import { useMediaQuery } from "react-responsive";
 import { useFavorites } from "../../hooks/favorites";
 
 import { Container } from "./styles";
+import { CircleLoader } from "../CircleLoader";
 
 import { Plus, Minus, PencilSimple } from "@phosphor-icons/react";
 
@@ -58,6 +59,7 @@ export function Card({ id, title, description, price, image }) {
 
   return (
     <Container>
+      {isFavoriteLoading && <CircleLoader />}
       {isAdmin ? (
         <PencilSimple
           size={28}

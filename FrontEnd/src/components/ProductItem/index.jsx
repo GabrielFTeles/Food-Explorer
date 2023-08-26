@@ -9,9 +9,13 @@ export function ProductItem({ image, title, price, quantity, buttonText, onClick
       <div>
         <div className="dish-info">
           <h3>
-            <span className="quantity">
-              {quantity} x
-            </span>
+            {
+              quantity && (
+                <span className="quantity">
+                  {quantity} x
+                </span>
+              )
+            }
             
             <span className="title">
               {title}

@@ -1,6 +1,5 @@
 const FavoritesRepository = require('../repositories/FavoritesRepository');
 const FavoritesIndexService = require('../services/FavoritesIndexService');
-const FavoritesShowService = require('../services/FavoritesShowService');
 const FavoritesCreateService = require('../services/FavoritesCreateService');
 const FavoritesDeleteService = require('../services/FavoritesDeleteService');
 

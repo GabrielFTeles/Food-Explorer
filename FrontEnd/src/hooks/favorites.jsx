@@ -6,20 +6,39 @@ export const favoritesContext = createContext();
 export function FavoritesProvider({ children }) {
   const [favorites, setFavorites] = useState([]);
 
-  useEffect(() => {
-    async function getFavorites() {
-      const { data } = await api.get('/favorites');
+  async function getFavorites() {
+    const { data } = await api.get('/favorites');
+    setFavorites(data);
+  }
 
-      setFavorites(data);
+  async function addFavorite(id) {
+    try {
+      await api.post(`/favorites/${id}`);
+      getFavorites();
+    } catch (error) {
+      console.log(error);
     }
+  }
 
+  async function removeFavorite(id) {
+    try {
+      await api.delete(`/favorites/${id}`);
+      getFavorites();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
     getFavorites();
   }, [])
 
   return (
     <favoritesContext.Provider
       value={{
-        favorites
+        favorites,
+        addFavorite,
+        removeFavorite,
       }}
     >
       {children}

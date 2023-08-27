@@ -1,3 +1,5 @@
+import { useAuth } from '../../hooks/auth';
+
 import { Container } from './styles';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode, Navigation } from 'swiper/modules'
@@ -7,8 +9,10 @@ import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 
 import { Card } from '../Card';
+import { NewCard } from '../NewCard';
 
-export function Category({ title, dishes }) {
+export function Category({ title, dishes, adminCard }) {
+  const { isAdmin } = useAuth();
 
   return (
     <Container>
@@ -37,6 +41,17 @@ export function Category({ title, dishes }) {
               />
             </SwiperSlide>
           ))
+        }
+        {
+          isAdmin && 
+            (adminCard && (
+              <SwiperSlide>
+                <NewCard 
+                  title={adminCard.title}
+                  icon={adminCard.icon}
+                />
+              </SwiperSlide>
+            ))
         }
       </Swiper>
     </Container>

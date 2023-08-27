@@ -10,6 +10,7 @@ import { Footer } from '../../components/Footer';
 import { Category } from '../../components/Category';
 
 import foodsImg from '../../assets/FoodsOnAir.svg';
+import { Hamburger, IceCream, Coffee } from '@phosphor-icons/react';
 
 export function Home() {
   const { dishes } = useSearch();
@@ -67,6 +68,12 @@ export function Home() {
               <Category 
                 title="Refeições"
                 dishes={meals}
+                adminCard={
+                  {
+                    title: 'Adicionar Nova Refeição',
+                    icon: Hamburger,
+                  }
+                }
               />
             )
           }
@@ -76,6 +83,12 @@ export function Home() {
               <Category
                 title="Sobremesas"
                 dishes={desserts}
+                adminCard={
+                  {
+                    title: 'Adicionar Nova Sobremesa',
+                    icon: IceCream,
+                  }
+                }
               />
             )
           }
@@ -85,6 +98,12 @@ export function Home() {
               <Category
                 title="Bebidas"
                 dishes={drinks}
+                adminCard={
+                  {
+                    title: 'Adicionar Nova Bebida',
+                    icon: Coffee,
+                  }
+                }
               />
             )
           }

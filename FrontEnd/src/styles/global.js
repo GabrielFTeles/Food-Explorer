@@ -28,7 +28,7 @@ export default createGlobalStyle`
 
   * {
     scrollbar-width: auto;
-    scrollbar-color: #82f3ff rgba(0, 0, 0, 0);
+    scrollbar-color: ${({ theme }) => theme.COLORS.CAKE_200} rgba(0, 0, 0, 0);
   }
 
   *::-webkit-scrollbar {
@@ -40,7 +40,7 @@ export default createGlobalStyle`
   }
 
   *::-webkit-scrollbar-thumb {
-    background-color: #82f3ff;
+    background-color: ${({ theme }) => theme.COLORS.CAKE_200};
     border-radius: 8px;
   }
 

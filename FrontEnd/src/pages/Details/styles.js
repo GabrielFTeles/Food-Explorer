@@ -69,21 +69,14 @@ export const Container = styled.div`
 
       width: 100%;
 
-      > .counter {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 1.6rem;
-
-        span {
+      > div {
+        width: 9rem;
+        
+        & span {
           font-family: Roboto;
           font-size: 2.2rem;
           font-weight: 700;
           line-height: 160%;
-        }
-
-        button {
-          background: transparent;
         }
       }
       

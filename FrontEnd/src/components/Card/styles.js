@@ -71,24 +71,6 @@ export const Container = styled.div`
     width: 100%;
     height: 100%;
 
-    > div {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      width: 8rem;
-  
-      span {
-        font-family: Roboto;
-      }
-  
-      button {
-        background: transparent;
-        display: grid;
-        place-items: center;
-      }
-    }
-
     > button {
       display: grid;
       place-items: center;
@@ -155,15 +137,6 @@ export const Container = styled.div`
       flex-direction: row;
       justify-content: center;
       gap: 1.6rem;
-
-      > div {
-        width: 9rem;
-
-        span {
-          font-weight: 700;
-          font-size: 2rem;
-        }
-      }
 
       > button {
         height: auto;

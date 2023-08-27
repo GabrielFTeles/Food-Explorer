@@ -11,7 +11,8 @@ import { Container } from "./styles";
 import { CircleLoader } from "../CircleLoader";
 import { Heart } from "../Heart";
 
-import { Plus, Minus, PencilSimple } from "@phosphor-icons/react";
+import { PencilSimple } from "@phosphor-icons/react";
+import { Counter } from "../Counter";
 
 export function Card({ id, title, description, price, image }) {
   const navigate = useNavigate();
@@ -26,15 +27,6 @@ export function Card({ id, title, description, price, image }) {
 
   function handleDetailsClick() {
     navigate(`/details/${id}`);
-  }
-
-  function handleMinus() {
-    if (quantity <= 1) return;
-    setQuantity((prevState) => prevState - 1);
-  }
-
-  function handlePlus() {
-    setQuantity((prevState) => prevState + 1);
   }
 
   function handleAddToCart() {
@@ -107,17 +99,7 @@ export function Card({ id, title, description, price, image }) {
 
       {!isAdmin && (
         <div className="buttons-wrapper">
-          <div>
-            <button onClick={handleMinus}>
-              <Minus size={20} />
-            </button>
-
-            <span>{String(quantity).padStart(2, "0")}</span>
-
-            <button onClick={handlePlus}>
-              <Plus size={20} />
-            </button>
-          </div>
+          <Counter onUpdate={setQuantity} />
 
           <button onClick={handleAddToCart}>incluir</button>
         </div>

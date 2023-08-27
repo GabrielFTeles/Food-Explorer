@@ -10,8 +10,9 @@ import { Footer } from "../../components/Footer";
 import { BackButton } from "../../components/BackButton";
 import { IngredientTag } from "../../components/IngredientTag";
 
-import { Plus, Minus, Receipt } from "@phosphor-icons/react";
+import { Receipt } from "@phosphor-icons/react";
 import { Button } from "../../components/Button";
+import { Counter } from "../../components/Counter";
 
 export function Details() {
   const navigate = useNavigate();
@@ -21,16 +22,6 @@ export function Details() {
 
   const [quantity, setQuantity] = useState(1);
   const [data, setData] = useState(null);
-
-  function handleMinus() {
-    if (quantity <= 1) return;
-
-    setQuantity((prevState) => prevState - 1);
-  }
-
-  function handlePlus() {
-    setQuantity((prevState) => prevState + 1);
-  }
 
   function handleAddToCart() {
     addToCart({
@@ -79,27 +70,15 @@ export function Details() {
 
               {!isAdmin && (
                 <div className="buttons-wrapper">
-                  <div className="counter">
-                    <button onClick={handleMinus}>
-                      <Minus size={24} />
-                    </button>
-
-                    <span>{String(quantity).padStart(2, "0")}</span>
-
-                    <button onClick={handlePlus}>
-                      <Plus size={24} />
-                    </button>
-                  </div>
+                  <Counter onUpdate={setQuantity} />
 
                   <button onClick={handleAddToCart}>
                     <Receipt size={20} />
                     pedir ∙{" "}
-                    {
-                      new Intl.NumberFormat('pt-BR', {
-                        style: 'currency',
-                        currency: 'BRL'
-                      }).format(data.price * quantity)
-                    }
+                    {new Intl.NumberFormat("pt-BR", {
+                      style: "currency",
+                      currency: "BRL",
+                    }).format(data.price * quantity)}
                   </button>
                 </div>
               )}

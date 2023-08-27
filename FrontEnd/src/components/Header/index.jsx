@@ -1,19 +1,18 @@
-import { useEffect, useState } from 'react';
-import { useAuth } from '../../hooks/auth';
-import { useCart } from '../../hooks/cart';
-import { useSearch } from '../../hooks/searchContext';
-import { useMediaQuery } from 'react-responsive';
+import { useEffect, useState } from "react";
+import { useAuth } from "../../hooks/auth";
+import { useCart } from "../../hooks/cart";
+import { useSearch } from "../../hooks/searchContext";
+import { useMediaQuery } from "react-responsive";
 
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from "react-router-dom";
 
-import { Container, MenuMobile } from './styles';
-import { List, X, MagnifyingGlass, SignOut } from '@phosphor-icons/react';
-import { Logo } from '../Logo';
-import { CartMobile } from '../CartMobile';
-import { CartDesktop } from '../CartDesktop';
-import { Input } from '../Input';
-import { Button } from '../Button';
-
+import { Container, MenuMobile } from "./styles";
+import { List, X, MagnifyingGlass, SignOut } from "@phosphor-icons/react";
+import { Logo } from "../Logo";
+import { CartMobile } from "../CartMobile";
+import { CartDesktop } from "../CartDesktop";
+import { Input } from "../Input";
+import { Button } from "../Button";
 
 export function Header() {
   const navigate = useNavigate();
@@ -24,19 +23,19 @@ export function Header() {
 
   const [isMenuMobileOpen, setIsMenuMobileOpen] = useState(false);
   const [totalCartItems, setTotalCartItems] = useState(0);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
 
   function toggleMobileMenu() {
     setIsMenuMobileOpen(!isMenuMobileOpen);
   }
 
   function handleSearch(event) {
-    if (event.key === 'Enter') {
+    if (event.key === "Enter") {
       searchDishes(search);
-      setSearch('');
-      event.target.value = '';
+      setSearch("");
+      event.target.value = "";
 
-      if (window.location.pathname !== '/') navigate('/');
+      if (window.location.pathname !== "/") navigate("/");
 
       if (isMenuMobileOpen) toggleMobileMenu();
     }
@@ -49,14 +48,12 @@ export function Header() {
 
   useEffect(() => {
     setTotalCartItems(getCartTotalItems());
-  })
+  });
 
   return (
     <Container>
-      <div 
-        className={`header-content ${isMenuMobileOpen ? 'menuOpen' : ''}`}
-      >
-        <List 
+      <div className={`header-content ${isMenuMobileOpen ? "menuOpen" : ""}`}>
+        <List
           role="button"
           aria-haspopup="true"
           size={24}
@@ -64,42 +61,40 @@ export function Header() {
         />
 
         <div className="logo" onClick={handleBackHome}>
-          <Logo 
-            size={2.1}
-          />
+          <Logo size={2.1} />
 
-          {
-            isAdmin ? <span>admin</span> : null
-          }
+          {isAdmin ? <span>admin</span> : null}
         </div>
 
-        <Input 
+        <Input
           id="desktop-search"
           className="desktop-search"
           icon={MagnifyingGlass}
           placeholder="Busque por pratos ou ingredientes"
-          onChange={e => setSearch(e.target.value)}
+          onChange={(e) => setSearch(e.target.value)}
           onKeyUp={handleSearch}
         />
 
-        {
-          isAdmin ? (
-            <Link to="/new" className="new-dish">
-              <Button 
-                title="Novo prato"
-              />
-            </Link>
-          ) : null
-        }
+        {!isAdmin ? (
+          <Link to="/favorites" className="favorites-btn">
+            Meus favoritos
+          </Link>
+        ) : null}
 
-        {
-          isAdmin ? null : isDesktop ? 
-          (<CartDesktop size={30} items={totalCartItems} />) :
-          (<CartMobile size={30} items={totalCartItems} />) 
-        }
+        {isAdmin ? (
+          <Link to="/new" className="new-dish">
+            <Button title="Novo prato" />
+          </Link>
+        ) : null}
+
+        {isAdmin ? null : isDesktop ? (
+          <CartDesktop size={30} items={totalCartItems} />
+        ) : (
+          <CartMobile size={30} items={totalCartItems} />
+        )}
 
         <Link to="/" onClick={signOut}>
-          <SignOut 
+          <SignOut
             size={40}
             role="button"
             aria-label="Sair"
@@ -108,49 +103,43 @@ export function Header() {
         </Link>
       </div>
 
-      <MenuMobile 
-        role="menu"
-        aria-expanded={isMenuMobileOpen}
-      >
-        <X 
-          role="button"
-          size={22} 
-          onClick={toggleMobileMenu}
-        />
+      <MenuMobile role="menu" aria-expanded={isMenuMobileOpen}>
+        <X role="button" size={22} onClick={toggleMobileMenu} />
 
         <span>Menu</span>
 
         <nav>
-          {
-            isMenuMobileOpen && 
-            <Input 
+          {isMenuMobileOpen && (
+            <Input
               id="search"
               icon={MagnifyingGlass}
               placeholder="Busque por pratos ou ingredientes"
-              onChange={e => setSearch(e.target.value)}
+              onChange={(e) => setSearch(e.target.value)}
               onKeyUp={handleSearch}
             />
-          }
+          )}
 
-          {
-            isMenuMobileOpen &&
-              <ul>
-                {
-                  isAdmin ? (
-                    <li>
-                      <Link to="/new">
-                        Novo prato
-                      </Link>
-                    </li>
-                  ) : null
-                }
+          {isMenuMobileOpen && (
+            <ul>
+              {isAdmin ? (
                 <li>
-                  <Link to="/" onClick={signOut}>
-                    Sair
-                  </Link>
+                  <Link to="/new">Novo prato</Link>
                 </li>
-              </ul>
-          }
+              ) : null}
+              {
+                !isAdmin && (
+                  <li>
+                    <Link to="/favorites">Meus favoritos</Link>
+                  </li>
+                )
+              }
+              <li>
+                <Link to="/" onClick={signOut}>
+                  Sair
+                </Link>
+              </li>
+            </ul>
+          )}
         </nav>
       </MenuMobile>
     </Container>

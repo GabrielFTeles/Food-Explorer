@@ -1,10 +1,10 @@
-import { Container } from './styles';
-
 import { useNavigate } from 'react-router-dom';
+
+import { Container } from './styles';
 
 import { CaretLeft } from '@phosphor-icons/react';
 
-export function BackButton() {
+export function BackButton({ ...rest }) {
   const navigate = useNavigate();
 
   function handleBack() {
@@ -13,6 +13,7 @@ export function BackButton() {
 
   return (
     <Container
+      {...rest}
       onClick={handleBack}
     >
       <CaretLeft 

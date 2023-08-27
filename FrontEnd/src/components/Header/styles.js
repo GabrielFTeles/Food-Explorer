@@ -29,6 +29,10 @@ export const Container = styled.header`
       display: none;
     }
 
+    .favorites-btn {
+      display: none;
+    }
+
     .logo {
       display: flex;
       justify-content: center;
@@ -89,6 +93,11 @@ export const Container = styled.header`
       }
 
       .desktop-search {
+        display: block;
+      }
+
+      .favorites-btn {
+        white-space: nowrap;
         display: block;
       }
 

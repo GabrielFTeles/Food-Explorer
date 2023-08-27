@@ -41,7 +41,9 @@ export function Orders() {
             <div className="order">
               {
                 !isDesktop && (
-                  <BackButton />
+                  <BackButton 
+                    className="back-btn"
+                  />
                 )
               }
 

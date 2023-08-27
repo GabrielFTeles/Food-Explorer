@@ -10,10 +10,6 @@ export const Container = styled.div`
     flex-direction: column;
     padding-block: 3.6rem;
 
-    h1 {
-      margin-top: 3rem;
-    }
-
     h1,
     h2 {
       color: ${({ theme }) => theme.COLORS.LIGHT_300};
@@ -50,6 +46,7 @@ export const Container = styled.div`
     }
 
     .back-btn {
+      margin-bottom: 3rem;
       display: flex;
       align-items: center;
       background: transparent;

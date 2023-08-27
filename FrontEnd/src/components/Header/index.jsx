@@ -64,7 +64,7 @@ export function Header() {
         <div className="logo">
           <Logo size={2.1} onClick={handleBackHome} />
 
-          {isAdmin ? <span>admin</span> : null}
+          {isAdmin && <span>admin</span>}
         </div>
 
         <Input
@@ -76,23 +76,24 @@ export function Header() {
           onKeyUp={handleSearch}
         />
 
-        {!isAdmin ? (
+        {!isAdmin && (
           <Link to="/favorites" className="favorites-btn">
             Meus favoritos
           </Link>
-        ) : null}
+        )}
 
-        {isAdmin ? (
+        {isAdmin && (
           <Link to="/new" className="new-dish">
             <Button title="Novo prato" />
           </Link>
-        ) : null}
-
-        {isAdmin ? null : isDesktop ? (
-          <CartDesktop size={30} items={totalCartItems} />
-        ) : (
-          <CartMobile size={30} items={totalCartItems} />
         )}
+
+        {!isAdmin &&
+          (isDesktop ? (
+            <CartDesktop size={30} items={totalCartItems} />
+          ) : (
+            <CartMobile size={30} items={totalCartItems} />
+          ))}
 
         <Link to="/" onClick={signOut}>
           <SignOut
@@ -126,11 +127,11 @@ export function Header() {
 
           {isMenuMobileOpen && (
             <ul>
-              {isAdmin ? (
+              {isAdmin && (
                 <li>
                   <Link to="/new">Novo prato</Link>
                 </li>
-              ) : null}
+              )}
               {!isAdmin && (
                 <li>
                   <Link to="/favorites">Meus favoritos</Link>

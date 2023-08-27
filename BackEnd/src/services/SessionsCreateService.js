@@ -24,7 +24,7 @@ class SessionsCreateService {
 
     const { secret, expiresIn } = authConfig.jwt;
     const token = sign({
-      isAdmin: String(user.is_admin)
+      isAdmin: user.is_admin
     }, secret, {
       subject: String(user.id),
       expiresIn

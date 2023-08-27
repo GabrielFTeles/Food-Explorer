@@ -20,12 +20,14 @@ export const Container = styled.div`
     justify-content: flex-end;
     padding-right: 2rem;
     right: 0;
+    background: linear-gradient(90deg, rgba(0,10,15,0) 0%, rgba(0,10,15,1) 100%);
   }
 
   .swiper-button-prev {
     justify-content: flex-start;
     padding-left: 2rem;
     left: 0;
+    background: linear-gradient(90deg, rgba(0,10,15,1) 0%, rgba(0,10,15,0) 100%);
   }
 
   .swiper-button-next,
@@ -50,19 +52,7 @@ export const Container = styled.div`
 
   @media screen and (min-width: 1024px) {
     .swiper {
-      &::before {
-        content: '';
-        position: absolute;
-        left: 0; top: 0;
-        z-index: 10;
-
-        pointer-events: none;
-
-        width: 100%;
-        height: 100%;
-
-        background: linear-gradient(90deg, rgba(0,10,15,1) 0%, rgba(0,10,15,0) 18%, rgba(0,10,15,0) 82%, rgba(0,10,15,1) 100%);
-      }
+      
     }
 
     .swiper-button-next,

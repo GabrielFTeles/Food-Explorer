@@ -39,7 +39,7 @@ function AuthProvider({ children }) {
 
       const { isAdmin } = jwtDecode(token);
       
-      setData({ user, token, isAdmin: +isAdmin });
+      setData({ user, token, isAdmin: !!isAdmin });
 
       api.defaults.headers.Authorization = `Bearer ${token}`;
 
@@ -80,7 +80,7 @@ function AuthProvider({ children }) {
 
     const { isAdmin } = jwtDecode(token);
 
-    setData({ user: JSON.parse(user), token, isAdmin: +isAdmin });
+    setData({ user: JSON.parse(user), token, isAdmin: !!isAdmin });
   }, []);
 
   return (

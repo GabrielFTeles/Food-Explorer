@@ -18,7 +18,7 @@ function authenticatedValidation (request, response, next) {
 
     request.user = {
       id: +sub,
-      isAdmin: +isAdmin,
+      isAdmin,
     };
 
     return next();

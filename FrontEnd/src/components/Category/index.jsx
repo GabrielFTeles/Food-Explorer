@@ -6,10 +6,10 @@ import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 
-
 import { Card } from '../Card';
 
 export function Category({ title, dishes }) {
+
   return (
     <Container>
       <h2>{title}</h2>

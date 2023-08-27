@@ -83,13 +83,13 @@ export function Details() {
                 </div>
               )}
 
-              {isAdmin ? (
+              {isAdmin && (
                 <Button
                   onClick={() => navigate(`/edit/${params.id}`)}
                   title="Editar prato"
                   className="edit-button"
                 />
-              ) : null}
+              )}
             </div>
           </div>
         )}

@@ -61,8 +61,8 @@ export function Header() {
           onClick={toggleMobileMenu}
         />
 
-        <div className="logo" onClick={handleBackHome}>
-          <Logo size={2.1} />
+        <div className="logo">
+          <Logo size={2.1} onClick={handleBackHome} />
 
           {isAdmin ? <span>admin</span> : null}
         </div>

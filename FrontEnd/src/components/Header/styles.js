@@ -138,7 +138,12 @@ export const MenuMobile = styled.div`
   padding: 6.2rem 2.8rem 2.4rem;
 
   font-family: Roboto;
-  font-size: 2.1rem;  
+  font-size: 2.1rem;
+
+  > span {
+    font-size: 2rem;
+    height: fit-content;
+  }
 
   > nav {
     position: absolute;

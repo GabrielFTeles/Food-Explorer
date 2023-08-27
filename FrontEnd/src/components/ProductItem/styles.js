@@ -7,7 +7,7 @@ export const Container = styled.li`
 
   padding-block: 1.6rem;
 
-  > img {
+  img {
     height: 7.2rem;
     width: 7.2rem;
     object-fit: cover;
@@ -42,10 +42,17 @@ export const Container = styled.li`
     align-items: center;
     gap: 1.2rem;
 
-    > h3 {
+    a {
+      text-decoration: none;
+    }
+
+    h3 {
+      font-size: 2rem;
       display: flex;
       align-items: center;
       gap: 0.8rem;
+
+      color: ${({ theme }) => theme.COLORS.LIGHT_300};
 
       .quantity {
         white-space: nowrap;

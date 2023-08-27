@@ -53,6 +53,7 @@ export function Orders() {
                 {
                   cart.map(product => (
                     <ProductItem
+                      id={product.id}
                       key={product.id}
                       image={product.image}
                       title={product.title}

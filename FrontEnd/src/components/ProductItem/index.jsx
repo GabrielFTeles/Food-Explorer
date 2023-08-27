@@ -1,26 +1,31 @@
 import { Container } from './styles';
 import { api } from '../../services/api';
+import { Link } from 'react-router-dom';
 
-export function ProductItem({ image, title, price, quantity, buttonText, onClick }) {
+export function ProductItem({ id, image, title, price, quantity, buttonText, onClick }) {
   return (
     <Container>
-      <img src={`${api.defaults.baseURL}/files/${image}`} alt={`Foto do ${title}`} />
+      <Link to={`/details/${id}`}>
+        <img src={`${api.defaults.baseURL}/files/${image}`} alt={`Foto do ${title}`} />
+      </Link>
 
       <div>
         <div className="dish-info">
-          <h3>
-            {
-              quantity && (
-                <span className="quantity">
-                  {quantity} x
-                </span>
-              )
-            }
+          <Link to={`/details/${id}`}>
+            <h3>
+              {
+                quantity && (
+                  <span className="quantity">
+                    {quantity} x
+                  </span>
+                )
+              }
             
-            <span className="title">
-              {title}
-            </span>
+              <span className="title">
+                {title}
+              </span>
             </h3>
+          </Link>
           {
             price && (
             <span className="price">

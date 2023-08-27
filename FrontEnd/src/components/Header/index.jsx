@@ -23,7 +23,7 @@ export function Header() {
 
   const [isMenuMobileOpen, setIsMenuMobileOpen] = useState(false);
   const [totalCartItems, setTotalCartItems] = useState(0);
-  const [search, setSearch] = useState("");
+  const [searchText, setSearchText] = useState("");
 
   function toggleMobileMenu() {
     setIsMenuMobileOpen(!isMenuMobileOpen);
@@ -31,8 +31,8 @@ export function Header() {
 
   function handleSearch(event) {
     if (event.key === "Enter") {
-      searchDishes(search);
-      setSearch("");
+      searchDishes(searchText);
+      setSearchText("");
       event.target.value = "";
 
       if (window.location.pathname !== "/") navigate("/");
@@ -56,7 +56,8 @@ export function Header() {
         <List
           role="button"
           aria-haspopup="true"
-          size={24}
+          aria-label="Open menu"
+          size={30}
           onClick={toggleMobileMenu}
         />
 
@@ -71,7 +72,7 @@ export function Header() {
           className="desktop-search"
           icon={MagnifyingGlass}
           placeholder="Busque por pratos ou ingredientes"
-          onChange={(e) => setSearch(e.target.value)}
+          onChange={(e) => setSearchText(e.target.value)}
           onKeyUp={handleSearch}
         />
 
@@ -103,8 +104,12 @@ export function Header() {
         </Link>
       </div>
 
-      <MenuMobile role="menu" aria-expanded={isMenuMobileOpen}>
-        <X role="button" size={22} onClick={toggleMobileMenu} />
+      <MenuMobile
+        role="menu"
+        aria-label="Open menu"
+        aria-expanded={isMenuMobileOpen}
+      >
+        <X role="button" size={30} onClick={toggleMobileMenu} />
 
         <span>Menu</span>
 
@@ -114,7 +119,7 @@ export function Header() {
               id="search"
               icon={MagnifyingGlass}
               placeholder="Busque por pratos ou ingredientes"
-              onChange={(e) => setSearch(e.target.value)}
+              onChange={(e) => setSearchText(e.target.value)}
               onKeyUp={handleSearch}
             />
           )}
@@ -126,13 +131,11 @@ export function Header() {
                   <Link to="/new">Novo prato</Link>
                 </li>
               ) : null}
-              {
-                !isAdmin && (
-                  <li>
-                    <Link to="/favorites">Meus favoritos</Link>
-                  </li>
-                )
-              }
+              {!isAdmin && (
+                <li>
+                  <Link to="/favorites">Meus favoritos</Link>
+                </li>
+              )}
               <li>
                 <Link to="/" onClick={signOut}>
                   Sair

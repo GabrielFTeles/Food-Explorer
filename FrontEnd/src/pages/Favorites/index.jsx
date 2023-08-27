@@ -24,6 +24,7 @@ export function Favorites() {
           {
             favorites.map((favorite) => (
               <ProductItem 
+                id={favorite.id}
                 key={favorite.id}
                 title={favorite.name}
                 image={favorite.image}

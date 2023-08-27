@@ -74,7 +74,7 @@ export const Container = styled.div`
       &:not(:has(li:hover)):hover {
         background: #26546c;
       }
-
+      
       > svg {
         transform: rotate(-180deg);
       }

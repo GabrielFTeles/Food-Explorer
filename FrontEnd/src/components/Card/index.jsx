@@ -84,7 +84,7 @@ export function Card({ id, title, description, price, image }) {
         <p
           className="dish-description"
           role="button"
-          onClick={() => navigate(`/edit/${id}`)}
+          onClick={() => navigate(`/details/${id}`)}
         >
           {description}
         </p>

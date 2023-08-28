@@ -133,7 +133,7 @@ export const MenuMobile = styled.div`
   height: 100dvh;
   width: min(100%, 76.8rem);
 
-  padding: 6.2rem 2.8rem 2.4rem;
+  padding: 5.6rem 2.8rem 2.4rem;
 
   font-family: Roboto;
   font-size: 2.1rem;

@@ -7,6 +7,8 @@ export const Container = styled.div`
   min-height: 100dvh;
 
   main {
+    padding-inline: 2.4rem 1.6rem;
+
     > .introduction-container {
       width: min(100%, 42.8rem);
 
@@ -18,19 +20,36 @@ export const Container = styled.div`
 
       position: relative;
 
+      > figure {
+        position: relative;
+        min-width: 18rem;
+        height: 15rem;
+
+        & img {
+          position: absolute;
+          top: -3rem; left: -2.5rem;
+          width: 22.1rem;
+          height: 18rem;
+          object-fit: cover;
+          object-position: 0 2.5rem;
+          transform: scaleX(-1);
+          filter: brightness(0.8);
+        }
+      }
+
       div {
-        width: 25rem;
+        width: min(100%, 25rem);
         font-family: Poppins;
         margin-top: 2rem;
         
         h1 {
-          font-size: 1.8rem;
+          font-size: clamp(0.75rem, 0.5954rem + 2vw, 2rem);
           font-weight: 600;
         }
 
         p {
           margin-top: 0.4rem;
-          font-size: clamp(0.75rem, 0.5954rem + 0.578vw, 1rem);
+          font-size: clamp(0.75rem, 0.5954rem + 0.8vw, 1rem);
         }
       }
 
@@ -62,16 +81,31 @@ export const Container = styled.div`
     main {
       > .introduction-container {
         width: min(100%, 70rem);
-        height: 23rem;
-        padding-right: 2rem;
+        height: 22rem;
+        padding-right: 1.5rem;
+        margin-top: 0;
 
-        > img {
-          height: 100%;
+        > figure {
+          min-width: 24rem;
+
+          & img {
+            top: -3.5rem; left: -2.5rem;
+            width: 28.1rem;
+            height: 22rem;
+            object-position: 0 2.5rem;
+          }
         }
 
-        > div {
-          margin-top: 4rem;
-          width: 32rem;
+        > .text-wrapper {
+          margin-top: 3rem;
+          flex: 1;
+
+          display: flex;
+          justify-content: center;
+
+          .text-content {
+            width: 32rem;
+          }
 
           h1 {
             font-size: 2.4rem;
@@ -83,7 +117,8 @@ export const Container = styled.div`
         }
 
         &::before {
-          height: 70%;
+          width: 100%;
+          height: 80%;
           border-radius: 8px;
         }
       }
@@ -98,31 +133,47 @@ export const Container = styled.div`
   @media screen and (min-width: 1024px) {
     main {
       width: min(100%, 112rem);
+      padding: 2.8rem;
 
       > .introduction-container {
         width: 100%;
         height: 40rem;
         justify-content: initial;
+        margin-top: 4.5rem;
 
-        > img {
-          height: 100%;
+        > figure {
+          min-width: 45rem;
+
+          & img {
+            top: -20.6rem; left: -10.5rem;
+            width: 65.1rem;
+            height: 48rem;
+            object-position: 0 2.5rem;
+          }
         }
 
-        > div {
-          width: fit-content;
-          margin-inline: auto;
+        .text-wrapper {
+          justify-content: center;
+        }
+
+        > .text-wrapper {
+          .text-content  {
+            width: fit-content;
+          }
 
           h1 {
-            font-size: 4rem;
+            font-size: clamp(3rem, 0.5954rem + 3vw, 8rem);
           }
 
           p {
-            font-size: 1.4rem;
+            font-size: clamp(1rem, 0.5954rem + 0.8vw, 3rem);
           }
         }
 
         &::before {
-          height: 70%;
+          width: 100%;
+          height: 80%;
+          border-radius: 8px;
         }
       }
 

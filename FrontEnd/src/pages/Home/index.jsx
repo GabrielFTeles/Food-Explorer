@@ -9,7 +9,7 @@ import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
 import { Category } from '../../components/Category';
 
-import foodsImg from '../../assets/FoodsOnAir.svg';
+import foodsImg from '../../assets/FoodsOnAir.png';
 import { Hamburger, IceCream, Coffee } from '@phosphor-icons/react';
 
 export function Home() {
@@ -54,11 +54,15 @@ export function Home() {
 
       <main>
         <div className="introduction-container">
-          <img src={foodsImg} alt="Foods throwed on air" />
+          <figure>
+            <img src={foodsImg} alt="Foods throwed on air" />
+          </figure>
 
-          <div>
-            <h1>Sabores inigualáveis</h1>
-            <p>Sinta o cuidado do preparo com ingredientes selecionados.</p>
+          <div className="text-wrapper">
+            <div className="text-content">
+              <h1>Sabores inigualáveis</h1>
+              <p>Sinta o cuidado do preparo com ingredientes selecionados.</p>
+            </div>
           </div>
         </div>
 

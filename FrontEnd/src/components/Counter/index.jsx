@@ -19,16 +19,16 @@ export function Counter({ onUpdate }) {
   useEffect(() => {
     onUpdate(quantity);
   }, [quantity]);
-    
+
   return (
     <Container>
-      <button onClick={handleMinus}>
+      <button aria-label="Minus quantity button" onClick={handleMinus}>
         <Minus size={20} />
       </button>
 
       <span>{String(quantity).padStart(2, "0")}</span>
 
-      <button onClick={handlePlus}>
+      <button aria-label="Plus quantity button" onClick={handlePlus}>
         <Plus size={20} />
       </button>
     </Container>

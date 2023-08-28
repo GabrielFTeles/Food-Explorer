@@ -1,6 +1,9 @@
 import { Container } from "./styles";
+import { useId } from "react";
 
 export function Heart({ onClick, ...rest }) {
+  const id = useId();
+
   return (
     <Container>
       <div
@@ -9,11 +12,15 @@ export function Heart({ onClick, ...rest }) {
         onClick={onClick}
         title="Favoritar"
       >
+        <label htmlFor={id} className="sr-only">
+          Favorite Button
+        </label>
         <input
+          id={id}
           type="checkbox"
           className="checkbox"
+          readOnly
           {...rest}
-          id="Give-It-An-Id"
         />
         <div className="svg-container">
           <svg

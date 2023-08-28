@@ -48,6 +48,15 @@ export default createGlobalStyle`
     cursor: pointer;
   }
 
+  .sr-only {
+    position: absolute ;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    top: auto;
+    overflow: hidden;
+  }
+
   main {
     flex: 1;
 

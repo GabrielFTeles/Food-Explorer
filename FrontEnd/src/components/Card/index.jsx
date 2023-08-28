@@ -63,8 +63,8 @@ export function Card({ id, title, description, price, image }) {
         />
       ) : (
         <Heart
+          onClick={handleFavorite}
           checked={isFavorited}
-          onChange={handleFavorite}
           disabled={isFavoriteLoading}
         />
       )}

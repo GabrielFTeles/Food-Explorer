@@ -1,10 +1,20 @@
-import { Container } from './styles';
+import { Container } from "./styles";
 
-export function Heart({ ...rest }) {
+export function Heart({ onClick, ...rest }) {
   return (
     <Container>
-      <div role="button" className="heart-container" title="Favoritar">
-        <input type="checkbox" className="checkbox" {...rest} id="Give-It-An-Id" />
+      <div
+        role="button"
+        className="heart-container"
+        onClick={onClick}
+        title="Favoritar"
+      >
+        <input
+          type="checkbox"
+          className="checkbox"
+          {...rest}
+          id="Give-It-An-Id"
+        />
         <div className="svg-container">
           <svg
             viewBox="0 0 24 24"
@@ -36,5 +46,5 @@ export function Heart({ ...rest }) {
         </div>
       </div>
     </Container>
-  )
+  );
 }

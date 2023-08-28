@@ -14,7 +14,7 @@ export function FavoritesProvider({ children }) {
   async function addFavorite(id) {
     try {
       await api.post(`/favorites/${id}`);
-      getFavorites();
+      await getFavorites();
     } catch (error) {
       console.log(error);
     }
@@ -23,7 +23,7 @@ export function FavoritesProvider({ children }) {
   async function removeFavorite(id) {
     try {
       await api.delete(`/favorites/${id}`);
-      getFavorites();
+      await getFavorites();
     } catch (error) {
       console.log(error);
     }

@@ -19,7 +19,7 @@ export const Container = styled.div`
     height: 100%;
     opacity: 0;
     z-index: 20;
-    cursor: pointer;
+    pointer-events: none;
   }
 
   .heart-container .svg-container {

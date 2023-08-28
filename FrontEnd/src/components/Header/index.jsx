@@ -62,7 +62,7 @@ export function Header() {
         />
 
         <div className="logo">
-          <Logo size={2.1} onClick={handleBackHome} />
+          <Logo size={2.1} role="button" onClick={handleBackHome} />
 
           {isAdmin && <span>admin</span>}
         </div>

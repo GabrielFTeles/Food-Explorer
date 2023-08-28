@@ -40,8 +40,6 @@ export const Container = styled.header`
       gap: 0.8rem;
       flex: 1;
 
-      cursor: pointer;
-
       > span {
         font-family: Roboto;
         color: ${({ theme }) => theme.COLORS.CAKE_200};

@@ -1,8 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useSearch } from '../../hooks/searchContext';
-
-import { toast } from 'react-toastify';
-import { api } from '../../services/api';
+import { useDishes } from '../../hooks/dishes';
 
 import { Container } from './styles';
 import { Header } from '../../components/Header';
@@ -13,7 +10,7 @@ import foodsImg from '../../assets/FoodsOnAir.png';
 import { Hamburger, IceCream, Coffee } from '@phosphor-icons/react';
 
 export function Home() {
-  const { dishes } = useSearch();
+  const { dishes } = useDishes();
 
   const [meals, setMeals] = useState([]);
   const [desserts, setDesserts] = useState([]);
@@ -30,22 +27,7 @@ export function Home() {
   }
 
   useEffect(() => {
-    if (dishes.length > 0) {
-      return filterDishesByCategory(dishes);
-    }
-
-    async function renderDishes() {
-      try {
-        const { data } = await api.get('/dishes');
-        filterDishesByCategory(data);
-      } catch (error) {
-        if (error.response) return toast.error(error.response.data.message);
-
-        toast.error('Erro ao carregar pratos.');
-      }
-    }
-
-    renderDishes();
+    filterDishesByCategory(dishes);
   }, [dishes]);
 
   return (

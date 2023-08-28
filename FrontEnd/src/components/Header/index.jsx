@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../../hooks/auth";
 import { useCart } from "../../hooks/cart";
-import { useSearch } from "../../hooks/searchContext";
+import { useDishes } from "../../hooks/dishes";
 import { useMediaQuery } from "react-responsive";
 
 import { Link, useNavigate } from "react-router-dom";
@@ -19,7 +19,7 @@ export function Header() {
   const isDesktop = useMediaQuery({ minWidth: 1024 });
   const { signOut, isAdmin } = useAuth();
   const { getCartTotalItems } = useCart();
-  const { searchDishes, getAllDishes } = useSearch();
+  const { searchDishes } = useDishes();
 
   const [isMenuMobileOpen, setIsMenuMobileOpen] = useState(false);
   const [totalCartItems, setTotalCartItems] = useState(0);
@@ -41,11 +41,6 @@ export function Header() {
     }
   }
 
-  async function handleBackHome() {
-    await getAllDishes();
-    navigate("/");
-  }
-
   useEffect(() => {
     setTotalCartItems(getCartTotalItems());
   });
@@ -61,11 +56,11 @@ export function Header() {
           onClick={toggleMobileMenu}
         />
 
-        <div className="logo">
-          <Logo size={2.1} role="button" onClick={handleBackHome} />
+        <Link className="logo" to="/">
+          <Logo size={2.1} role="button" />
 
           {isAdmin && <span>admin</span>}
-        </div>
+        </Link>
 
         <Input
           id="desktop-search"

@@ -3,7 +3,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuth } from "../hooks/auth";
 import { CartProvider } from "../hooks/cart";
 import { FavoritesProvider } from "../hooks/favorites";
-import { SearchProvider } from "../hooks/searchContext";
+import { DishesProvider } from "../hooks/dishes";
 
 import { New } from "../pages/New";
 import { Edit } from "../pages/Edit";
@@ -16,7 +16,7 @@ export function App() {
   const { isAdmin } = useAuth();
 
   return (
-    <SearchProvider>
+    <DishesProvider>
       <CartProvider>
         <FavoritesProvider>
           <Routes>
@@ -29,6 +29,6 @@ export function App() {
           </Routes>
         </FavoritesProvider>
       </CartProvider>
-    </SearchProvider>
+    </DishesProvider>
   );
 }

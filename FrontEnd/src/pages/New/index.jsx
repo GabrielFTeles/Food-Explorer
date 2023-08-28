@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSearch } from "../../hooks/searchContext";
+import { useDishes } from "../../hooks/dishes";
 
 import { api } from "../../services/api";
 
@@ -20,7 +20,7 @@ import { Select } from "../../components/Select";
 
 export function New() {
   const navigate = useNavigate();
-  const { getAllDishes } = useSearch();
+  const { getAllDishes } = useDishes();
 
   const [image, setImage] = useState(null);
   const [name, setName] = useState("");

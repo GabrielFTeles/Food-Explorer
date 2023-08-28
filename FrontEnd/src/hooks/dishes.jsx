@@ -1,11 +1,11 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 import { api } from "../services/api";
 import { toast } from "react-toastify";
 
-export const searchContext = createContext();
+export const DishesContext = createContext();
 
-function SearchProvider({ children }) {
+export function DishesProvider({ children }) {
   const [dishes, setDishes] = useState([]);
 
   async function getAllDishes() {
@@ -45,13 +45,15 @@ function SearchProvider({ children }) {
       });
   }
 
+  useEffect(() => {
+    getAllDishes();
+  }, [])
+
   return (
-    <searchContext.Provider value={{ searchDishes, getAllDishes, dishes }}>
+    <DishesContext.Provider value={{ searchDishes, getAllDishes, dishes }}>
       {children}
-    </searchContext.Provider>
+    </DishesContext.Provider>
   );
 }
 
-const useSearch = () => useContext(searchContext);
-
-export { SearchProvider, useSearch };
+export const useDishes = () => useContext(DishesContext);

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useSearch } from "../../hooks/searchContext";
+import { useDishes } from "../../hooks/dishes";
 
 import { api } from "../../services/api";
 
@@ -21,7 +21,7 @@ import { Select } from "../../components/Select";
 export function Edit() {
   const params = useParams();
   const navigate = useNavigate();
-  const { getAllDishes } = useSearch();
+  const { getAllDishes } = useDishes();
   
   const [image, setImage] = useState(null);
   const [imageName, setImageName] = useState("");
@@ -139,7 +139,7 @@ export function Edit() {
   }
 
   useEffect(() => {
-    async function searchDishesData() {
+    async function getDishesData() {
       const dish_id = params.id;
       const { data } = await api.get(`/dishes/${dish_id}`);
 
@@ -152,7 +152,7 @@ export function Edit() {
       setDescription(data.description);
     }
 
-    searchDishesData();
+    getDishesData();
   }, []);
 
   return (

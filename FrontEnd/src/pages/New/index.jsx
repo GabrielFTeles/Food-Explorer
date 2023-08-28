@@ -12,11 +12,12 @@ import { Input } from "../../components/Input";
 import { Footer } from "../../components/Footer";
 import { Header } from "../../components/Header";
 import { Button } from "../../components/Button";
+import { Select } from "../../components/Select";
+import { TextArea } from "../../components/TextArea";
 import { FileInput } from "../../components/FileInput";
 import { BackButton } from "../../components/BackButton";
+import { CurrencyInput } from "../../components/CurrencyInput";
 import { IngredientInput } from "../../components/IngredientInput";
-import { TextArea } from "../../components/TextArea";
-import { Select } from "../../components/Select";
 
 export function New() {
   const navigate = useNavigate();
@@ -182,12 +183,10 @@ export function New() {
               </div>
             </div>
 
-            <Input
-              id="price"
+            <CurrencyInput 
               label="Preço"
-              type="text"
               placeholder="R$ 00,00"
-              onChange={(event) => setPrice(event.target.value)}
+              onValueChange={(values) => setPrice(values.floatValue)}
             />
           </div>
 

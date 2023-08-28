@@ -26,6 +26,7 @@ export function App() {
             {!isAdmin && <Route path="/favorites" element={<Favorites />} />}
             {isAdmin && <Route path="/new" element={<New />} />}
             {isAdmin && <Route path="/edit/:id" element={<Edit />} />}
+            <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </FavoritesProvider>
       </CartProvider>

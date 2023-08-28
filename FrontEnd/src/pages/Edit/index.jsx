@@ -238,7 +238,7 @@ export function Edit() {
               label="Preço"
               placeholder="R$ 40,00"
               value={price}
-              onValueChange={(values) => setPrice(values.floatValue)}
+              onValueChange={(value, _, values) => setPrice(values.float)}
             />
           </div>
 

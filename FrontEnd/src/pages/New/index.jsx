@@ -186,7 +186,7 @@ export function New() {
             <CurrencyInput 
               label="Preço"
               placeholder="R$ 00,00"
-              onValueChange={(values) => setPrice(values.floatValue)}
+              onValueChange={(value, _, values) => setPrice(values.float)}
             />
           </div>
 

@@ -131,3 +131,66 @@ export const Container = styled.div`
     }
   }
 `;
+
+export const EmptyCart = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4rem;
+  
+  margin-top: 3rem;
+
+  text-align: center;
+  
+  & img {
+    width: 30rem;
+  }
+
+  .text h2 {
+    color: ${({ theme }) => theme.COLORS.CAKE_200};
+    font-size: 2.8rem;
+    font-weight: 500;
+    line-height: 140%;
+  }
+
+  & p {
+    color: ${({ theme }) => theme.COLORS.LIGHT_400};
+    font-size: 1.4rem;
+    width: min(100%, 40rem);
+    margin-inline: auto;
+
+    & strong {
+      font-size: 1.4rem;
+      color: ${({ theme }) => theme.COLORS.CAKE_200};
+    }
+  }
+
+  & button {
+    width: fit-content;
+    font-size: 1rem;
+  }
+
+  @media screen and (min-width: 1024px) {
+    & img {
+      width: 40rem;
+    }
+
+    .text h2 {
+      font-size: 3.8rem;
+      font-weight: 700;
+    }
+
+    & p {
+      width: 50rem;
+      font-size: 1.8rem;
+
+      & strong {
+        font-size: 1.8rem;
+      }
+    }
+
+    & button {
+      font-size: 1.4rem;
+    }
+  }
+`;

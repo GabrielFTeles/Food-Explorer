@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
@@ -137,11 +137,13 @@ export const EmptyCart = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 4rem;
-  
+
+  flex: 1;
+
   margin-top: 3rem;
 
   text-align: center;
-  
+
   & img {
     width: 30rem;
   }

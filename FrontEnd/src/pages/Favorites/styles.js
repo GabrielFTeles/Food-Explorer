@@ -42,3 +42,29 @@ export const FavoritesList = styled.ul`
     gap: 4.8rem;
   }
 `;
+
+export const EmptyFavorites = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+
+  margin-top: 3.6rem;
+
+  text-align: center;
+
+  & img {
+    width: min(100%, 40rem);
+  }
+
+  & h2 {
+    color: ${({ theme }) => theme.COLORS.LIGHT_300};
+    font-size: 2.4rem;
+    font-weight: 500;
+
+    & span {
+      font-size: 2.4rem;
+      color: ${({ theme }) => theme.COLORS.CAKE_200};
+    }
+  }
+`;

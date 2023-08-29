@@ -31,8 +31,6 @@ export function Details() {
       image: data.image,
       quantity,
     });
-
-    navigate("/orders");
   }
 
   useEffect(() => {

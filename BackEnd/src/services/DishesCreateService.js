@@ -6,6 +6,10 @@ class DishesCreateService {
   }
 
   async execute({ name, description, category, price, image, ingredients }) {
+    if (!name || !description || !category || !price || !image || !ingredients) {
+      throw new AppError('Todos os campos são obrigatórios.', 400);
+    }
+
     const dishAlreadyExists = await this.dishesRepository.getDishByName(name);
 
     if (dishAlreadyExists) {

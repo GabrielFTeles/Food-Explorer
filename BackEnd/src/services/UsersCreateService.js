@@ -7,6 +7,10 @@ class UsersCreateService {
   }
 
   async execute({ name, email, password }) {
+    if (!name || !email || !password) {
+      throw new AppError('Todos os campos são obrigatórios.', 400);
+    }
+
     const emailAlreadyInUse = await this.usersRepository.getUserByEmail(email);
 
     const regexEmail = new RegExp('^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$');

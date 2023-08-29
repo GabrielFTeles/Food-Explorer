@@ -46,7 +46,7 @@ export function Orders() {
             <div className="text">
               <h2>Seu carrinho está vazio</h2>
               <p>
-                Adicione pratos clicando no botão <strong>Adicionar</strong> na
+                Adicione pratos clicando no botão <strong>Incluir</strong> na
                 página de pratos.
               </p>
             </div>

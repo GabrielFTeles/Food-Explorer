@@ -4,7 +4,15 @@ class DishesUpdateService {
   }
 
   async execute({id, name, description, category, price, ingredients }) {
+    if (!name || !description || !category || !price || !ingredients) {
+      throw new AppError('Todos os campos são obrigatórios.', 400);
+    }
+
     const dishToUpdate = await this.dishesRepository.getDishById(id);
+
+    if (!dishToUpdate) {
+      throw new AppError('Prato não encontrado.', 404);
+    }
 
     const updatedDish = Object.assign(dishToUpdate, {
       name,

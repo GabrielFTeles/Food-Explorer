@@ -16,6 +16,7 @@ import { Select } from "../../components/Select";
 import { TextArea } from "../../components/TextArea";
 import { FileInput } from "../../components/FileInput";
 import { BackButton } from "../../components/BackButton";
+import { PanLoader } from "../../components/PanLoader";
 import { CurrencyInput } from "../../components/CurrencyInput";
 import { IngredientInput } from "../../components/IngredientInput";
 
@@ -24,6 +25,7 @@ export function Edit() {
   const navigate = useNavigate();
   const { getAllDishes } = useDishes();
   
+  const [isLoading, setIsLoading] = useState(false);
   const [image, setImage] = useState(null);
   const [imageName, setImageName] = useState("");
   const [name, setName] = useState("");
@@ -141,6 +143,8 @@ export function Edit() {
   }
 
   useEffect(() => {
+    setIsLoading(true);
+
     async function getDishesData() {
       const dish_id = params.id;
       const { data } = await api.get(`/dishes/${dish_id}`);
@@ -152,6 +156,8 @@ export function Edit() {
       setIngredients(data.ingredients);
       setPrice(data.price);
       setDescription(data.description);
+
+      setIsLoading(false);
     }
 
     getDishesData();
@@ -162,6 +168,14 @@ export function Edit() {
       <Header />
 
       <main>
+        {
+          isLoading && (
+            <div className="loading">
+              <PanLoader />
+            </div>
+          )
+        }
+
         <BackButton />
 
         <Form onSubmit={handleSaveDish}>

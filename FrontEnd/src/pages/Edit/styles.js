@@ -5,6 +5,10 @@ export const Container = styled.div`
   flex-direction: column;
   min-height: 100dvh;
 
+  > main {
+    position: relative;
+  }
+
   @media screen and (min-width: 1024px) {
     > main {
       margin-top: 4rem;

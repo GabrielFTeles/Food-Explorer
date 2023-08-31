@@ -15,18 +15,6 @@ class FavoritesController {
     return response.json(favorites);
   }
 
-  async show(request, response) {
-    const { dish_id } = request.params;
-    const { id: user_id } = request.user;
-
-    const favoritesRepository = new FavoritesRepository();
-    const favoritesShowService = new FavoritesShowService(favoritesRepository);
-
-    const isFavorited = await favoritesShowService.execute({ user_id, dish_id });
-
-    return response.json({ isFavorited });
-  }
-
   async create(request, response) {
     const { dish_id } = request.params;
     const { id: user_id } = request.user;

@@ -38,7 +38,7 @@ class DishesController {
     const dish_id = await dishesCreateService.execute({ name, description, category, price, image, ingredients });
 
     return response.status(201).json({
-      message: "Dish created successfully",
+      message: "Prato criado com sucesso.",
       dish_id,
     });
   }
@@ -53,7 +53,7 @@ class DishesController {
     await dishesUpdateService.execute({ id, name, description, category, price, ingredients });
 
     return response.json({
-      message: "Dish updated successfully",
+      message: "Prato atualizado com sucesso.",
       id: +id,
     });
   }

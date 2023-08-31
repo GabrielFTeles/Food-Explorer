@@ -9,6 +9,7 @@ import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
 import { BackButton } from "../../components/BackButton";
 import { IngredientTag } from "../../components/IngredientTag";
+import { PanLoader } from "../../components/PanLoader";
 
 import { Receipt } from "@phosphor-icons/react";
 import { Button } from "../../components/Button";
@@ -36,7 +37,6 @@ export function Details() {
   useEffect(() => {
     async function getData() {
       const { data } = await api.get(`/dishes/${params.id}`);
-
       setData(data);
     }
 
@@ -49,48 +49,52 @@ export function Details() {
       <main>
         <BackButton />
 
-        {data && (
-          <div className="dish">
-            <img src={`${api.defaults.baseURL}/files/${data.image}`} alt="" />
+        <div className="dish">
+          {!data && <PanLoader />}
 
-            <div className="dish-info">
-              <div className="dish-description">
-                <h1>{data.name}</h1>
+          {data && (
+            <>
+              <img src={`${api.defaults.baseURL}/files/${data.image}`} alt="" />
 
-                <p>{data.description}</p>
+              <div className="dish-info">
+                <div className="dish-description">
+                  <h1>{data.name}</h1>
 
-                <div className="ingredients">
-                  {data.ingredients.map((ingredient, index) => (
-                    <IngredientTag key={index} title={ingredient} />
-                  ))}
+                  <p>{data.description}</p>
+
+                  <div className="ingredients">
+                    {data.ingredients.map((ingredient, index) => (
+                      <IngredientTag key={index} title={ingredient} />
+                    ))}
+                  </div>
                 </div>
+
+                {!isAdmin && (
+                  <div className="buttons-wrapper">
+                    <Counter onUpdate={setQuantity} />
+
+                    <button onClick={handleAddToCart}>
+                      <Receipt size={20} />
+                      pedir ∙{" "}
+                      {new Intl.NumberFormat("pt-BR", {
+                        style: "currency",
+                        currency: "BRL",
+                      }).format(data.price * quantity)}
+                    </button>
+                  </div>
+                )}
+
+                {isAdmin && (
+                  <Button
+                    onClick={() => navigate(`/edit/${params.id}`)}
+                    title="Editar prato"
+                    className="edit-button"
+                  />
+                )}
               </div>
-
-              {!isAdmin && (
-                <div className="buttons-wrapper">
-                  <Counter onUpdate={setQuantity} />
-
-                  <button onClick={handleAddToCart}>
-                    <Receipt size={20} />
-                    pedir ∙{" "}
-                    {new Intl.NumberFormat("pt-BR", {
-                      style: "currency",
-                      currency: "BRL",
-                    }).format(data.price * quantity)}
-                  </button>
-                </div>
-              )}
-
-              {isAdmin && (
-                <Button
-                  onClick={() => navigate(`/edit/${params.id}`)}
-                  title="Editar prato"
-                  className="edit-button"
-                />
-              )}
-            </div>
-          </div>
-        )}
+            </>
+          )}
+        </div>
       </main>
       <Footer />
     </Container>

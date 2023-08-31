@@ -9,8 +9,12 @@ export function DishesProvider({ children }) {
   const [dishes, setDishes] = useState([]);
 
   async function getAllDishes() {
+    const loadingDishesToast = toast.loading("Carregando pratos...");
+
     const response = await api.get(`/dishes`);
     setDishes(response.data);
+
+    toast.dismiss(loadingDishesToast);
   }
 
   function searchDishes(searchText) {

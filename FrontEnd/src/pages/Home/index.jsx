@@ -5,6 +5,7 @@ import { Container } from './styles';
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
 import { Category } from '../../components/Category';
+import { PanLoader } from '../../components/PanLoader';
 
 import foodsImg from '../../assets/FoodsOnAir.png';
 import { Hamburger, IceCream, Coffee } from '@phosphor-icons/react';
@@ -35,6 +36,10 @@ export function Home() {
       <Header />
 
       <main>
+        {dishes.length === 0 && (
+          <PanLoader />
+        )}
+
         <div className="introduction-container">
           <figure>
             <img src={foodsImg} alt="Foods throwed on air" />

@@ -19,7 +19,7 @@ export function Header() {
   const isDesktop = useMediaQuery({ minWidth: 1024 });
   const { signOut, isAdmin } = useAuth();
   const { getCartTotalItems } = useCart();
-  const { searchDishes } = useDishes();
+  const { searchDishes, getAllDishes } = useDishes();
 
   const [isMenuMobileOpen, setIsMenuMobileOpen] = useState(false);
   const [totalCartItems, setTotalCartItems] = useState(0);
@@ -41,6 +41,11 @@ export function Header() {
     }
   }
 
+  async function handleBackHome() {	
+    await getAllDishes();
+    navigate("/");
+  }
+
   useEffect(() => {
     setTotalCartItems(getCartTotalItems());
   });
@@ -56,11 +61,11 @@ export function Header() {
           onClick={toggleMobileMenu}
         />
 
-        <Link className="logo" to="/">
+        <div className="logo" onClick={handleBackHome}>
           <Logo size={2.1} role="button" />
 
           {isAdmin && <span>admin</span>}
-        </Link>
+        </div>
 
         <Input
           id="desktop-search"

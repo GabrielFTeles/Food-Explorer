@@ -14,7 +14,7 @@ export const Loader = styled.div`
 
   width: 100%;
   height: 100%;
-  backdrop-filter: blur(1.4px);
+  backdrop-filter: blur(1.3px);
 
   user-select: none;
 

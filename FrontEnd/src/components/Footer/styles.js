@@ -4,6 +4,8 @@ export const Container = styled.footer`
   text-align: center;
 
   padding-block: 2.4rem;
+  position: relative;
+  z-index: 1000;
 
   background: ${({ theme }) => theme.COLORS.DARK_600};
 

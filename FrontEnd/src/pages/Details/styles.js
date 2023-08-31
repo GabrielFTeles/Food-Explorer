@@ -24,6 +24,8 @@ export const Container = styled.div`
     }
 
     .dish {
+      position: relative;
+      min-height: 40rem;
       margin-top: 1.6rem;
 
       h1 {

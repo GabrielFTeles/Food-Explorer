@@ -1,25 +1,27 @@
 # 🍔 Food Explorer - Front End.
 
-###  Desktop 💻
-![Desktop Food Explorer](https://cdn.discordapp.com/attachments/1134579917565218897/1147193914340671578/Screenshot_2023-09-01_at_12-38-40_Food_Explorer.png)
-
-### Mobile 📱
-![Mobile Food Explorer](https://cdn.discordapp.com/attachments/841898960737402883/1147199015641940078/image.png)
+## Sobre o Projeto
 
 ✨ O projeto **Food Explorer** é um Web App que simula um menu interativo de um restaurante fictício. Ele oferece uma experiência envolvente aos usuários, permitindo que eles explorem os pratos, bebidas e opções do cardápio de forma interativa e visualmente atraente. Com o **Food Explorer**, os clientes podem navegar pelos pratos, ver imagens, descrições e informações detalhadas sobre cada item, criando uma experiência gastronômica virtual única.
 
 ## 📋 Índice
 
-- 📦 [Pré-requisitos](#pré-requisitos)
-- 🛠️ [Instalação](#instalação)
-- 📂 [Estrutura do Projeto](#estrutura-do-projeto)
-- 💻 [Tecnologias Utilizadas](#tecnologias-utilizadas)
-- 🤝 [Contribuindo](#contribuindo)
-- 📄 [Licença](#licença)
+- 📦 [Pré-requisitos](#-pré-requisitos)
+- 🛠️ [Instalação](#%EF%B8%8F-instalação)
+- 📂 [Estrutura do Projeto](#-estrutura-do-projeto)
+- 💻 [Tecnologias Utilizadas](#-tecnologias-utilizadas)
+- 🤝 [Contribuições](#-contribuições)
+- 📄 [Licença](#-licença)
+
+##  Desktop 💻
+![Desktop Food Explorer](https://cdn.discordapp.com/attachments/1134579917565218897/1147193914340671578/Screenshot_2023-09-01_at_12-38-40_Food_Explorer.png)
+
+## Mobile 📱
+![Mobile Food Explorer](https://cdn.discordapp.com/attachments/841898960737402883/1147199015641940078/image.png)
 
 ## 📦 Pré-requisitos
 
-Listede pré-requisitos necessários para que o projeto seja executado com sucesso:
+Liste de pré-requisitos necessários para que o projeto seja executado com sucesso:
 
 - [Node.js](https://nodejs.org/) - Versão v18.16.0 ou superior.
 - [npm](https://www.npmjs.com/) ou [Yarn](https://yarnpkg.com/) - Versão 9.5.1 ou superior.
@@ -78,6 +80,7 @@ Agora a **Aplicação Food Explorer** está instalada, configurada e em execuç�
   │   ├── styles/
   │   └── main.jsx
   ├── .env
+  ├── index.html
   ├── README.md
   └── package.json
 ```

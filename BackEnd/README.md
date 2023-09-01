@@ -124,7 +124,7 @@ Siga os passos abaixo para instalar e configurar a API em um ambiente local:
 
     Abra o navegador ou utilize uma ferramenta como o [Insomnia](https://insomnia.rest/) para acessar os endpoints da API em http://localhost:3000 (substitua a porta conforme necessário).
 
-    Agora a API Node.js está instalada, configurada e em execução no seu ambiente local. Você pode começar a usá-la para testes e desenvolvimento.
+    Agora a API está instalada, configurada e em execução no seu ambiente local. Você pode começar a usá-la para testes e desenvolvimento.
     
 ## 🌐 Endpoints
 Aqui estão os endpoints disponíveis na API, organizados por categorias:

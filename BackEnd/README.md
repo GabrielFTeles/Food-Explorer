@@ -61,7 +61,7 @@ Por favor, siga em frente e explore a documentação para obter mais detalhes so
 
 Aqui está o esquema do banco de dados da API, visualizado através do [DrawSQL](https://drawsql.app/teams/gabriels-team-9/diagrams/food-explorer):
 
-![Esquema do Banco de Dados](https://cdn.discordapp.com/attachments/1134579917565218897/1146871039792513024/image.png)
+![Esquema do Banco de Dados](https://cdn.discordapp.com/attachments/841898960737402883/1147539308207689850/image.png)
 ## 💡 Tecnologias
 A **API Food Explorer** é desenvolvida utilizando as seguintes tecnologias e bibliotecas:
 

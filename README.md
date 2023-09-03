@@ -28,7 +28,7 @@ Sinta-se à vontade para usar estas contas de demonstração para explorar a nos
 
 **Observação:** Lembre-se de que estas são contas de demonstração e não devem ser usadas para fins de produção ou para armazenar informações sensíveis.
 
-## Preview da Aplicação 📱
+## 📱 Preview da Aplicação 
 
 Você pode experimentar a aplicação no ar através do seguinte link:
 
@@ -36,8 +36,7 @@ Você pode experimentar a aplicação no ar através do seguinte link:
 
 Explore todos os recursos e desfrute da experiência completa!
 
-
-## Recursos Principais 📋
+## 📋 Recursos Principais 
 
 ### Gerenciamento de Usuários 🧑‍🍳
 
@@ -59,7 +58,7 @@ Explore todos os recursos e desfrute da experiência completa!
 
 - **Deleção de Favoritos:** Permite que os usuários removam pratos da lista de favoritos.
 
-## Mais Recursos 🌟
+## 🌟 Mais Recursos 
 
 - **Cardápio Digital Personalizado:** Oferece um cardápio digital com uma variedade de pratos, cada um com descrição, preço e imagem, permitindo aos usuários explorarem as opções de refeições de forma conveniente.
 

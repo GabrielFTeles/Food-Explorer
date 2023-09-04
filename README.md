@@ -26,7 +26,7 @@ Os usuários normais têm acesso limitado e podem visualizar o menu, adicionar i
 
 Sinta-se à vontade para usar estas contas de demonstração para explorar a nossa aplicação.
 
-**Observação:** Lembre-se de que estas são contas de demonstração e não devem ser usadas para fins de produção ou para armazenar informações sensíveis.
+> **Observação:** Lembre-se de que estas são contas de demonstração e não devem ser usadas para fins de produção ou para armazenar informações sensíveis.
 
 ## 📱 Preview da Aplicação 
 

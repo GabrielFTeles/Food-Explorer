@@ -314,7 +314,7 @@ Nessa rota, é passada uma imagem, para atualizar a imagem do prato.
     ```
 
 **Campos do Formulário:**
-- `avatar`: Arquivo da imagem do avatar (tipo: `arquivo`).
+- `image`: Arquivo da imagem do prato (tipo: `arquivo`).
 
 &nbsp;
 
